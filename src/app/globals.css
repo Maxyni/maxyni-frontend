@@ -12,17 +12,17 @@ body {
 
 *::-webkit-scrollbar {
   height: 10px;
-  width: 2px;
+  width: 3px;
 }
 
 *::-webkit-scrollbar-track {
-  border-radius: 5px;
+  border-radius: 15px;
   background-color: transparent;
 }
 
 *::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background-color: #1091e7;
+  background-color: #9908c5;
 }
 
 .nav-link {
