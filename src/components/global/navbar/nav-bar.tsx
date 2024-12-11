@@ -28,12 +28,13 @@ export function NavBar() {
     }, []);
 
     return (
-        <div id='start' className={`px-14 w-full ${isSticky ? "fixed shadow-lg bg-white" : "relative"} z-50 flex transition-all duration-300`}>
+        <div id='start' className={`px-4 md:px-14 w-full ${isSticky ? "fixed shadow-lg bg-white" : "relative"} z-50 flex transition-all duration-300`}>
             <nav className={`w-full flex justify-between items-center ${isSticky ? "py-0" : "py-5"}`}>
                 <div className='flex items-center gap-12'>
                     <Link href={""}>
                         <LogoIcon width={isSticky ? 50 : 85} height={80} />
                     </Link>
+
                     <ul className='sm:flex gap-6 hidden'>
                         <li>
                             <Link href={"#start"} className='nav-link'>
@@ -63,6 +64,7 @@ export function NavBar() {
                             <p>Fale conosco</p>
                         </Link>
                     </div>
+
                     <Drawer />
                 </div>
             </nav>

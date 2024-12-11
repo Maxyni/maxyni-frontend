@@ -19,9 +19,9 @@ export default function MainContent() {
                         </h1>
                         <p className='text-white text-sm mt-2'>
                             Somos uma empresa de tecnologia com foco em desenvolvimento de soluções digitais para empresas e pessoas. Sendo assim, ajudamos a transformar ideias em realidade, com qualidade, segurança e agilidade. <br />
-                            Mas acho que você já ouviu isso antes, né? Só que nós temos alguns diferenciais que nos tornam únicos-- de verdade. Clique em <strong>Explorar</strong> e descubra a Maxyni!
+                            Só que nós temos alguns diferenciais que nos tornam únicos-- de verdade. Clique em <strong>Explorar</strong> e descubra a Maxyni!
                         </p>
-                        
+
                         <div className="relative h-12 w-40 rounded-xl group mt-5">
                             <div className="absolute inset-0 shadow-white shadow-md bg-sky-500 transition-transform duration-300 ease-in-out transform scale-90 group-hover:scale-x-[1.03] group-hover:scale-y-[1.1] rounded-xl" />
                             <Link
