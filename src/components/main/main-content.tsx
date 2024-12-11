@@ -17,9 +17,11 @@ export default function MainContent() {
                         <h1 className='text-white font-extrabold text-4xl lg:text-5xl'>
                             TENHA O MÁXIMO <br />DE POTENCIAL <br />COM MAXYNI
                         </h1>
-                        <p className='text-white font-light text-sm mt-2'>
-                            Somos uma empresa dedicada a criar soluções inovadoras para negócios de todos os tamanhos, desde pequenos empreendimentos até grandes corporações. Nosso foco é proporcionar praticidade e eficiência na gestão dos seus negócios. Com a Maxyni, você conta com tecnologia de ponta para otimizar seus processos e impulsionar o crescimento do seu negócio.
+                        <p className='text-white text-sm mt-2'>
+                            Somos uma empresa de tecnologia com foco em desenvolvimento de soluções digitais para empresas e pessoas. Sendo assim, ajudamos a transformar ideias em realidade, com qualidade, segurança e agilidade. <br />
+                            Mas acho que você já ouviu isso antes, né? Só que nós temos alguns diferenciais que nos tornam únicos-- de verdade. Clique em <strong>Explorar</strong> e descubra a Maxyni!
                         </p>
+                        
                         <div className="relative h-12 w-40 rounded-xl group mt-5">
                             <div className="absolute inset-0 shadow-white shadow-md bg-sky-500 transition-transform duration-300 ease-in-out transform scale-90 group-hover:scale-x-[1.03] group-hover:scale-y-[1.1] rounded-xl" />
                             <Link
