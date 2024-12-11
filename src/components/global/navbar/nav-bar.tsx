@@ -8,6 +8,7 @@ import Drawer from './drawer';
 import { useEffect, useState } from 'react';
 
 export function NavBar() {
+    const window = globalThis.window;
     const [isSticky, setIsSticky] = useState(false);
 
     useEffect(() => {
@@ -27,7 +28,7 @@ export function NavBar() {
     }, []);
 
     return (
-        <div className={`px-14 w-full ${isSticky ? "fixed shadow-lg bg-white" : "relative"} z-50 flex transition-all duration-300`}>
+        <div id='start' className={`px-14 w-full ${isSticky ? "fixed shadow-lg bg-white" : "relative"} z-50 flex transition-all duration-300`}>
             <nav className={`w-full flex justify-between items-center ${isSticky ? "py-0" : "py-5"}`}>
                 <div className='flex items-center gap-12'>
                     <Link href={""}>
