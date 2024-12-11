@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Container } from '../container';
 import { LogoIcon } from '../svgs/logo-icon';
 import { RiContactsLine } from 'react-icons/ri';
+import Drawer from './drawer';
 
 export function NavBar() {
     return (
@@ -15,7 +16,7 @@ export function NavBar() {
                         <Link href={""}>
                             <LogoIcon width={85} height={80} />
                         </Link>
-                        <ul className='flex gap-6'>
+                        <ul className='sm:flex gap-6 hidden'>
                             <li>
                                 <Link href={"#start"} className='nav-link'>
                                     Início
@@ -41,6 +42,7 @@ export function NavBar() {
                                 <p>Fale conosco</p>
                             </Link>
                         </div>
+                        <Drawer />
                     </div>
                 </nav>
             </div>

@@ -6,6 +6,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 *::-webkit-scrollbar {
   height: 10px;
   width: 2px;
