@@ -25,13 +25,13 @@ export default function WhoIsMaxyni() {
                         </span>?
                     </h1>
                     <p className="mt-5 text-base font-light">
-                        A Maxyni é uma empresa brasileira especializada no desenvolvimento de software para gestão empresarial. Nosso foco é oferecer soluções eficientes e práticas para diversas indústrias, com o objetivo de simplificar o dia a dia das empresas, independente do setor em que atuam.
+                    A Maxyni nasceu com o objetivo de simplificar a forma como empresas gerenciam seus processos e tomam decisões.
                         <br />
                         <br />
-                        Nosso compromisso vai além de simplesmente fornecer produtos. Acreditamos que, para ser verdadeiramente relevante, é preciso ser referência. Por isso, cada um de nossos softwares é pensado para entregar o máximo de valor e performance, sempre com foco em atender as necessidades reais dos nossos clientes.
+                        Nosso objetivo vai muito além de simplesmente oferecer software-produtos; queremos ser a referência. Acreditamos que a tecnologia deve ser acessível e descomplicada, e é por isso que desenvolvemos soluções que atendem às necessidades de empresas de todos os tamanhos e segmentos.
                         <br />
                         <br />
-                        Nosso diferencial? Criamos soluções que funcionam para pessoas reais, em cenários de negócios reais. Entendemos que, independentemente do nicho, o sucesso de uma empresa está nas pessoas que a compõem. Por isso, nossos produtos não são apenas ferramentas; são facilitadores de decisões e resultados que fazem a diferença.
+                        Nosso diferencial? Pessoas, qualidade e cuidado. Tudo que fazemos têm o objetivo de facilitar e melhorar a vida de pessoas. Nossa cultura é sempre oferecer qualidade e cuidado em tudo que fazemos.
                     </p>
                 </div>
             </div>
