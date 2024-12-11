@@ -21,7 +21,7 @@ export default function BestChoice() {
                     <div className='flex flex-col items-center'>
                         <Image className='z-10' src={"https://i.imgur.com/nHHdLZu.png"} quality={100} width={150} height={150} alt='Support icon'/>
                         <div className='flex flex-col bg-white shadow-2xl rounded-md w-64 h-52 p-2 -mt-16 py-12'>
-                            <h1 className='text-center text-lg font-bold'>Suporte</h1>
+                            <h1 className='text-center text-lg font-bold mb-1'>Suporte</h1>
                             <span className='text-center'>Nosso atendimento é humanizado, e gostamos disso. Nosso suporte está sempre disponível para te ajudar e resolver problemas que possam surgir no seu dia-a-dia!</span>
                         </div>
                     </div>
@@ -29,7 +29,7 @@ export default function BestChoice() {
                     <div className='flex flex-col items-center'>
                         <Image className='z-10' src={"https://i.imgur.com/OTZZFra.png"} quality={100} width={150} height={150} alt='Customization icon'/>
                         <div className='flex flex-col bg-white shadow-2xl rounded-md w-64 h-52 p-2 -mt-16 py-12'>
-                            <h1 className='text-center text-lg font-bold'>Customização</h1>
+                            <h1 className='text-center text-lg font-bold mb-1'>Customização</h1>
                             <span className='text-center'>Sabemos que cada pessoa é única e tem preferências. Por isso, nossos sistemas são altamente customizáveis, oferecendo um melhor conforto para o usuário.</span>
                         </div>
                     </div>
@@ -37,7 +37,7 @@ export default function BestChoice() {
                     <div className='flex flex-col items-center'>
                         <Image className='z-10' src={"https://i.imgur.com/qIArruO.png"} quality={100} width={150} height={150} alt='Magic icon'/>
                         <div className='flex flex-col bg-white shadow-2xl rounded-md w-64 h-52 p-2 -mt-16 py-12'>
-                            <h1 className='text-center text-lg font-bold'>Mágica! <span className='text-sm font-medium'>Como assim?</span></h1>
+                            <h1 className='text-center text-lg font-bold mb-1'>Mágica! <span className='text-sm font-medium'>Como assim?</span></h1>
                             <span className='text-center'>Temos uma rapidez absurda para lançar atualizações. Ou seja, a cada dia que se passa, estamos decolando uma nova solução ou função para você!</span>
                         </div>
                     </div>

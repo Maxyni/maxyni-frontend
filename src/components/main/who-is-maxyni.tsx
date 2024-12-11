@@ -19,9 +19,9 @@ export default function WhoIsMaxyni() {
                 />
                 <div className="text-center sm:text-left flex flex-col items-center sm:items-start">
                     <h1 className="text-5xl font-bold">
-                        Quem é a{" "}
+                        Quem é a
                         <span className="bg-gradient-to-r from-[#4B0082] to-[#4682B4] bg-clip-text text-transparent">
-                            Maxyni
+                            {' Maxyni'}
                         </span>?
                     </h1>
                     <p className="mt-5 text-base font-light">
