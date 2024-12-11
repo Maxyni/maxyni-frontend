@@ -41,7 +41,7 @@ export function NavBar() {
                         </li>
                         <li>
                             <Link href={"#who"} className='nav-link'>
-                                Quem somos?
+                                Sobre nós
                             </Link>
                         </li>
                         <li>
@@ -54,7 +54,10 @@ export function NavBar() {
                 <div className='flex items-center gap-6'>
                     <div className="relative h-12 w-40 rounded-xl group">
                         <div className="absolute inset-0 bg-gradient-to-r from-[#73BFFF] to-[#9A35E4] transition-transform duration-300 ease-in-out transform scale-90 group-hover:scale-x-[1.03] group-hover:scale-y-[1.1] rounded-xl" />
-                        <Link href={""} className="relative flex items-center gap-1 shadow-2xl justify-center w-full h-full rounded-xl bg-white text-black z-10">
+                        <Link
+                            href={"mailto:suporte@maxyni.com.br"}
+                            className="relative flex items-center gap-1 shadow-2xl justify-center w-full h-full rounded-xl bg-white text-black z-10"
+                        >
                             <RiContactsLine className='text-lg' />
                             <p>Fale conosco</p>
                         </Link>

@@ -19,19 +19,21 @@ export default function Solutions() {
                 />
                 <div className="text-center sm:text-left flex flex-col items-center sm:items-start">
                     <h1 className="text-5xl font-bold leading-tight">
-                        Soluções atingindo o{" "}
+                        Soluções para atingir o{" "}
                         <span className="bg-gradient-to-r from-[#4B0082] to-[#4682B4] bg-clip-text text-transparent">
                             MÁXIMO
                         </span>
                     </h1>
                     <p className="mt-5 text-base font-light">
-                        A Maxyni é uma empresa brasileira especializada no desenvolvimento de software para gestão empresarial. Nosso foco é oferecer soluções eficientes e práticas para diversas indústrias, com o objetivo de simplificar o dia a dia das empresas, independente do setor em que atuam.
+                        Desbloqueie todo o potencial do seu negócio com as <span className='font-bold'>soluções da Maxyni</span>!
                         <br />
                         <br />
-                        Nosso compromisso vai além de simplesmente fornecer produtos. Acreditamos que, para ser verdadeiramente relevante, é preciso ser referência. Por isso, cada um de nossos softwares é pensado para entregar o máximo de valor e performance, sempre com foco em atender as necessidades reais dos nossos clientes.
+                        Cada produto é desenvolvido pensando nas dores e problemas do dia-a-dia da área em que aquele produto será utilizado. Nossos produtos são feitos para serem <span className='font-bold'>intuitivos e fáceis de usar</span>, sem perder a robustez e a eficiência necessárias para o seu negócio.
                         <br />
                         <br />
-                        Nosso diferencial? Criamos soluções que funcionam para pessoas reais, em cenários de negócios reais. Entendemos que, independentemente do nicho, o sucesso de uma empresa está nas pessoas que a compõem. Por isso, nossos produtos não são apenas ferramentas; são facilitadores de decisões e resultados que fazem a diferença.
+                        <span className='font-bold'>Conheça nossos produtos:</span><br />
+                        <span className='font-bold'>•</span> Atualmente, desenvolvemos <span className='font-bold'>Web Apps Fullstack</span> sob encomenda para empresas de pequeno e médio porte, com foco em automação de processos e otimização de tempo. <br />
+                        <span className='font-bold'>•</span> Para o futuro, estamos desenvolvendo soluções <span className='font-bold'>SaaS multi-tenant</span> para empresas de todos os tamanhos, com foco em escalabilidade e segurança. Fique ligado!
                     </p>
                 </div>
             </div>

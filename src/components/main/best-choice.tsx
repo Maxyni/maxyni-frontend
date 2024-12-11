@@ -38,7 +38,7 @@ export default function BestChoice() {
                         <Image className='z-10' src={"https://i.imgur.com/qIArruO.png"} quality={100} width={150} height={150} alt='Magic icon'/>
                         <div className='flex flex-col bg-white shadow-2xl rounded-md w-64 h-52 p-2 -mt-16 py-12'>
                             <h1 className='text-center text-lg font-bold'>Mágica! <span className='text-sm font-medium'>Como assim?</span></h1>
-                            <span className='text-center'>Temos uma rapidez absurda para lançar atualizações. Ou seja, a cada dia que se passa, estamos decolando uma nova solução ou função para o seu usuário final.</span> {/** Usuário final aqui refere-se aos funcionários da empresa contratante! */}
+                            <span className='text-center'>Temos uma rapidez absurda para lançar atualizações. Ou seja, a cada dia que se passa, estamos decolando uma nova solução ou função para você!</span>
                         </div>
                     </div>
                 </div>

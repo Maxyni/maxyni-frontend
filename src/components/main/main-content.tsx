@@ -22,7 +22,9 @@ export default function MainContent() {
                         </p>
                         <div className="relative h-12 w-40 rounded-xl group mt-5">
                             <div className="absolute inset-0 shadow-white shadow-md bg-sky-500 transition-transform duration-300 ease-in-out transform scale-90 group-hover:scale-x-[1.03] group-hover:scale-y-[1.1] rounded-xl" />
-                            <Link href={"#solutions"} className="relative flex items-center gap-1 shadow-2xl justify-center w-full h-full rounded-xl bg-white text-black z-10">
+                            <Link
+                                href={"#solutions"}
+                                className="relative flex items-center gap-1 shadow-2xl justify-center w-full h-full rounded-xl bg-white text-black z-10">
                                 <FaRegCompass />
                                 <p>Explorar</p>
                             </Link>
