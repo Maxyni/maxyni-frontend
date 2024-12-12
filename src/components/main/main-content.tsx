@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { NavBar } from "../global/navbar/nav-bar";
 import { Container } from "../global/container";
-import { FaRegCompass } from "react-icons/fa";
 import Solutions from "./solutions";
 import BestChoice from "./best-choice";
 import AboutMaxyni from "./about-maxyni";
