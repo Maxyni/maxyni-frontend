@@ -67,7 +67,7 @@ export default function Drawer() {
                                     Início
                                 </Link>
                                 <Link
-                                    href={"#who"}
+                                    href={"#about"}
                                     onClick={() => setIsOpen(false)}
                                     className="text-xl px-4 py-2 rounded-md text-black font-medium transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-400/10"
                                 >

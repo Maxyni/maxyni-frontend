@@ -1,14 +1,13 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 import { Container } from '@/components/global/container';
 import Image from 'next/image';
 
 export default function Solutions() {
-
     return (
         <Container>
-            <div className="flex sm:flex-row flex-col items-center justify-center gap-5" id="solutions">
+            <div className="flex sm:flex-row md:flex-row flex-col items-center justify-center gap-5" id="solutions">
                 <Image
                     src="https://i.imgur.com/sXfjmCx.png"
                     alt="Solutions Image"
@@ -17,6 +16,7 @@ export default function Solutions() {
                     quality={100}
                     className="w-full sm:w-auto"
                 />
+
                 <div className="text-center sm:text-left flex flex-col items-center sm:items-start">
                     <h1 className="text-5xl font-bold leading-tight">
                         Soluções para atingir o{" "}
@@ -24,6 +24,7 @@ export default function Solutions() {
                             MÁXIMO
                         </span>
                     </h1>
+
                     <p className="mt-5 text-base font-light">
                         Desbloqueie todo o potencial do seu negócio com as <span className='font-bold'>soluções da Maxyni</span>!
                         <br />

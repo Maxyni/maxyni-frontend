@@ -42,7 +42,7 @@ export function NavBar() {
                             </Link>
                         </li>
                         <li>
-                            <Link href={"#who"} className='nav-link'>
+                            <Link href={"#about"} className='nav-link'>
                                 Sobre nós
                             </Link>
                         </li>
