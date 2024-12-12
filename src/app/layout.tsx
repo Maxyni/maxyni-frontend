@@ -6,8 +6,8 @@ import Footer from "@/components/global/footer/footer";
 const jost = Jost({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Maxyni | Soluções profissionais corporativas de desenvolvimento",
-  description: "Precisa de soluções únicas desenvolvidas com foco em qualidade e escalabilidade? Com as soluções da Maxyni, você atinge o máximo de potencial e rendimento. Descubra como podemos transformar o seu negócio hoje mesmo!",
+  title: "Maxyni | Soluções digitais sob medida para o seu negócio",
+  description: "Maximize o potencial da sua empresa com soluções digitais personalizadas, desenvolvidas com excelência, escalabilidade e segurança. Descubra como a Maxyni pode transformar desafios em oportunidades e levar seu negócio ao próximo nível!"
 };
 
 export default function RootLayout({
