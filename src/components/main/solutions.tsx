@@ -26,15 +26,17 @@ export default function Solutions() {
                     </h1>
 
                     <p className="mt-5 text-base font-light">
-                        Desbloqueie todo o potencial do seu negócio com as <span className='font-bold'>soluções da Maxyni</span>!
+                        Desbloqueie todo o potencial do seu negócio com as <strong>soluções da Maxyni</strong>!
                         <br />
                         <br />
-                        Cada produto é desenvolvido pensando nas dores e problemas do dia-a-dia da área em que aquele produto será utilizado. Nossos produtos são feitos para serem <span className='font-bold'>intuitivos e fáceis de usar</span>, sem perder a robustez e a eficiência necessárias para o seu negócio.
+                        Cada produto é desenvolvido com foco nas <strong>necessidades reais</strong> do dia-a-dia, considerando as dores e desafios de cada área de atuação. Nossos produtos são projetados para serem <strong>intuitivos, eficientes e robustos</strong>, garantindo facilidade de uso sem abrir mão da performance.
                         <br />
                         <br />
-                        <span className='font-bold'>Conheça nossos produtos:</span><br />
-                        <span className='font-bold'>•</span> Atualmente, desenvolvemos <span className='font-bold'>Web Apps Fullstack</span> sob encomenda para empresas de pequeno e médio porte, com foco em automação de processos e otimização de tempo. <br />
-                        <span className='font-bold'>•</span> Para o futuro, estamos desenvolvendo soluções <span className='font-bold'>SaaS multi-tenant</span> para empresas de todos os tamanhos, com foco em escalabilidade e segurança. Fique ligado!
+                        <span className="font-bold">Conheça nossos produtos:</span>
+                        <br />
+                        <span className="font-bold">•</span> Atualmente, desenvolvemos <strong>Web Apps Fullstack</strong> sob medida para empresas de pequeno e médio porte. Nosso foco é <strong>automatizar processos</strong> e economizar tempo, permitindo que sua equipe se concentre no que realmente importa.
+                        <br />
+                        <span className="font-bold">•</span> Para o futuro, estamos trabalhando em soluções <strong>SaaS multi-tenant</strong>, projetadas para empresas de todos os tamanhos. Com ênfase em <strong>escalabilidade</strong> e <strong>segurança</strong>, essas ferramentas prometem transformar a forma como você gerencia seu negócio. Fique ligado!
                     </p>
                 </div>
             </div>

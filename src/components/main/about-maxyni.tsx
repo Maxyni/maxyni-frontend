@@ -26,13 +26,13 @@ export default function AboutMaxyni() {
                     </h1>
 
                     <p className="mt-5 text-base font-light">
-                        A Maxyni nasceu com o objetivo de simplificar a forma como empresas gerenciam seus processos e tomam decisões.
+                        A Maxyni nasceu para <strong>simplificar</strong> como empresas gerenciam seus processos e tomam decisões.
                         <br />
                         <br />
-                        Nosso objetivo vai muito além de simplesmente oferecer software-produtos; queremos ser a referência. Acreditamos que a tecnologia deve ser acessível e descomplicada, e é por isso que desenvolvemos soluções que atendem às necessidades de empresas de todos os tamanhos e segmentos.
+                        Mais do que criar produtos digitais, queremos ser <strong>referência</strong>. Acreditamos que a tecnologia deve ser <strong>acessível</strong> e <strong>intuitiva</strong>. Por isso, desenvolvemos soluções pensadas para empresas de todos os tamanhos e setores.
                         <br />
                         <br />
-                        Nosso diferencial? Pessoas, qualidade e cuidado. Tudo que fazemos têm o objetivo de facilitar e melhorar a vida de pessoas. Nossa cultura é sempre oferecer qualidade e cuidado em tudo que fazemos.
+                        O que nos diferencia? <strong>Pessoas, qualidade e cuidado.</strong> Tudo o que fazemos tem como objetivo <strong>facilitar</strong> o dia a dia das empresas e <strong>impactar positivamente</strong> as pessoas. Nossa essência é entregar <strong>qualidade</strong> em cada detalhe.
                     </p>
                 </div>
             </div>
