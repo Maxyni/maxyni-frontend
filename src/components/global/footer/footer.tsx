@@ -20,10 +20,10 @@ export default function Footer() {
                             <a href="#privacy" className="hover:underline me-4 md:me-6">Política de privacidade</a>
                         </li>
                         
-                        <li>
+                        <li className="flex">
                             <a href="https://github.com/Maxyni" target="_blank" className="me-4 md:me-6"><BsGithub /></a>
                         </li>
-                        <li>
+                        <li className="flex">
                             <a href="https://instagram.com/MaxyniSistemas" target="_blank" className="me-4 md:me-6"><BsInstagram /></a>
                         </li>
                     </ul>
