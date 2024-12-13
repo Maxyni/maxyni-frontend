@@ -25,7 +25,7 @@ export default function BestChoice() {
 
                         <div className='flex flex-col bg-white shadow-2xl rounded-md w-72 h-52 p-2 -mt-16 py-12'>
                             <h1 className='text-center text-lg font-bold mb-1'>Suporte</h1>
-                            <span className='text-center'>Nossoatendimento humanizado está sempre pronto para ajudar e resolver qualquer problema, garantindo que seu dia-a-dia flua sem complicações.</span>
+                            <span className='text-center'>Nosso atendimento humanizado está sempre pronto para ajudar e resolver qualquer problema, garantindo que seu dia-a-dia flua sem complicações.</span>
                         </div>
                     </div>
 
@@ -34,7 +34,7 @@ export default function BestChoice() {
 
                         <div className='flex flex-col bg-white shadow-2xl rounded-md w-72 h-52 p-2 -mt-16 py-12'>
                             <h1 className='text-center text-lg font-bold mb-1'>Customização</h1>
-                            <span className='text-center text-medium'>Entendemos que cada negócio é único. Por isso, nossos sistemas são altamente customizáveis, proporcionando conforto e eficiência para você.</span>
+                            <span className='text-center text-medium'>Entendemos que cada negócio é único. Por isso, nossos sistemas são altamente customizáveis e adaptáveis, proporcionando conforto e eficiência para você.</span>
                         </div>
                     </div>
 
