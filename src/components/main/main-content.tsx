@@ -1,3 +1,5 @@
+'use client';
+
 import Image from "next/image";
 import { NavBar } from "../global/navbar/nav-bar";
 import { Container } from "../global/container";
@@ -6,8 +8,11 @@ import BestChoice from "./best-choice";
 import AboutMaxyni from "./about-maxyni";
 import Link from "next/link";
 import { BsRocketTakeoff } from "react-icons/bs";
+import { useState } from "react";
 
 export default function MainContent() {
+    const [isRocketFloating, setIsRocketFloating] = useState(false); // State to control the rocket floating animation.
+
     return (
         <>
             <NavBar />
@@ -18,6 +23,7 @@ export default function MainContent() {
                         <h1 className='text-white font-extrabold text-4xl lg:text-5xl'>
                             DECOLE O POTENCIAL <br />DA SUA EMPRESA <br />COM A MAXYNI
                         </h1>
+
                         <p className='text-white text-medium mt-2'>
                             Somos especialistas em criar soluções digitais para empresas e pessoas. Transformamos suas ideias em realidade com qualidade, segurança e agilidade. <br />
                             Nossos diferenciais nos destacam no mercado. Clique em <strong>Decolar</strong> e descubra como podemos impulsionar seus resultados!
@@ -33,8 +39,15 @@ export default function MainContent() {
                             </Link>
                         </div>
                     </div>
-                    <div className="hidden lg:block">
-                        <Image src={"https://i.imgur.com/jav4bLm.png"} alt='Rocket Image' width={600} height={750} quality={100} />
+                    <div
+                        className={`hidden lg:block animate-[rocketEntry_1.5s_ease-out_forwards] ${isRocketFloating && "animate-[rocketFloat_3s_ease-in-out_infinite]"}`}
+                        onAnimationEnd={() => setIsRocketFloating(true)} // When the rocket entry animation ends, start the floating animation.
+                    >
+                        <Image
+                            src={"https://i.imgur.com/jav4bLm.png"}
+                            alt='Rocket Image'
+                            width={600} height={750} quality={100}
+                        />
                     </div>
                 </div>
 

@@ -44,3 +44,32 @@ body {
 .nav-link:hover::before {
   width: 100%;
 }
+
+/* Main content Rocket Image animations - Start */
+@keyframes rocketEntry {
+  0% {
+    transform: translate(150%, 150%) rotate(20deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes rocketFloat {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Main content Rocket Image animations - End */
