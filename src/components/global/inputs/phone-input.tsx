@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 
-const PhoneInput: React.FC = () => {
-    const [phone, setPhone] = useState("");
+type PhoneInputProps = {
+    phone: string;
+    onChange: (phone: string) => void;
+    onBlur?: () => void;
+    isInError?: boolean;
+    required?: boolean;
+};
 
+const PhoneInput: React.FC<PhoneInputProps> = ({ phone, onChange, onBlur, isInError }) => {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não é número
         if (value.length > 11) value = value.slice(0, 11); // Limita a 11 dígitos
@@ -16,13 +22,13 @@ const PhoneInput: React.FC = () => {
             value = `(${value}`;
         }
 
-        setPhone(value);
+        onChange(value);
     };
 
     return (
         <div className="relative flex flex-col">
             <label htmlFor="number">
-                Número de contato <span className="text-red-500">*</span>
+                Número de telefone {isInError && <span className="text-red-500">*</span>}
             </label>
             <div className="bg-white flex items-center border rounded-md overflow-hidden group transition duration-300 ease-in-out focus-within:border-[#9800b6]">
                 <span className="pl-3 text-sm font-medium">+55</span>
@@ -31,8 +37,10 @@ const PhoneInput: React.FC = () => {
                     name="number"
                     value={phone}
                     onChange={handleInputChange}
-                    placeholder="(11) 11111-1111"
+                    onBlur={onBlur}
+                    placeholder="(00) 00000-0000"
                     className="flex-1 px-3 py-2 outline-none"
+                    required
                 />
             </div>
         </div>

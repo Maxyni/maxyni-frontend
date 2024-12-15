@@ -10,8 +10,7 @@ import Modal, { DataType } from '../modal';
 import PhoneInput from '../inputs/phone-input';
 
 export function NavBar() {
-    const window = globalThis.window;
-    const [isSticky, setIsSticky] = useState(false);
+    // Contact Maxyni modal - Start
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     useEffect(() => {
@@ -21,23 +20,46 @@ export function NavBar() {
         }
     }, []);
 
-    const [isEmailError, setIsEmailError] = useState()
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+
+    const [nameInputError, setNameInputError] = useState(false);
+    const [emailInputError, setEmailInputError] = useState(false);
+    const [phoneInputError, setPhoneInputError] = useState(false);
+
+    const handleNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        const newName = e.target.value;
+        setName(newName);
+        setNameInputError(!newName);
+    }, []);
+
+    const handleEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        const newEmail = e.target.value;
+        setEmail(newEmail);
+        setEmailInputError(!newEmail);
+    }, []);
+
+    const handlePhoneChange = useCallback((phone: string) => {
+        setPhone(phone);
+        setPhoneInputError(!phone);
+    }, []);
 
     const handleContactSubmit = useCallback((data: DataType): Promise<boolean> => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             setTimeout(() => {
-                if (data.name && data.email && data.message) {
-                    console.log('Contact data submitted:', data);
-                    resolve(true);
-                } else {
-                    reject(false);
-                }
+                resolve(false);
             }, 1000);
         });
     }, [])
+    // Contact Maxyni modal - End
 
-    // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    // Sticky navbar - Start
+    const [isSticky, setIsSticky] = useState(false); // State to control the navbar style - sticky or not.
 
+    /**
+     * Handle the scroll event to change the navbar style.
+     */
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 100) {
@@ -53,8 +75,7 @@ export function NavBar() {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
-
-
+    // Sticky navbar - End
 
     return (
         <div id='start' className={`px-4 md:px-14 w-full ${isSticky ? "fixed shadow-lg bg-white" : "relative"} z-20 flex transition-all duration-300`}>
@@ -82,16 +103,16 @@ export function NavBar() {
                         </li>
                     </ul>
                 </div>
-                <div className='flex items-center gap-6'>
 
+                <div className='flex items-center gap-6'>
                     <Modal
-                        title="Contate um especialista"
+                        title="Entrar em contato conosco"
                         externalOpenState={modalIsOpen}
                         buttonToOpen={
                             <div className="relative h-12 w-40 rounded-xl group">
                                 <div className="absolute inset-0 bg-gradient-to-r from-[#73BFFF] to-[#9A35E4] transition-transform duration-300 ease-in-out transform scale-90 group-hover:scale-x-[1.03] group-hover:scale-y-[1.1] rounded-xl" />
                                 <Link
-                                    href={"#contact"}
+                                    href="#contact"
                                     className="relative flex items-center gap-1 shadow-2xl justify-center w-full h-full rounded-xl bg-white text-black z-10"
                                 >
                                     <RiContactsLine className='text-lg' />
@@ -99,24 +120,54 @@ export function NavBar() {
                                 </Link>
                             </div>
                         }
-                        className='relative w-screen h-screen sm:h-[70vh] sm:w-[40%]'
+                        className='relative w-screen h-screen sm:h-auto sm:w-[40%]'
                         onClose={() => {
                             window.location.hash = '';
+                            setEmailInputError(false);
+                            setNameInputError(false);
+                            setPhoneInputError(false);
                             setModalIsOpen(false);
                         }}
-                        submitButtonText='Enviar'
+                        submitButtonText='Entrar em contato'
                         onSubmit={handleContactSubmit}
                     >
                         <div className='relative flex flex-col'>
-                            <label htmlFor="name">Nome <span className='text-red-500'>*</span></label>
-                            <input onBlur={} type="text" name='name' placeholder='Como podemos lhe chamar?' className='px-3 py-2 rounded-md border outline-none transition duration-300 ease-out focus:border-[#9800b6]' />
+                            <label htmlFor="name">Nome completo {nameInputError && <span className='text-red-500'>*</span>}</label>
+                            <input
+                                value={name}
+                                onChange={handleNameChange}
+                                onBlur={() => setNameInputError(!name)}
+                                type="text"
+                                name='name'
+                                placeholder='Como podemos lhe chamar?'
+                                className='px-3 py-2 rounded-md border outline-none transition duration-300 ease-out focus:border-[#9800b6]'
+                                required
+                            />
                         </div>
+
                         <div className='relative flex flex-col'>
-                            <label htmlFor="email">E-mail corporativo <span className='text-red-500'>*</span></label>
-                            <input type="email" name='email' placeholder='Podemos entrar em contato por onde?' className='px-3 py-2 rounded-md border outline-none transition duration-300 ease-out focus:border-[#9800b6]' />
+                            <label htmlFor="email">E-mail corporativo {emailInputError && <span className='text-red-500'>*</span>}</label>
+                            <input
+                                value={email}
+                                onChange={handleEmailChange}
+                                onBlur={() => setEmailInputError(!email)}
+                                type="email"
+                                name='email'
+                                placeholder='Como podemos entrar em contato?'
+                                className='px-3 py-2 rounded-md border outline-none transition duration-300 ease-out focus:border-[#9800b6]'
+                                required
+                            />
                         </div>
-                        <PhoneInput />
-                        <p className='mt-2 font-light text-gray-500'>Ao enviar o formulário, concordo com a <Link href={"/#compliance"} className='font-medium bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent'>Política de privacidade</Link>.</p>
+
+                        <PhoneInput
+                            phone={phone}
+                            onChange={handlePhoneChange}
+                            onBlur={() => setPhoneInputError(!phone)}
+                            isInError={phoneInputError}
+                            required
+                        />
+
+                        <p className='mt-2 font-light text-gray-500'>Ao enviar o formulário, concordo com a <Link href={"#compliance"} target='_blank' className='font-medium bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent'>Política de privacidade</Link>.</p>
                     </Modal>
                     <Drawer />
                 </div>

@@ -196,7 +196,7 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                 </div>
 
                                 {/* Conteúdo Rolável */}
-                                <div className="flex-grow overflow-y-auto">
+                                <div className="flex-grow overflow-y-auto pb-1">
                                     <form
                                         className="flex flex-col"
                                         onSubmit={handleFormSubmit}
@@ -204,26 +204,25 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                         <div className="flex flex-col gap-3 mb-5">
                                             {children}
                                         </div>
-                                    </form>
-                                </div>
 
-                                {/* Footer */}
-                                <div className="w-full flex justify-center gap-4 mt-4">
-                                    {onSubmit && (
-                                        <button
-                                            type="submit"
-                                            className={`${isLoading ? 'bg-[#4864e156] bg-opacity-70' : 'bg-gradient-to-r from-blue-500 to-purple-500'} w-44 py-3 text-white font-medium rounded-md text-[16px] leading-6 transition duration-300 ease-in-out hover:scale-105`}
-                                            disabled={isLoading}
-                                        >
-                                            {isLoading ? (
-                                                <span className="w-full flex items-center justify-center">
-                                                    <RiLoader5Fill className="animate-spin" size={24} />
-                                                </span>
-                                            ) : (
-                                                <p>{submitButtonText ?? 'Confirmar'}</p>
+                                        <div className="w-full flex justify-center gap-4 mt-4">
+                                            {onSubmit && (
+                                                <button
+                                                    type="submit"
+                                                    className={`${isLoading ? 'bg-[#4864e156] bg-opacity-70' : 'bg-gradient-to-r from-blue-500 to-purple-500'} w-44 py-3 text-white font-medium rounded-md text-[16px] leading-6 transition duration-300 ease-in-out hover:scale-105`}
+                                                    disabled={isLoading}
+                                                >
+                                                    {isLoading ? (
+                                                        <span className="w-full flex items-center justify-center">
+                                                            <RiLoader5Fill className="animate-spin" size={24} />
+                                                        </span>
+                                                    ) : (
+                                                        <p>{submitButtonText ?? 'Confirmar'}</p>
+                                                    )}
+                                                </button>
                                             )}
-                                        </button>
-                                    )}
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </motion.div>
