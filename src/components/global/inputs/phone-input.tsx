@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from 'framer-motion';
 
 type PhoneInputProps = {
     phone: string;
@@ -26,7 +27,10 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ phone, onChange, onBlur, isInEr
     };
 
     return (
-        <div className="relative flex flex-col">
+        <motion.div
+            layout
+            className="relative flex flex-col"
+        >
             <label htmlFor="number">
                 Número de telefone {isInError && <span className="text-red-500">*</span>}
             </label>
@@ -43,8 +47,18 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ phone, onChange, onBlur, isInEr
                     required
                 />
             </div>
-            {isInError && <p className='text-red-500 text-xs'>Campo obrigatório</p>}
-        </div>
+            {isInError &&
+                <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className='text-red-500 text-xs ml-1'
+                >
+                    Campo obrigatório.
+                </motion.p>
+            }
+        </motion.div>
     );
 };
 

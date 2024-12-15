@@ -8,6 +8,7 @@ import Drawer from './drawer';
 import { useCallback, useEffect, useState } from 'react';
 import Modal, { DataType } from '../modal';
 import PhoneInput from '../inputs/phone-input';
+import { motion } from "framer-motion";
 
 export function NavBar() {
     // Contact Maxyni modal - Start
@@ -46,9 +47,14 @@ export function NavBar() {
     }, []);
 
     const handleContactSubmit = useCallback((data: DataType): Promise<boolean> => {
+        const { name, email, phone } = data;
+        if (!name || !email || !phone) {
+            // TODO: Handle the error.
+        }
         return new Promise((resolve) => {
             setTimeout(() => {
-                resolve(false);
+                window.open('mailto:suporte@maxyni.com.br', '_blank');
+                resolve(true);
             }, 1000);
         });
     }, [])
@@ -120,7 +126,7 @@ export function NavBar() {
                                 </Link>
                             </div>
                         }
-                        className='relative w-screen h-screen sm:h-auto sm:w-[40%]'
+                        className='relative w-screen h-screen sm:h-auto sm:w-[50%] lg:w-[40%] 2xl:w-[30%]'
                         onClose={() => {
                             window.location.hash = '';
                             setEmailInputError(false);
@@ -130,8 +136,12 @@ export function NavBar() {
                         }}
                         submitButtonText='Entrar em contato'
                         onSubmit={handleContactSubmit}
+                        closeAfterSubmit
                     >
-                        <div className='relative flex flex-col'>
+                        <motion.div
+                            layout
+                            className='relative flex flex-col'
+                        >
                             <label htmlFor="name">Nome completo {nameInputError && <span className='text-red-500'>*</span>}</label>
                             <input
                                 value={name}
@@ -143,10 +153,23 @@ export function NavBar() {
                                 className={`${nameInputError ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
                                 required
                             />
-                            {nameInputError && <p className='text-red-500 text-xs'>Campo obrigatório</p>}
-                        </div>
+                            {nameInputError &&
+                                <motion.p
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    exit={{ opacity: 0, y: 10 }}
+                                    className='text-red-500 text-xs ml-1'
+                                >
+                                    Campo obrigatório.
+                                </motion.p>
+                            }
+                        </motion.div>
 
-                        <div className='relative flex flex-col'>
+                        <motion.div
+                            layout
+                            className='relative flex flex-col'
+                        >
                             <label htmlFor="email">E-mail corporativo {emailInputError && <span className='text-red-500'>*</span>}</label>
                             <input
                                 value={email}
@@ -158,8 +181,18 @@ export function NavBar() {
                                 className={`${emailInputError ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
                                 required
                             />
-                            {emailInputError && <p className='text-red-500 text-xs'>Campo obrigatório</p>}
-                        </div>
+                            {emailInputError &&
+                                <motion.p
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    exit={{ opacity: 0, y: 10 }}
+                                    className='text-red-500 text-xs ml-1'
+                                >
+                                    Campo obrigatório.
+                                </motion.p>
+                            }
+                        </motion.div>
 
                         <PhoneInput
                             phone={phone}
@@ -169,7 +202,7 @@ export function NavBar() {
                             required
                         />
 
-                        <p className='mt-2 font-light text-gray-500'>Ao enviar o formulário, concordo com a <Link href={"#compliance"} target='_blank' className='font-medium bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent'>Política de privacidade</Link>.</p>
+                        <p className='mt-2 font-light text-gray-500'>Ao enviar o formulário, você concorda com a <Link href={"#compliance"} target='_blank' className='font-medium bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent'>Política de Privacidade</Link>.</p>
                     </Modal>
                     <Drawer />
                 </div>
