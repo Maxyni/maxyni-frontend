@@ -140,9 +140,10 @@ export function NavBar() {
                                 type="text"
                                 name='name'
                                 placeholder='Como podemos lhe chamar?'
-                                className='px-3 py-2 rounded-md border outline-none transition duration-300 ease-out focus:border-[#9800b6]'
+                                className={`${nameInputError ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
                                 required
                             />
+                            {nameInputError && <p className='text-red-500 text-xs'>Campo obrigatório</p>}
                         </div>
 
                         <div className='relative flex flex-col'>
@@ -154,9 +155,10 @@ export function NavBar() {
                                 type="email"
                                 name='email'
                                 placeholder='Como podemos entrar em contato?'
-                                className='px-3 py-2 rounded-md border outline-none transition duration-300 ease-out focus:border-[#9800b6]'
+                                className={`${emailInputError ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
                                 required
                             />
+                            {emailInputError && <p className='text-red-500 text-xs'>Campo obrigatório</p>}
                         </div>
 
                         <PhoneInput

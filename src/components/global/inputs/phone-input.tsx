@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 type PhoneInputProps = {
     phone: string;
@@ -30,7 +30,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ phone, onChange, onBlur, isInEr
             <label htmlFor="number">
                 Número de telefone {isInError && <span className="text-red-500">*</span>}
             </label>
-            <div className="bg-white flex items-center border rounded-md overflow-hidden group transition duration-300 ease-in-out focus-within:border-[#9800b6]">
+            <div className={`bg-white flex items-center ${isInError ? "border border-red-400" : "border"}  rounded-md overflow-hidden group transition duration-300 ease-in-out focus-within:border-[#9800b6]`}>
                 <span className="pl-3 text-sm font-medium">+55</span>
                 <input
                     type="text"
@@ -43,6 +43,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ phone, onChange, onBlur, isInEr
                     required
                 />
             </div>
+            {isInError && <p className='text-red-500 text-xs'>Campo obrigatório</p>}
         </div>
     );
 };
