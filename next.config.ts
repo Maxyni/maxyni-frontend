@@ -1,11 +1,6 @@
-const nextTranslate = require('next-translate-plugin');
+import { NextConfig } from "next";
 
-const nextConfig = {
-  i18n: {
-    locales: ['pt', 'es', 'en'],
-    defaultLocale: 'pt'
-  },
-  reactStrictMode: true,
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
@@ -17,7 +12,7 @@ const nextConfig = {
         hostname: '**',
       }
     ],
-  },
+  }
 };
 
-module.exports = nextTranslate(nextConfig);
+export default nextConfig;
