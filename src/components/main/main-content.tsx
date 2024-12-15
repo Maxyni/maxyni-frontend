@@ -12,7 +12,7 @@ import { useState } from "react";
 
 export default function MainContent() {
     const [isRocketFloating, setIsRocketFloating] = useState(false); // State to control the rocket floating animation.
-
+    
     return (
         <>
             <NavBar />
