@@ -10,11 +10,11 @@ export default function Footer() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     useEffect(() => {
-        if (window.location.hash === '#privacy') {
+        if (window.location.hash === '#compliance') {
             document.getElementById('footer')?.scrollIntoView();
             setModalIsOpen(true);
         }
-    }, [window.location.hash]);
+    }, []);
 
     return (
         <footer id="footer" className="mt-28 bg-white rounded-lg shadow">
@@ -34,7 +34,7 @@ export default function Footer() {
                                 title="Política de Privacidade e Cookies"
                                 externalOpenState={modalIsOpen}
                                 buttonToOpen={
-                                    <a href="#privacy" className="hover:underline me-4 md:me-6">
+                                    <a href="#compliance" className="hover:underline me-4 md:me-6">
                                         Política de privacidade
                                     </a>
                                 }
@@ -42,6 +42,7 @@ export default function Footer() {
                                     window.location.hash = '';
                                     setModalIsOpen(false);
                                 }}
+                                className="w-screen h-screen sm:h-[80vh] sm:w-[60%]"
                             >
                                 <p className='text-black font-normal'><strong>1. Sobre o site:</strong> O site da Maxyni é uma landing page informativa, destinada a apresentar nossos produtos e serviços. Nenhum dado pessoal é coletado diretamente por meio do site, salvo em caso de interações futuras especificadas.</p>
                                 <p className='text-black font-normal'><strong>2. Uso de Cookies e Tecnologias Similares:</strong> Podemos utilizar cookies e tecnologias similares para melhorar a experiência do usuário e analisar a utilização do site. Ao continuar utilizando o site, você consente com o uso dessas tecnologias. Você pode configurar seu navegador para bloquear cookies, mas isso pode impactar a experiência de navegação.</p>

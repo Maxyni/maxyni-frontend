@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import React, { ReactNode, useCallback, useEffect, useState } from "react";
+import { IoIosClose } from "react-icons/io";
 import { RiLoader5Fill } from "react-icons/ri";
 
 /**
@@ -97,6 +98,19 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
         }
     }, [externalOpenState]);
 
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add('overflow-hidden');
+        } else {
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        // Cleanup when component unmounts
+        return () => {
+            document.body.classList.remove('overflow-hidden');
+        };
+    }, [isOpen]);
+
     /**
      * Toggles the modal open and closed.
      */
@@ -159,17 +173,26 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
 
                         {/* Modal */}
                         <motion.div
-                            className="fixed inset-0 flex items-center justify-center p-4 z-40"
+                            className="fixed inset-0 flex items-center justify-center z-40"
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.9 }}
                             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                         >
                             <div
-                                className={`${className} bg-[#F1F7FD] w-full sm:w-[30rem] max-w-full mx-auto py-3 px-6 rounded-md shadow-lg flex flex-col max-h-[80vh]`}
+                                className={`${className} bg-[#F1F7FD] w-full sm:w-[30rem] max-w-full mx-auto py-3 px-6 rounded-3xl shadow-lg flex flex-col`}
                             >
                                 <div className="w-full flex items-center justify-between h-[72px]">
-                                    <h1 className="font-bold text-2xl leading-7 text-black">{title}</h1>
+                                    <h1 className="font-bold text-2xl leading-7 text-black truncate line-clamp-1">{title}</h1>
+                                    <button
+                                        type="button"
+                                        className="p-2 text-black/70 text-[16px] leading-6 transition-all duration-300 ease-in-out hover:scale-105"
+                                        onClick={handleModalClose}
+                                    >
+                                        <p>
+                                            {closeButtonText ?? <IoIosClose className="text-3xl" />}
+                                        </p>
+                                    </button>
                                 </div>
 
                                 {/* Conteúdo Rolável */}
@@ -185,21 +208,11 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                 </div>
 
                                 {/* Footer */}
-                                <div className="w-full flex justify-end gap-4 mt-4">
-                                    <button
-                                        type="button"
-                                        className="p-2 text-black/70 text-[16px] leading-6 transition-all duration-300 ease-in-out hover:scale-105"
-                                        onClick={handleModalClose}
-                                    >
-                                        <strong>
-                                            {closeButtonText ?? 'Fechar'}
-                                        </strong>
-                                    </button>
-
+                                <div className="w-full flex justify-center gap-4 mt-4">
                                     {onSubmit && (
                                         <button
                                             type="submit"
-                                            className={`${isLoading ? 'bg-[#4864e156] bg-opacity-70' : 'bg-[#4864E1]'} w-32 p-3 text-white rounded-md font-semibold text-[16px] leading-6 transition duration-300 ease-in-out hover:scale-105`}
+                                            className={`${isLoading ? 'bg-[#4864e156] bg-opacity-70' : 'bg-gradient-to-r from-blue-500 to-purple-500'} w-44 py-3 text-white font-medium rounded-md text-[16px] leading-6 transition duration-300 ease-in-out hover:scale-105`}
                                             disabled={isLoading}
                                         >
                                             {isLoading ? (
@@ -207,9 +220,7 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                                     <RiLoader5Fill className="animate-spin" size={24} />
                                                 </span>
                                             ) : (
-                                                <strong>
-                                                    {submitButtonText ?? 'Confirmar'}
-                                                </strong>
+                                                <p>{submitButtonText ?? 'Confirmar'}</p>
                                             )}
                                         </button>
                                     )}
