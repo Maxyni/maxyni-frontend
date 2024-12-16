@@ -29,6 +29,8 @@ export function NavBar() {
     const [emailInputError, setEmailInputError] = useState(false);
     const [phoneInputError, setPhoneInputError] = useState(false);
 
+    const [submitError, setSubmitError] = useState<string | null>(null);
+
     const handleNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const newName = e.target.value;
         setName(newName);
@@ -47,14 +49,17 @@ export function NavBar() {
     }, []);
 
     const handleContactSubmit = useCallback((data: DataType): Promise<boolean> => {
+        setSubmitError(null);
+
         const { name, email, phone } = data;
         if (!name || !email || !phone) {
             // TODO: Handle the error.
         }
         return new Promise((resolve) => {
             setTimeout(() => {
-                window.open('mailto:suporte@maxyni.com.br', '_blank');
-                resolve(true);
+                // window.open('mailto:suporte@maxyni.com.br', '_blank');
+                setSubmitError('Não foi possível enviar seu formulário de contato no momento. Tente novamente mais tarde.');
+                resolve(false);
             }, 1000);
         });
     }, [])
@@ -132,6 +137,7 @@ export function NavBar() {
                             setEmailInputError(false);
                             setNameInputError(false);
                             setPhoneInputError(false);
+                            setSubmitError(null);
                             setModalIsOpen(false);
                         }}
                         submitButtonText='Entrar em contato'
@@ -202,7 +208,24 @@ export function NavBar() {
                             required
                         />
 
-                        <p className='mt-2 font-light text-gray-500'>Ao enviar o formulário, você concorda com a <Link href={"#compliance"} target='_blank' className='font-medium bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent'>Política de Privacidade</Link>.</p>
+                        <motion.p
+                            layout
+                            className='mt-2 mb-4 font-light text-gray-500'
+                        >
+                            Ao enviar o formulário, você concorda com a <Link href={"#compliance"} target='_blank' className='font-medium bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent'>Política de Privacidade</Link>.
+                        </motion.p>
+
+                        {submitError &&
+                            <motion.p
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3 }}
+                                exit={{ opacity: 0, y: 10 }}
+                                className='text-red-500 xl:pl-10 xl:pr-10 text-sm text-center'
+                            >
+                                {submitError}
+                            </motion.p>
+                        }
                     </Modal>
                     <Drawer />
                 </div>

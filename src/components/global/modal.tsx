@@ -205,7 +205,10 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                             {children}
                                         </div>
 
-                                        <div className="w-full flex justify-center gap-4 mt-4">
+                                        <motion.div
+                                            layout
+                                            className="w-full flex justify-center gap-4"
+                                        >
                                             {onSubmit && (
                                                 <button
                                                     type="submit"
@@ -221,7 +224,7 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                                     )}
                                                 </button>
                                             )}
-                                        </div>
+                                        </motion.div>
                                     </form>
                                 </div>
                             </div>

@@ -35,7 +35,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ phone, onChange, onBlur, isInEr
                 Número de telefone {isInError && <span className="text-red-500">*</span>}
             </label>
             <div className={`bg-white flex items-center ${isInError ? "border border-red-400" : "border"}  rounded-md overflow-hidden group transition duration-300 ease-in-out focus-within:border-[#9800b6]`}>
-                <span className="pl-3 text-sm font-medium">+55</span>
+                <span className="pl-2 pr-2 text-sm font-medium">+55</span>
                 <input
                     type="text"
                     name="number"
@@ -43,7 +43,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ phone, onChange, onBlur, isInEr
                     onChange={handleInputChange}
                     onBlur={onBlur}
                     placeholder="(00) 00000-0000"
-                    className="flex-1 px-3 py-2 outline-none"
+                    className="flex-1 px-2 py-2 outline-none"
                     required
                 />
             </div>
