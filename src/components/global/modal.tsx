@@ -179,7 +179,8 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                             exit={{ opacity: 0, scale: 0.9 }}
                             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                         >
-                            <div
+                            <motion.div
+                                layout
                                 className={`${className} bg-[#F1F7FD] w-full sm:w-[30rem] max-w-full mx-auto py-3 px-6 rounded-3xl shadow-lg flex flex-col`}
                             >
                                 <div className="w-full flex items-center justify-between h-[72px]">
@@ -196,7 +197,10 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                 </div>
 
                                 {/* Conteúdo Rolável */}
-                                <div className="flex-grow overflow-y-auto pb-1">
+                                <motion.div
+                                    layout
+                                    className="flex-grow overflow-y-auto pb-1"
+                                >
                                     <form
                                         className="flex flex-col"
                                         onSubmit={handleFormSubmit}
@@ -226,8 +230,8 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                             )}
                                         </motion.div>
                                     </form>
-                                </div>
-                            </div>
+                                </motion.div>
+                            </motion.div>
                         </motion.div>
                     </>
                 )}
