@@ -196,7 +196,7 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                     </button>
                                 </div>
 
-                                {/* Conteúdo Rolável */}
+                                {/* Scrollable contect */}
                                 <motion.div
                                     layout
                                     className="flex-grow overflow-y-auto pb-1"
@@ -216,7 +216,7 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                             {onSubmit && (
                                                 <button
                                                     type="submit"
-                                                    className={`${isLoading ? 'bg-[#4864e156] bg-opacity-70' : 'bg-gradient-to-r from-blue-500 to-purple-500'} w-44 py-3 text-white font-medium rounded-md text-[16px] leading-6 transition duration-300 ease-in-out hover:scale-105`}
+                                                    className={`${isLoading ? 'bg-[#4864e156] bg-opacity-70' : 'bg-gradient-to-r from-blue-500 to-purple-500 hover:scale-105'} w-44 py-3 text-white font-medium rounded-md text-[16px] leading-6 transition-all duration-300 ease-in-out`}
                                                     disabled={isLoading}
                                                 >
                                                     {isLoading ? (
