@@ -7,9 +7,10 @@ type PhoneInputProps = {
     onBlur?: () => void;
     isInError?: boolean;
     required?: boolean;
+    disabled?: boolean;
 };
 
-const PhoneInput: React.FC<PhoneInputProps> = ({ phone, onChange, onBlur, isInError }) => {
+const PhoneInput: React.FC<PhoneInputProps> = ({ phone, onChange, onBlur, disabled, isInError }) => {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não é número
         if (value.length > 11) value = value.slice(0, 11); // Limita a 11 dígitos
@@ -42,6 +43,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ phone, onChange, onBlur, isInEr
                     value={phone}
                     onChange={handleInputChange}
                     onBlur={onBlur}
+                    disabled={disabled}
                     placeholder="(00) 00000-0000"
                     className="flex-1 px-2 py-2 outline-none"
                     required

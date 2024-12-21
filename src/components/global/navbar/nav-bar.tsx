@@ -29,6 +29,7 @@ export function NavBar() {
     const [emailInputError, setEmailInputError] = useState(false);
     const [phoneInputError, setPhoneInputError] = useState(false);
 
+    const [submitting, setSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState<string | null>(null);
 
     const handleNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,6 +50,7 @@ export function NavBar() {
     }, []);
 
     const handleContactSubmit = useCallback((data: DataType): Promise<boolean> => {
+        setSubmitting(true);
         setSubmitError(null);
 
         const { name, email, phone } = data;
@@ -59,6 +61,7 @@ export function NavBar() {
             setTimeout(() => {
                 // window.open('mailto:suporte@maxyni.com.br', '_blank');
                 setSubmitError('Não foi possível enviar seu formulário de contato no momento. Tente novamente mais tarde.');
+                setSubmitting(false);
                 resolve(false);
             }, 1000);
         });
@@ -153,6 +156,7 @@ export function NavBar() {
                                 value={name}
                                 onChange={handleNameChange}
                                 onBlur={() => setNameInputError(!name)}
+                                disabled={submitting}
                                 type="text"
                                 name='name'
                                 placeholder='Como podemos lhe chamar?'
@@ -181,6 +185,7 @@ export function NavBar() {
                                 value={email}
                                 onChange={handleEmailChange}
                                 onBlur={() => setEmailInputError(!email)}
+                                disabled={submitting}
                                 type="email"
                                 name='email'
                                 placeholder='Como podemos entrar em contato?'
@@ -204,6 +209,7 @@ export function NavBar() {
                             phone={phone}
                             onChange={handlePhoneChange}
                             onBlur={() => setPhoneInputError(!phone)}
+                            disabled={submitting}
                             isInError={phoneInputError}
                             required
                         />
