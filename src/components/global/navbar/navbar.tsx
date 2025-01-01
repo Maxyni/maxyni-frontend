@@ -1,15 +1,34 @@
 'use client';
 
 import Link from 'next/link';
-
 import { LogoIcon } from '../svgs/logo-icon';
 import { RiContactsLine } from 'react-icons/ri';
 import Drawer from './drawer';
-import { useCallback, useEffect, useState } from 'react';
-import Modal, { DataType } from '../modal';
+import { useEffect, useState } from 'react';
+import Modal from '../modal';
 import PhoneInput from '../inputs/phone-input';
 import { motion } from "framer-motion";
 import { useRouter } from 'next/navigation';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+const submitContactSchema = z.object({
+    fullName: z
+        .string({ message: "O nome não deve conter caracteres especiais." })
+        .nonempty({ message: "Insira o seu nome completo." })
+        .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)+$/, { message: 'Insira um nome válido.' }),
+    email: z
+        .string()
+        .nonempty({ message: 'Insira o seu e-mail corporativo.' })
+        .email({ message: 'Insira um e-mail válido.' }),
+    phone: z
+        .string({ message: 'O número de telefone não deve conter caracteres especiais.' })
+        .nonempty({ message: 'Insira o seu número de telefone.' })
+        .regex(/^\(\d{2}\)\s\d{4,5}-\d{4}$/, { message: 'Insira um número de telefone válido.' })
+});
+
+type SubmitContactForm = z.infer<typeof submitContactSchema>;
 
 export function Navbar() {
     const router = useRouter();
@@ -24,42 +43,21 @@ export function Navbar() {
         }
     }, []);
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-
-    const [nameInputError, setNameInputError] = useState(false);
-    const [emailInputError, setEmailInputError] = useState(false);
-    const [phoneInputError, setPhoneInputError] = useState(false);
+    const { register, control, handleSubmit, formState: { errors }, clearErrors, trigger } = useForm<SubmitContactForm>({
+        resolver: zodResolver(submitContactSchema),
+        defaultValues: { phone: '' }
+    });
 
     const [submitting, setSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState<string | null>(null);
 
-    const handleNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const newName = e.target.value;
-        setName(newName);
-        setNameInputError(!newName);
-    }, []);
-
-    const handleEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const newEmail = e.target.value;
-        setEmail(newEmail);
-        setEmailInputError(!newEmail);
-    }, []);
-
-    const handlePhoneChange = useCallback((phone: string) => {
-        setPhone(phone);
-        setPhoneInputError(!phone);
-    }, []);
-
-    const handleContactSubmit = useCallback((data: DataType): Promise<boolean> => {
+    const onSubmit = (): Promise<boolean> => {
         setSubmitting(true);
         setSubmitError(null);
+        clearErrors();
 
-        const { name, email, phone } = data;
-        if (!name || !email || !phone) {
-            // TODO: Handle the error.
-        }
+        // TODO: Handle the form submission here when the backend is ready.
+
         return new Promise((resolve) => {
             setTimeout(() => {
                 setSubmitError('Não foi possível enviar seu formulário de contato no momento. Tente novamente mais tarde.');
@@ -67,7 +65,7 @@ export function Navbar() {
                 resolve(false);
             }, 1000);
         });
-    }, [])
+    };
     // Contact Maxyni modal - End
 
     // Sticky navbar - Start
@@ -101,33 +99,32 @@ export function Navbar() {
                 externalOpenState={modalIsOpen}
                 onClose={() => {
                     router.push('/', { scroll: false });
-                    setEmailInputError(false);
-                    setNameInputError(false);
-                    setPhoneInputError(false);
                     setSubmitError(null);
+                    clearErrors();
                     setModalIsOpen(false);
                 }}
                 submitButtonText='Entrar em contato'
-                onSubmit={handleContactSubmit}
+                submitButtonDisabled={submitting}
+                handleSubmit={handleSubmit}
+                onSubmit={onSubmit}
                 closeAfterSubmit
             >
                 <motion.div
                     layout
                     className='relative flex flex-col'
                 >
-                    <label htmlFor="name">Nome completo {nameInputError && <span className='text-red-500'>*</span>}</label>
+                    <label htmlFor="fullName">Nome completo {errors.fullName && <span className='text-red-500'>*</span>}</label>
                     <input
-                        value={name}
-                        onChange={handleNameChange}
-                        onBlur={() => setNameInputError(!name)}
                         disabled={submitting}
                         type="text"
-                        name='name'
                         placeholder='John Doe'
-                        className={`${nameInputError ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
-                        required
+                        className={`${errors.fullName ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
+                        {...register('fullName', {
+                            onChange: () => { clearErrors('fullName') },
+                            onBlur: () => { trigger('fullName') }
+                        })}
                     />
-                    {nameInputError &&
+                    {errors.fullName &&
                         <motion.p
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -135,7 +132,7 @@ export function Navbar() {
                             exit={{ opacity: 0, y: 10 }}
                             className='text-red-500 text-xs ml-1'
                         >
-                            Campo obrigatório.
+                            {errors.fullName.message}
                         </motion.p>
                     }
                 </motion.div>
@@ -144,19 +141,18 @@ export function Navbar() {
                     layout
                     className='relative flex flex-col'
                 >
-                    <label htmlFor="email">E-mail corporativo {emailInputError && <span className='text-red-500'>*</span>}</label>
+                    <label htmlFor="email">E-mail corporativo {errors.email && <span className='text-red-500'>*</span>}</label>
                     <input
-                        value={email}
-                        onChange={handleEmailChange}
-                        onBlur={() => setEmailInputError(!email)}
                         disabled={submitting}
                         type="email"
-                        name='email'
                         placeholder='john.doe@exemplo.com'
-                        className={`${emailInputError ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
-                        required
+                        className={`${errors.email ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
+                        {...register('email', {
+                            onChange: () => { clearErrors('email') },
+                            onBlur: () => { trigger('email') }
+                        })}
                     />
-                    {emailInputError &&
+                    {errors.email &&
                         <motion.p
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -164,18 +160,17 @@ export function Navbar() {
                             exit={{ opacity: 0, y: 10 }}
                             className='text-red-500 text-xs ml-1'
                         >
-                            Campo obrigatório.
+                            {errors.email.message}
                         </motion.p>
                     }
                 </motion.div>
 
                 <PhoneInput
-                    phone={phone}
-                    onChange={handlePhoneChange}
-                    onBlur={() => setPhoneInputError(!phone)}
+                    control={control}
+                    onChange={() => { clearErrors('phone') }}
+                    onBlur={() => { trigger('phone') }}
+                    errorMessage={errors.phone?.message}
                     disabled={submitting}
-                    isInError={phoneInputError}
-                    required
                 />
 
                 <motion.p

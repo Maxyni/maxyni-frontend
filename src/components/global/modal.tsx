@@ -2,15 +2,9 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import React, { ReactNode, useCallback, useEffect, useState } from "react";
+import { SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
 import { IoIosClose } from "react-icons/io";
 import { RiLoader5Fill } from "react-icons/ri";
-
-/**
- * The data type for the form data. 
- */
-export type DataType = {
-    [key: string]: unknown;
-}
 
 /**
  * The props for the modal component.
@@ -51,17 +45,21 @@ type ModalProps = {
     submitButtonText?: string;
 
     /**
-     * The function to call when the form is submitted. Optional.
+     * Whether the submit button should be disabled. Optional.
      * 
-     * If this prop is not provided, the modal will not have a form and will not be able to submit data.
-     * This is useful for modals that only display information and do not require user input or submission.
-     * 
-     * The function should return a promise that resolves to a boolean indicating whether the submission was successful.
-     * 
-     * @param data The form data submitted by the user.
-     * @returns A promise that resolves to a boolean indicating whether the submission was successful.
+     * @default false
      */
-    onSubmit?: (data: DataType) => Promise<boolean>;
+    submitButtonDisabled?: boolean;
+
+    /**
+     * The function to call when the form is submitted. Optional.
+     */
+    handleSubmit?: UseFormHandleSubmit<any>;
+
+    /**
+     * This is called in handleSubmit and is used to submit the form data. Optional.
+     */
+    onSubmit?: SubmitHandler<any>;
 
     /**
      * Whether to close the modal after the form is submitted. Optional.
@@ -75,6 +73,11 @@ type ModalProps = {
     closeAfterSubmit?: boolean;
 
     /**
+     * The function to call when the modal is open. Optional.
+     */
+    onOpen?: () => void;
+
+    /**
      * The function to call when the modal is closed. Optional.
      */
     onClose?: () => void;
@@ -85,7 +88,7 @@ type ModalProps = {
     children: ReactNode;
 };
 
-const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, buttonToOpen, closeButtonText, submitButtonText, onSubmit, closeAfterSubmit, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, buttonToOpen, closeButtonText, submitButtonText, submitButtonDisabled, handleSubmit, onSubmit, closeAfterSubmit, onOpen, onClose, children }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false); // This state is used to show a loading spinner if the modal supports and is submitting data.
 
@@ -95,6 +98,9 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
     useEffect(() => {
         if (externalOpenState !== undefined) {
             setIsOpen(externalOpenState);
+            if (externalOpenState) {
+                onOpen?.();
+            }
         }
     }, [externalOpenState]);
 
@@ -115,7 +121,11 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
      * Toggles the modal open and closed.
      */
     const toggleModal = useCallback(() => {
-        setIsOpen(!isOpen);
+        const newState = !isOpen;
+        setIsOpen(newState);
+        if (newState) {
+            onOpen?.();
+        }
     }, [isOpen]);
 
     /**
@@ -130,16 +140,11 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
         e.preventDefault();
         setIsLoading(true);
 
-        const formData = new FormData(e.currentTarget);
-        const data: DataType = {};
-
-        formData.forEach((value, key) => {
-            data[key] = value;
-        });
-
-        const success = await onSubmit?.(data).catch(() => false);
-        if (success && closeAfterSubmit) {
-            setIsOpen(false);
+        if (onSubmit !== undefined) {
+            const success = await handleSubmit?.(onSubmit)?.().catch(() => false);
+            if (success && closeAfterSubmit) {
+                setIsOpen(false);
+            }
         }
 
         setIsLoading(false);
@@ -215,11 +220,11 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                             layout
                                             className="w-full flex justify-center gap-4"
                                         >
-                                            {onSubmit && (
+                                            {(handleSubmit && onSubmit) && (
                                                 <button
                                                     type="submit"
-                                                    className={`${isLoading ? 'bg-[#4864e156] bg-opacity-70' : 'bg-gradient-to-r from-blue-500 to-purple-500 hover:scale-105'} w-44 py-3 text-white font-medium rounded-md text-[16px] leading-6 transition-all duration-300 ease-in-out`}
-                                                    disabled={isLoading}
+                                                    className={`${(isLoading || submitButtonDisabled) ? 'bg-[#4864e156] bg-opacity-70' : 'bg-gradient-to-r from-blue-500 to-purple-500 hover:scale-105'} w-44 py-3 text-white font-medium rounded-md text-[16px] leading-6 transition-all duration-300 ease-in-out`}
+                                                    disabled={isLoading || submitButtonDisabled}
                                                 >
                                                     {isLoading ? (
                                                         <span className="w-full flex items-center justify-center">
