@@ -3,6 +3,9 @@
 import React from 'react'
 import { Container } from '@/components/global/container';
 import Image from 'next/image';
+import SupportIcon from '../../../public/support-icon.png';
+import CustomizationIcon from '../../../public/customization-icon.png';
+import MagicIcon from '../../../public/magic-icon.png';
 
 export default function BestChoice() {
     return (
@@ -19,9 +22,14 @@ export default function BestChoice() {
                     </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-5">
+                <div className="flex flex-col lg:flex-row gap-5">
                     <div className='flex flex-col items-center'>
-                        <Image className='z-10' src={"https://i.imgur.com/nHHdLZu.png"} quality={100} width={150} height={150} alt='Support icon' />
+                        <Image
+                            src={SupportIcon}
+                            alt='Support icon'
+                            quality={100}
+                            className='z-10 max-w-[150px]'
+                        />
 
                         <div className='flex flex-col bg-white shadow-2xl rounded-md w-72 h-52 p-2 -mt-16 py-12'>
                             <h1 className='text-center text-lg font-bold mb-1'>Suporte</h1>
@@ -30,7 +38,12 @@ export default function BestChoice() {
                     </div>
 
                     <div className='flex flex-col items-center'>
-                        <Image className='z-10' src={"https://i.imgur.com/OTZZFra.png"} quality={100} width={150} height={150} alt='Customization icon' />
+                        <Image
+                            src={CustomizationIcon}
+                            alt='Support icon'
+                            quality={100}
+                            className='z-10 max-w-[150px]'
+                        />
 
                         <div className='flex flex-col bg-white shadow-2xl rounded-md w-72 h-52 p-2 -mt-16 py-12'>
                             <h1 className='text-center text-lg font-bold mb-1'>Customização</h1>
@@ -39,7 +52,12 @@ export default function BestChoice() {
                     </div>
 
                     <div className='flex flex-col items-center'>
-                        <Image className='z-10' src={"https://i.imgur.com/qIArruO.png"} quality={100} width={150} height={150} alt='Magic icon' />
+                        <Image
+                            src={MagicIcon}
+                            alt='Support icon'
+                            quality={100}
+                            className='z-10 max-w-[150px]'
+                        />
 
                         <div className='flex flex-col bg-white shadow-2xl rounded-md w-72 h-52 p-2 -mt-16 py-12'>
                             <h1 className='text-center text-lg font-bold mb-1'>Mágica! <span className='text-sm font-medium'>Como assim?</span></h1>

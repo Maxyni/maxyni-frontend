@@ -5,9 +5,11 @@ import { LogoIcon } from "../svgs/logo-icon";
 import { BsGithub, BsInstagram } from "react-icons/bs";
 import Modal from "../modal";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Footer() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         if (window.location.hash === '#compliance') {
@@ -20,12 +22,17 @@ export default function Footer() {
         <footer id="footer" className="mt-28 bg-white rounded-lg shadow">
             <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
                 <div className="sm:flex sm:items-center sm:justify-between">
-                    <Link href="/" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                        <LogoIcon width={50} height={50} />
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap">Maxyni</span>
-                    </Link>
+                    <div className="flex flex-col md:gap-4">
+                        <Link href="/" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                            <LogoIcon width={50} height={50} />
+                            <div className="flex flex-col items-start justify-start text-left">
+                                <span className="text-2xl font-semibold whitespace-nowrap">Maxyni</span>
+                                <p className="text-xs text-gray-500">Desenvolvendo o futuro que já chegou.</p>
+                            </div>
+                        </Link>
+                    </div>
 
-                    <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
+                    <ul className="flex flex-wrap items-center justify-center text-sm font-medium text-gray-500 mt-4">
                         <li>
                             <a href="#about" className="hover:underline me-4 md:me-6">Institucional</a>
                         </li>
@@ -39,10 +46,9 @@ export default function Footer() {
                                     </a>
                                 }
                                 onClose={() => {
-                                    window.location.hash = '';
                                     setModalIsOpen(false);
+                                    router.push('/', { scroll: false });
                                 }}
-                                className="relative w-screen h-screen sm:h-[90%] sm:w-[50%] lg:w-[40%] 2xl:w-[30%]"
                             >
                                 <p className='text-black font-normal'><strong>1. Sobre o site:</strong> O site da Maxyni é uma landing page informativa, destinada a apresentar nossos produtos e serviços. Nenhum dado pessoal é coletado diretamente por meio do site, salvo em caso de interações futuras especificadas.</p>
                                 <p className='text-black font-normal'><strong>2. Uso de Cookies e Tecnologias Similares:</strong> Podemos utilizar cookies e tecnologias similares para melhorar a experiência do usuário e analisar a utilização do site. Ao continuar utilizando o site, você consente com o uso dessas tecnologias. Você pode configurar seu navegador para bloquear cookies, mas isso pode impactar a experiência de navegação.</p>
@@ -64,8 +70,9 @@ export default function Footer() {
                     </ul>
                 </div>
 
-                <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-                <span className="block text-sm text-gray-500 sm:text-center">© {(new Date).getFullYear()} <Link href="/" className="hover:underline">Maxyni</Link>. Todos os direitos reservados.</span>
+                <hr className="mt-6 border-gray-200 sm:mx-auto lg:my-8" />
+
+                <span className="block text-sm text-gray-500 text-center py-6 md:py-0">© {(new Date).getFullYear()} <Link href="/" className="hover:underline">Maxyni</Link>. Todos os direitos reservados.</span>
             </div>
         </footer>
     );

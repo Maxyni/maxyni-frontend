@@ -3,22 +3,21 @@
 import React from 'react';
 import { Container } from '@/components/global/container';
 import Image from 'next/image';
+import MaxyniSolutionsImage from '../../../public/maxyni-solutions.png';
 
 export default function Solutions() {
     return (
         <Container>
-            <div className="flex sm:flex-row md:flex-row flex-col items-center justify-center gap-5" id="solutions">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-5" id="solutions">
                 <Image
-                    src="https://i.imgur.com/sXfjmCx.png"
-                    alt="Solutions Image"
-                    width={574}
-                    height={700}
+                    src={MaxyniSolutionsImage}
+                    alt="Solutions image"
                     quality={100}
-                    className="w-full sm:w-auto"
+                    className="w-full md:w-3/5 lg:w-full xl:w-[80%] 2xl:w-[60%]"
                 />
 
                 <div className="text-center sm:text-left flex flex-col items-center sm:items-start">
-                    <h1 className="text-5xl font-bold leading-tight">
+                    <h1 className="text-center lg:text-left text-5xl font-bold leading-tight">
                         Soluções para atingir o{" "}
                         <span className="bg-gradient-to-r from-[#4B0082] to-[#4682B4] bg-clip-text text-transparent">
                             MÁXIMO

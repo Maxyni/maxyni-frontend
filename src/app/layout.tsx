@@ -2,6 +2,7 @@ import { Jost } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/global/footer/footer";
+import { Navbar } from "@/components/global/navbar/navbar";
 
 const jost = Jost({ subsets: ["latin"] });
 
@@ -33,16 +34,15 @@ export const metadata: Metadata = {
   ]
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="pt-br">
       <body className={`bg-[#F1F7FD] ${jost.className}`}>
+        <Navbar />
+
         {children}
-        <Footer/>
+        
+        <Footer />
       </body>
     </html>
   );
