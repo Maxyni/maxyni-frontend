@@ -28,7 +28,7 @@ export default function MainContent() {
                                     Somos especialistas em criar soluções digitais para empresas e pessoas.
                                 </p>
 
-                                <p className='text-white text-medium hidden lg:block'>
+                                <p className='text-white text-medium hidden xl:block'>
                                     Transformamos suas ideias em realidade com qualidade, segurança e agilidade.
                                 </p>
                             </div>
