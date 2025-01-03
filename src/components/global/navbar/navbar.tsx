@@ -12,12 +12,14 @@ import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Image from 'next/image';
+import ContactSubmitedIcon from '../../../../public/contact-submited-icon.png';
 
 const submitContactSchema = z.object({
     fullName: z
         .string({ message: "O nome não deve conter caracteres especiais." })
         .nonempty({ message: "Insira o seu nome completo." })
-        .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)+$/, { message: 'Insira um nome válido.' }),
+        .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)+$/, { message: 'Insira um nome completo válido.' }),
     email: z
         .string()
         .nonempty({ message: 'Insira o seu e-mail corporativo.' })
@@ -49,10 +51,12 @@ export function Navbar() {
     });
 
     const [submitting, setSubmitting] = useState(false);
+    const [submitSuccess, setSubmitSuccess] = useState(false);
     const [submitError, setSubmitError] = useState<string | null>(null);
 
     const onSubmit = (): Promise<boolean> => {
         setSubmitting(true);
+        setSubmitSuccess(false);
         setSubmitError(null);
         clearErrors();
 
@@ -61,6 +65,7 @@ export function Navbar() {
         return new Promise((resolve) => {
             setTimeout(() => {
                 setSubmitError('Não foi possível enviar seu formulário de contato no momento. Tente novamente mais tarde.');
+                setSubmitSuccess(false);
                 setSubmitting(false);
                 resolve(false);
             }, 1000);
@@ -99,98 +104,128 @@ export function Navbar() {
                 externalOpenState={modalIsOpen}
                 onClose={() => {
                     router.push('/', { scroll: false });
+                    setSubmitting(false);
                     setSubmitError(null);
                     clearErrors();
                     setModalIsOpen(false);
                 }}
                 submitButtonText='Entrar em contato'
                 submitButtonDisabled={submitting}
-                handleSubmit={handleSubmit}
-                onSubmit={onSubmit}
+                handleSubmit={!submitSuccess ? handleSubmit : undefined}
+                onSubmit={!submitSuccess ? onSubmit : undefined}
                 closeAfterSubmit
             >
-                <motion.div
-                    layout
-                    className='relative flex flex-col'
-                >
-                    <label htmlFor="fullName">Nome completo {errors.fullName && <span className='text-red-500'>*</span>}</label>
-                    <input
-                        disabled={submitting}
-                        type="text"
-                        placeholder='John Doe'
-                        className={`${errors.fullName ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
-                        {...register('fullName', {
-                            onChange: () => { clearErrors('fullName') },
-                            onBlur: () => { trigger('fullName') }
-                        })}
-                    />
-                    {errors.fullName &&
-                        <motion.p
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            className='text-red-500 text-xs ml-1'
-                        >
-                            {errors.fullName.message}
-                        </motion.p>
-                    }
+                <motion.div layout>
+                    {submitSuccess ? (
+                        <div className='flex flex-col items-center gap-4'>
+                            <Image
+                                src={ContactSubmitedIcon}
+                                alt="Contact form submited icon"
+                                width={200}
+                                height={250}
+                                quality={100}
+                                className="w-2/5 md:w-1/3 lg:w-1/3 xl:w-1/3"
+                            />
+
+                            <div className='flex flex-col items-center gap-10'>
+                                <div className='flex flex-col gap-1'>
+                                    <h1 className='text-xl md:text-2xl font-semibold text-center'>Formulário enviado!</h1>
+                                    <p className='text-center text-sm'>Agradecemos o seu contato e interesse nos seviços da <span className='font-semibold'>Maxyni</span>.</p>
+                                </div>
+
+                                <div className='flex flex-col gap-4'>
+                                    <p className='text-center'>Em breve um de nossos especialistas entrará em contato através do e-mail e telefone corporativo que você informou no formulário.</p>
+                                    <p className='text-center text-xs'>O prazo para resposta é de normalmente até <span className='font-semibold'>48 horas</span>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className='flex flex-col gap-4'>
+                            <motion.div
+                                layout
+                                className='relative flex flex-col'
+                            >
+                                <label htmlFor="fullName">Nome completo {errors.fullName && <span className='text-red-500'>*</span>}</label>
+                                <input
+                                    disabled={submitting}
+                                    type="text"
+                                    placeholder='John Doe'
+                                    className={`${errors.fullName ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
+                                    {...register('fullName', {
+                                        onChange: () => { clearErrors('fullName') },
+                                        onBlur: () => { trigger('fullName') }
+                                    })}
+                                />
+                                {errors.fullName &&
+                                    <motion.p
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        exit={{ opacity: 0, y: 10 }}
+                                        className='text-red-500 text-xs ml-1'
+                                    >
+                                        {errors.fullName.message}
+                                    </motion.p>
+                                }
+                            </motion.div>
+
+                            <motion.div
+                                layout
+                                className='relative flex flex-col'
+                            >
+                                <label htmlFor="email">E-mail corporativo {errors.email && <span className='text-red-500'>*</span>}</label>
+                                <input
+                                    disabled={submitting}
+                                    type="email"
+                                    placeholder='john.doe@exemplo.com'
+                                    className={`${errors.email ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
+                                    {...register('email', {
+                                        onChange: () => { clearErrors('email') },
+                                        onBlur: () => { trigger('email') }
+                                    })}
+                                />
+                                {errors.email &&
+                                    <motion.p
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        exit={{ opacity: 0, y: 10 }}
+                                        className='text-red-500 text-xs ml-1'
+                                    >
+                                        {errors.email.message}
+                                    </motion.p>
+                                }
+                            </motion.div>
+
+                            <PhoneInput
+                                control={control}
+                                onChange={() => { clearErrors('phone') }}
+                                onBlur={() => { trigger('phone') }}
+                                errorMessage={errors.phone?.message}
+                                disabled={submitting}
+                            />
+
+                            <motion.p
+                                layout
+                                className='mt-2 mb-4 font-light text-gray-500'
+                            >
+                                Ao enviar o formulário, você concorda com a <Link href={"#compliance"} target='_blank' className='font-medium bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent'>Política de Privacidade</Link>.
+                            </motion.p>
+
+                            {submitError &&
+                                <motion.p
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    exit={{ opacity: 0, y: 10 }}
+                                    className='text-red-500 text-sm text-center'
+                                >
+                                    {submitError}
+                                </motion.p>
+                            }
+                        </div>
+                    )}
                 </motion.div>
-
-                <motion.div
-                    layout
-                    className='relative flex flex-col'
-                >
-                    <label htmlFor="email">E-mail corporativo {errors.email && <span className='text-red-500'>*</span>}</label>
-                    <input
-                        disabled={submitting}
-                        type="email"
-                        placeholder='john.doe@exemplo.com'
-                        className={`${errors.email ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
-                        {...register('email', {
-                            onChange: () => { clearErrors('email') },
-                            onBlur: () => { trigger('email') }
-                        })}
-                    />
-                    {errors.email &&
-                        <motion.p
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            className='text-red-500 text-xs ml-1'
-                        >
-                            {errors.email.message}
-                        </motion.p>
-                    }
-                </motion.div>
-
-                <PhoneInput
-                    control={control}
-                    onChange={() => { clearErrors('phone') }}
-                    onBlur={() => { trigger('phone') }}
-                    errorMessage={errors.phone?.message}
-                    disabled={submitting}
-                />
-
-                <motion.p
-                    layout
-                    className='mt-2 mb-4 font-light text-gray-500'
-                >
-                    Ao enviar o formulário, você concorda com a <Link href={"#compliance"} target='_blank' className='font-medium bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent'>Política de Privacidade</Link>.
-                </motion.p>
-
-                {submitError &&
-                    <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className='text-red-500 text-sm text-center'
-                    >
-                        {submitError}
-                    </motion.p>
-                }
             </Modal>
             {/* Contact Maxyni modal - End */}
 
