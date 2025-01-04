@@ -188,7 +188,7 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                         >
                             <motion.div
                                 layout
-                                className={`${className} bg-[#F1F7FD] relative w-full h-full sm:w-[70%] sm:max-w-[40rem] sm:h-auto sm:max-h-[80%] sm:h-de mx-auto py-3 px-6 rounded-3xl shadow-lg flex flex-col`}
+                                className={`${className} bg-[#F1F7FD] relative w-full h-full sm:w-[70%] sm:max-w-[40rem] sm:h-auto sm:max-h-[80%] sm:h-de mx-auto py-3 px-6 sm:rounded-3xl shadow-lg flex flex-col`}
                             >
                                 <div className="w-full flex items-center justify-between h-[72px]">
                                     <h1 className="font-bold text-2xl leading-7 text-black truncate line-clamp-1">{title}</h1>

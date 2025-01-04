@@ -242,7 +242,7 @@ export function Navbar() {
             {/* Navbar */}
             <motion.div
                 layout
-                id="navbar"
+                id='navbar'
                 className={`px-4 md:px-14 w-full z-20 flex ${isSticky ? "fixed shadow-lg bg-white top-0 inset-x-0 py-0" : "relative py-5"}`}
             >
                 <nav className={`w-full flex justify-between items-center ${isSticky ? "py-0" : "py-5"}`}>
@@ -253,17 +253,17 @@ export function Navbar() {
 
                         <ul className='hidden sm:flex gap-6'>
                             <li>
-                                <Link href={"#start"} className='nav-link'>
+                                <Link href='#start' className='nav-link'>
                                     Início
                                 </Link>
                             </li>
                             <li>
-                                <Link href={"#about"} className='nav-link'>
+                                <Link href='#about' className='nav-link'>
                                     Sobre nós
                                 </Link>
                             </li>
                             <li>
-                                <Link href={"#solutions"} className='nav-link'>
+                                <Link href='#solutions' className='nav-link'>
                                     Soluções
                                 </Link>
                             </li>
@@ -274,7 +274,7 @@ export function Navbar() {
                         <div className="relative h-12 w-40 rounded-xl group">
                             <div className="absolute inset-0 bg-gradient-to-r from-[#73BFFF] to-[#9A35E4] transition-transform duration-300 ease-in-out transform scale-90 group-hover:scale-x-[1.03] group-hover:scale-y-[1.1] rounded-xl" />
                             <a
-                                className="relative flex items-center gap-1 shadow-2xl justify-center w-full h-full rounded-xl bg-white text-black z-10 hover:cursor-pointer"
+                                className="relative flex items-center gap-2 shadow-2xl justify-center w-full h-full rounded-xl bg-white text-black z-10 hover:cursor-pointer"
                                 onClick={() => {
                                     setModalIsOpen(true);
                                     router.push('/#contact', { scroll: false });

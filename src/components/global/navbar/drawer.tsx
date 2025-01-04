@@ -69,21 +69,21 @@ export default function Drawer() {
 
                                 <div className="flex flex-col gap-5 items-start justify-start">
                                     <Link
-                                        href={"#start"}
+                                        href='#start'
                                         onClick={() => setIsOpen(false)}
                                         className="flex flex-row gap-2 items-center justify-center text-xl px-4 py-2 rounded-md text-black font-medium transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-400/10"
                                     >
                                         <FaHouse /> Início
                                     </Link>
                                     <Link
-                                        href={"#about"}
+                                        href='#about'
                                         onClick={() => setIsOpen(false)}
                                         className="flex flex-row gap-2 items-center justify-center text-xl px-4 py-2 rounded-md text-black font-medium transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-400/10"
                                     >
                                         <BsPeopleFill /> Sobre nós
                                     </Link>
                                     <Link
-                                        href={"#solutions"}
+                                        href='#solutions'
                                         onClick={() => setIsOpen(false)}
                                         className="flex flex-row gap-2 items-center justify-center text-xl px-4 py-2 rounded-md text-black font-medium transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-400/10"
                                     >

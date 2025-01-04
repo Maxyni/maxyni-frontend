@@ -1,6 +1,6 @@
-export function Container({ children, className }: { children: React.ReactNode, className?: string }) {
+export function Container({ children, id, className }: { children: React.ReactNode, id?: string, className?: string }) {
     return (
-        <div className={`container mx-auto px-4 ${className}`}>
+        <div id={id} className={`container mx-auto px-4 ${className}`}>
             {children}
         </div>
     );

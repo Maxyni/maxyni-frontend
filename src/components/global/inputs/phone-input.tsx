@@ -12,26 +12,20 @@ type PhoneInputProps = {
 
 const PhoneInput: React.FC<PhoneInputProps> = ({ control, onChange, onBlur, disabled, errorMessage }) => {
     const formatPhoneNumber = (original: string): string => {
-        const value = original.replace(/\D/g, "").slice(0, 11); // Remove não numéricos e limita a 11 caracteres
+        const value = original.replace(/\D/g, "").slice(0, 11);
 
-        if (value.length === 0) return ""; // Retorna vazio se não há caracteres
-        if (value.length <= 2) return `(${value}`; // Apenas DDD
-        if (value.length <= 6) return `(${value.slice(0, 2)}) ${value.slice(2)}`; // DDD + início do número
+        if (value.length === 0) return "";
+        if (value.length <= 2) return `(${value}`;
+        if (value.length <= 6) return `(${value.slice(0, 2)}) ${value.slice(2)}`;
 
-        // Número completo
         const isCellPhone = value.length === 11 && value[2] === "9";
         const mid = isCellPhone ? 7 : 6;
         return `(${value.slice(0, 2)}) ${value.slice(2, mid)}-${value.slice(mid)}`;
     };
 
     return (
-        <motion.div
-            layout
-            className="relative flex flex-col"
-        >
-            <label htmlFor="number">
-                Número de telefone {errorMessage && <span className="text-red-500">*</span>}
-            </label>
+        <motion.div layout className="relative flex flex-col">
+            <label htmlFor="number">Número de telefone {errorMessage && <span className="text-red-500">*</span>}</label>
             <div className={`bg-white flex items-center ${errorMessage ? "border border-red-400" : "border"}  rounded-md overflow-hidden group transition duration-300 ease-in-out focus-within:border-[#9800b6]`}>
                 <span className="pl-2 pr-2 text-sm font-medium">+55</span>
                 <Controller
