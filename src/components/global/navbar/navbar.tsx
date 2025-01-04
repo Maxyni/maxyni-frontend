@@ -75,11 +75,18 @@ export function Navbar() {
 
     // Sticky navbar - Start
     const [isSticky, setIsSticky] = useState(false); // State to control the navbar style - sticky or not.
+    const [navbarHeight, setNavbarHeight] = useState(0); // Stores the navbar height - used in the placeholder div.
 
     /**
      * Handle the scroll event to change the navbar style.
      */
     useEffect(() => {
+        const navbarElement = document.getElementById('navbar');
+
+        if (navbarElement) {
+            setNavbarHeight(navbarElement.offsetHeight);
+        }
+
         const handleScroll = () => {
             if (window.scrollY > 80) {
                 setIsSticky(true);
@@ -229,11 +236,14 @@ export function Navbar() {
             </Modal>
             {/* Contact Maxyni modal - End */}
 
+            {/* Placeholder div to prevent content jump when the navbar becomes sticky */}
+            {isSticky && <div id="start" style={{ height: navbarHeight }} />}
+
             {/* Navbar */}
             <motion.div
                 layout
-                id='start'
-                className={`px-4 md:px-14 w-full ${isSticky ? "fixed shadow-lg bg-white" : "relative"} z-20 flex`}
+                id="navbar"
+                className={`px-4 md:px-14 w-full z-20 flex ${isSticky ? "fixed shadow-lg bg-white top-0 inset-x-0 py-0" : "relative py-5"}`}
             >
                 <nav className={`w-full flex justify-between items-center ${isSticky ? "py-0" : "py-5"}`}>
                     <div className='flex items-center gap-12'>
