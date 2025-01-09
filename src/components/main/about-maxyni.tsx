@@ -7,7 +7,7 @@ import AboutMaxyniImage from '../../../public/about-maxyni.png';
 
 export default function AboutMaxyni() {
     return (
-        <Container id='about'>
+        <Container id="about">
             <div className="flex lg:flex-row flex-col items-center justify-center gap-5">
                 <Image
                     src={AboutMaxyniImage}
