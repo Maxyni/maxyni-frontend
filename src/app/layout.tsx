@@ -36,10 +36,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
   return (
-    <html lang="pt-br">
+    <html lang="pt-BR">
       <body className={`bg-[#F1F7FD] ${jost.className}`}>
         <Navbar />
-
+        
         {children}
         
         <Footer />
