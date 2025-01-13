@@ -184,7 +184,7 @@ export function Navbar() {
                                 <input
                                     disabled={submitting}
                                     type="email"
-                                    placeholder='john.doe@exemplo.com'
+                                    placeholder='john.doe@empresa.com'
                                     className={`${errors.email ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
                                     {...register('email', {
                                         onChange: () => { clearErrors('email') },
