@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
 export function LogoIcon({
     width,
     height,
     className,
 }: {
-    width?: number;
-    height?: number;
-    className?: string;
+    width?: number
+    height?: number
+    className?: string
 }) {
     return (
         <svg
@@ -102,5 +102,5 @@ export function LogoIcon({
                 </linearGradient>
             </defs>
         </svg>
-    );
+    )
 }

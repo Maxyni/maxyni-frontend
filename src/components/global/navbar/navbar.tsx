@@ -1,19 +1,19 @@
-'use client';
+'use client'
 
-import Link from 'next/link';
-import { LogoIcon } from '../svgs/logo-icon';
-import { RiContactsLine } from 'react-icons/ri';
-import Drawer from './drawer';
-import { useEffect, useState } from 'react';
-import Modal from '../modal';
-import PhoneInput from '../inputs/phone-input';
-import { motion } from "framer-motion";
-import { useRouter } from 'next/navigation';
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import Image from 'next/image';
-import ContactSubmitedIcon from '../../../../public/contact-submited-icon.png';
+import Link from 'next/link'
+import { LogoIcon } from '../svgs/logo-icon'
+import { RiContactsLine } from 'react-icons/ri'
+import Drawer from './drawer'
+import { useEffect, useState } from 'react'
+import Modal from '../modal'
+import PhoneInput from '../inputs/phone-input'
+import { motion } from "framer-motion"
+import { useRouter } from 'next/navigation'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import Image from 'next/image'
+import ContactSubmitedIcon from '../../../../public/contact-submited-icon.png'
 
 const submitContactSchema = z.object({
     fullName: z
@@ -28,79 +28,79 @@ const submitContactSchema = z.object({
         .string({ message: 'O número de telefone não deve conter caracteres especiais.' })
         .nonempty({ message: 'Insira o seu número de telefone.' })
         .regex(/^\(\d{2}\)\s\d{4,5}-\d{4}$/, { message: 'Insira um número de telefone válido.' })
-});
+})
 
-type SubmitContactForm = z.infer<typeof submitContactSchema>;
+type SubmitContactForm = z.infer<typeof submitContactSchema>
 
 export function Navbar() {
-    const router = useRouter();
+    const router = useRouter()
 
     // Contact Maxyni modal - Start
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen, setModalIsOpen] = useState(false)
 
     useEffect(() => {
         if (window.location.hash === '#contact') {
-            document.getElementById('start')?.scrollIntoView();
-            setModalIsOpen(true);
+            document.getElementById('start')?.scrollIntoView()
+            setModalIsOpen(true)
         }
-    }, []);
+    }, [])
 
     const { register, control, handleSubmit, formState: { errors }, clearErrors, trigger } = useForm<SubmitContactForm>({
         resolver: zodResolver(submitContactSchema),
         defaultValues: { phone: '' }
-    });
+    })
 
-    const [submitting, setSubmitting] = useState(false);
-    const [submitSuccess, setSubmitSuccess] = useState(false);
-    const [submitError, setSubmitError] = useState<string | null>(null);
+    const [submitting, setSubmitting] = useState(false)
+    const [submitSuccess, setSubmitSuccess] = useState(false)
+    const [submitError, setSubmitError] = useState<string | null>(null)
 
     const onSubmit = (): Promise<boolean> => {
-        setSubmitting(true);
-        setSubmitSuccess(false);
-        setSubmitError(null);
-        clearErrors();
+        setSubmitting(true)
+        setSubmitSuccess(false)
+        setSubmitError(null)
+        clearErrors()
 
         // TODO: Handle the form submission here when the backend is ready.
 
         return new Promise((resolve) => {
             setTimeout(() => {
-                setSubmitError('Não foi possível enviar seu formulário de contato no momento. Tente novamente mais tarde.');
-                setSubmitSuccess(false);
-                setSubmitting(false);
-                resolve(false);
-            }, 1000);
-        });
-    };
+                setSubmitError('Não foi possível enviar seu formulário de contato no momento. Tente novamente mais tarde.')
+                setSubmitSuccess(false)
+                setSubmitting(false)
+                resolve(false)
+            }, 1000)
+        })
+    }
     // Contact Maxyni modal - End
 
     // Sticky navbar - Start
-    const [isSticky, setIsSticky] = useState(false); // State to control the navbar style - sticky or not.
-    const [navbarHeight, setNavbarHeight] = useState(0); // Stores the navbar height - used in the placeholder div.
+    const [isSticky, setIsSticky] = useState(false) // State to control the navbar style - sticky or not.
+    const [navbarHeight, setNavbarHeight] = useState(0) // Stores the navbar height - used in the placeholder div.
 
     /**
      * Handle the scroll event to change the navbar style.
      */
     useEffect(() => {
-        const navbarElement = document.getElementById('navbar');
+        const navbarElement = document.getElementById('navbar')
 
         if (navbarElement) {
-            setNavbarHeight(navbarElement.offsetHeight);
+            setNavbarHeight(navbarElement.offsetHeight)
         }
 
         const handleScroll = () => {
             if (window.scrollY > 80) {
-                setIsSticky(true);
+                setIsSticky(true)
             } else {
-                setIsSticky(false);
+                setIsSticky(false)
             }
-        };
+        }
 
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll)
 
         return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
+            window.removeEventListener("scroll", handleScroll)
+        }
+    }, [])
     // Sticky navbar - End
 
     return (
@@ -110,11 +110,11 @@ export function Navbar() {
                 title="Fale conosco"
                 externalOpenState={modalIsOpen}
                 onClose={() => {
-                    router.push('/', { scroll: false });
-                    setSubmitting(false);
-                    setSubmitError(null);
-                    clearErrors();
-                    setModalIsOpen(false);
+                    router.push('/', { scroll: false })
+                    setSubmitting(false)
+                    setSubmitError(null)
+                    clearErrors()
+                    setModalIsOpen(false)
                 }}
                 submitButtonText='Entrar em contato'
                 submitButtonDisabled={submitting}
@@ -276,8 +276,8 @@ export function Navbar() {
                             <a
                                 className="relative flex items-center gap-2 shadow-2xl justify-center w-full h-full rounded-xl bg-white text-black z-10 hover:cursor-pointer"
                                 onClick={() => {
-                                    setModalIsOpen(true);
-                                    router.push('/#contact', { scroll: false });
+                                    setModalIsOpen(true)
+                                    router.push('/#contact', { scroll: false })
                                 }}
                             >
                                 <RiContactsLine className='text-lg' />
@@ -290,5 +290,5 @@ export function Navbar() {
                 </nav>
             </motion.div>
         </>
-    );
+    )
 }

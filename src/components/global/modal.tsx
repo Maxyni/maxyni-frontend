@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import { AnimatePresence, motion } from "framer-motion";
-import React, { ReactNode, useCallback, useEffect, useState } from "react";
-import { SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
-import { IoIosClose } from "react-icons/io";
-import { RiLoader5Fill } from "react-icons/ri";
+import { AnimatePresence, motion } from "framer-motion"
+import React, { ReactNode, useCallback, useEffect, useState } from "react"
+import { SubmitHandler, UseFormHandleSubmit } from "react-hook-form"
+import { IoIosClose } from "react-icons/io"
+import { RiLoader5Fill } from "react-icons/ri"
 
 /**
  * The props for the modal component.
@@ -13,53 +13,53 @@ type ModalProps = {
     /**
      * The title of the modal.
      */
-    title: ReactNode;
+    title: ReactNode
 
     /**
      * The class name to apply to the modal. Optional.
      */
-    className?: string;
+    className?: string
 
     /**
      * With this you can open and close the modal from outside the component and have a reference to the modal. Optional.
      */
-    externalOpenState?: boolean;
+    externalOpenState?: boolean
 
     /**
      * The button that opens the modal.
      */
-    buttonToOpen?: ReactNode;
+    buttonToOpen?: ReactNode
 
     /**
      * The text to display on the close button. Optional.
      * 
      * @default 'Fechar'
      */
-    closeButtonText?: string;
+    closeButtonText?: string
 
     /**
      * The text to display on the submit button. Optional.
      * 
      * @default 'Confirmar'
      */
-    submitButtonText?: string;
+    submitButtonText?: string
 
     /**
      * Whether the submit button should be disabled. Optional.
      * 
      * @default false
      */
-    submitButtonDisabled?: boolean;
+    submitButtonDisabled?: boolean
 
     /**
      * The function to call when the form is submitted. Optional.
      */
-    handleSubmit?: UseFormHandleSubmit<any>;
+    handleSubmit?: UseFormHandleSubmit<any>
 
     /**
      * This is called in handleSubmit and is used to submit the form data. Optional.
      */
-    onSubmit?: SubmitHandler<any>;
+    onSubmit?: SubmitHandler<any>
 
     /**
      * Whether to close the modal after the form is submitted. Optional.
@@ -70,63 +70,63 @@ type ModalProps = {
      * 
      * @default false
      */
-    closeAfterSubmit?: boolean;
+    closeAfterSubmit?: boolean
 
     /**
      * The function to call when the modal is open. Optional.
      */
-    onOpen?: () => void;
+    onOpen?: () => void
 
     /**
      * The function to call when the modal is closed. Optional.
      */
-    onClose?: () => void;
+    onClose?: () => void
 
     /**
      * The children of the modal. This is the content of the modal.
      */
-    children: ReactNode;
-};
+    children: ReactNode
+}
 
 const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, buttonToOpen, closeButtonText, submitButtonText, submitButtonDisabled, handleSubmit, onSubmit, closeAfterSubmit, onOpen, onClose, children }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(false); // This state is used to show a loading spinner if the modal supports and is submitting data.
+    const [isOpen, setIsOpen] = useState(false)
+    const [isLoading, setIsLoading] = useState(false) // This state is used to show a loading spinner if the modal supports and is submitting data.
 
     /**
      * Updates the modal open state when the external open state changes.
      */
     useEffect(() => {
         if (externalOpenState !== undefined) {
-            setIsOpen(externalOpenState);
+            setIsOpen(externalOpenState)
             if (externalOpenState) {
-                onOpen?.();
+                onOpen?.()
             }
         }
-    }, [externalOpenState]);
+    }, [externalOpenState])
 
     useEffect(() => {
         if (isOpen) {
-            document.body.classList.add('overflow-hidden');
+            document.body.classList.add('overflow-hidden')
         } else {
-            document.body.classList.remove('overflow-hidden');
+            document.body.classList.remove('overflow-hidden')
         }
 
         // Cleanup when component unmounts
         return () => {
-            document.body.classList.remove('overflow-hidden');
-        };
-    }, [isOpen]);
+            document.body.classList.remove('overflow-hidden')
+        }
+    }, [isOpen])
 
     /**
      * Toggles the modal open and closed.
      */
     const toggleModal = useCallback(() => {
-        const newState = !isOpen;
-        setIsOpen(newState);
+        const newState = !isOpen
+        setIsOpen(newState)
         if (newState) {
-            onOpen?.();
+            onOpen?.()
         }
-    }, [isOpen]);
+    }, [isOpen])
 
     /**
      * Handles the form submission.
@@ -137,26 +137,26 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
      * @returns A promise that resolves to a boolean indicating whether the submission was successful.
      */
     const handleFormSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setIsLoading(true);
+        e.preventDefault()
+        setIsLoading(true)
 
         if (onSubmit !== undefined) {
-            const success = await handleSubmit?.(onSubmit)?.().catch(() => false);
+            const success = await handleSubmit?.(onSubmit)?.().catch(() => false)
             if (success && closeAfterSubmit) {
-                setIsOpen(false);
+                setIsOpen(false)
             }
         }
 
-        setIsLoading(false);
-    }, []);
+        setIsLoading(false)
+    }, [])
 
     /**
      * Closes the modal and calls the `onClose` function if provided.
      */
     const handleModalClose = useCallback(() => {
-        setIsOpen(false);
-        onClose?.();
-    }, []);
+        setIsOpen(false)
+        onClose?.()
+    }, [])
 
     return (
         <>
@@ -244,7 +244,7 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                 )}
             </AnimatePresence>
         </>
-    );
+    )
 }
 
-export default Modal;
+export default Modal

@@ -1,11 +1,11 @@
 'use client'
 
 import React from 'react'
-import { Container } from '@/components/global/container';
-import Image from 'next/image';
-import SupportIcon from '../../../public/support-icon.png';
-import CustomizationIcon from '../../../public/customization-icon.png';
-import MagicIcon from '../../../public/magic-icon.png';
+import { Container } from '@/components/global/container'
+import Image from 'next/image'
+import SupportIcon from '../../../public/support-icon.png'
+import CustomizationIcon from '../../../public/customization-icon.png'
+import MagicIcon from '../../../public/magic-icon.png'
 
 export default function BestChoice() {
     return (
@@ -66,5 +66,5 @@ export default function BestChoice() {
                 </div>
             </div>
         </Container>
-    );
+    )
 }

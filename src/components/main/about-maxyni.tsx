@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import React from 'react';
-import { Container } from '@/components/global/container';
-import Image from 'next/image';
-import AboutMaxyniImage from '../../../public/about-maxyni.png';
+import React from 'react'
+import { Container } from '@/components/global/container'
+import Image from 'next/image'
+import AboutMaxyniImage from '../../../public/about-maxyni.png'
 
 export default function AboutMaxyni() {
     return (
@@ -31,5 +31,5 @@ export default function AboutMaxyni() {
                 </div>
             </div>
         </Container>
-    );
+    )
 }

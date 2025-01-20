@@ -1,35 +1,35 @@
-'use client';
+'use client'
 
-import Link from "next/link";
-import { LogoIcon } from "../svgs/logo-icon";
-import { BsGithub, BsInstagram } from "react-icons/bs";
-import Modal from "../modal";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link"
+import { LogoIcon } from "../svgs/logo-icon"
+import { BsGithub, BsInstagram } from "react-icons/bs"
+import Modal from "../modal"
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function Footer() {
-    const router = useRouter();
-    const [isOpen, setIsOpen] = useState(false);
+    const router = useRouter()
+    const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
         if (window.location.hash === '#compliance') {
-            document.getElementById('footer')?.scrollIntoView();
-            setIsOpen(true);
+            document.getElementById('footer')?.scrollIntoView()
+            setIsOpen(true)
         }
-    }, []);
+    }, [])
 
-    const [loading, setLoading] = useState(true);
-    // const [termsHTML, setTermsHTML] = useState<string | undefined>(undefined);
+    const [loading, setLoading] = useState(true)
+    // const [termsHTML, setTermsHTML] = useState<string | undefined>(undefined)
 
     const fetchTerms = async () => {
-        setLoading(true);
+        setLoading(true)
 
         // TODO: Fetch terms from API.
 
         setTimeout(() => {
-            setLoading(false);
-        }, 500);
-    };
+            setLoading(false)
+        }, 500)
+    }
 
     return (
         <footer id="footer" className="mt-28 bg-white rounded-lg shadow">
@@ -60,8 +60,8 @@ export default function Footer() {
                                 }
                                 onOpen={fetchTerms}
                                 onClose={() => {
-                                    setIsOpen(false);
-                                    router.push('/', { scroll: false });
+                                    setIsOpen(false)
+                                    router.push('/', { scroll: false })
                                 }}
                             >
                                 <div className="p-4">
@@ -106,5 +106,5 @@ export default function Footer() {
                 <span className="block text-sm text-gray-500 text-center py-6 md:py-0">© {(new Date).getFullYear()} <Link href="/" className="hover:underline">Maxyni</Link>. Todos os direitos reservados.</span>
             </div>
         </footer>
-    );
+    )
 }

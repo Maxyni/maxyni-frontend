@@ -1,27 +1,27 @@
-import React from "react";
-import { motion } from 'framer-motion';
-import { Controller, Control } from "react-hook-form";
+import React from "react"
+import { motion } from 'framer-motion'
+import { Controller, Control } from "react-hook-form"
 
 type PhoneInputProps = {
-    control?: Control<any>;
-    onChange?: (formattedNumber: string) => void;
-    onBlur?: () => void;
-    disabled?: boolean;
-    errorMessage?: string;
-};
+    control?: Control<any>
+    onChange?: (formattedNumber: string) => void
+    onBlur?: () => void
+    disabled?: boolean
+    errorMessage?: string
+}
 
 const PhoneInput: React.FC<PhoneInputProps> = ({ control, onChange, onBlur, disabled, errorMessage }) => {
     const formatPhoneNumber = (original: string): string => {
-        const value = original.replace(/\D/g, "").slice(0, 11);
+        const value = original.replace(/\D/g, "").slice(0, 11)
 
-        if (value.length === 0) return "";
-        if (value.length <= 2) return `(${value}`;
-        if (value.length <= 6) return `(${value.slice(0, 2)}) ${value.slice(2)}`;
+        if (value.length === 0) return ""
+        if (value.length <= 2) return `(${value}`
+        if (value.length <= 6) return `(${value.slice(0, 2)}) ${value.slice(2)}`
 
-        const isCellPhone = value.length === 11 && value[2] === "9";
-        const mid = isCellPhone ? 7 : 6;
-        return `(${value.slice(0, 2)}) ${value.slice(2, mid)}-${value.slice(mid)}`;
-    };
+        const isCellPhone = value.length === 11 && value[2] === "9"
+        const mid = isCellPhone ? 7 : 6
+        return `(${value.slice(0, 2)}) ${value.slice(2, mid)}-${value.slice(mid)}`
+    }
 
     return (
         <motion.div layout className="relative flex flex-col">
@@ -41,9 +41,9 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ control, onChange, onBlur, disa
                             placeholder="(00) 00000-0000"
                             className="flex-1 px-2 py-2 outline-none"
                             onChange={(e) => {
-                                const formatted = formatPhoneNumber(e.target.value);
-                                field.onChange(formatted);
-                                onChange?.(formatted);
+                                const formatted = formatPhoneNumber(e.target.value)
+                                field.onChange(formatted)
+                                onChange?.(formatted)
                             }}
                             onBlur={onBlur}
                         />
@@ -62,7 +62,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ control, onChange, onBlur, disa
                 </motion.p>
             }
         </motion.div>
-    );
-};
+    )
+}
 
-export default PhoneInput;
+export default PhoneInput

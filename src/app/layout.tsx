@@ -1,10 +1,10 @@
-import { Jost } from "next/font/google";
-import type { Metadata } from "next";
-import "./globals.css";
-import Footer from "@/components/global/footer/footer";
-import { Navbar } from "@/components/global/navbar/navbar";
+import { Jost } from "next/font/google"
+import type { Metadata } from "next"
+import "./globals.css"
+import Footer from "@/components/global/footer/footer"
+import { Navbar } from "@/components/global/navbar/navbar"
 
-const jost = Jost({ subsets: ["latin"] });
+const jost = Jost({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Maxyni | Soluções digitais sob medida para o seu negócio",
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
       url: 'https://github.com/guilhermehnf'
     }
   ]
-};
+}
 
-export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
+export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
       <body className={`bg-[#F1F7FD] ${jost.className}`}>
@@ -45,5 +45,5 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
         <Footer />
       </body>
     </html>
-  );
+  )
 }

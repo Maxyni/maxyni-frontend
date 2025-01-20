@@ -1,17 +1,17 @@
-'use client';
+'use client'
 
-import Image from "next/image";
-import { Container } from "../global/container";
-import Solutions from "./solutions";
-import BestChoice from "./best-choice";
-import AboutMaxyni from "./about-maxyni";
-import Link from "next/link";
-import { BsRocketTakeoff } from "react-icons/bs";
-import { useState } from "react";
-import RocketImage from '../../../public/rocket.png';
+import Image from "next/image"
+import { Container } from "../global/container"
+import Solutions from "./solutions"
+import BestChoice from "./best-choice"
+import AboutMaxyni from "./about-maxyni"
+import Link from "next/link"
+import { BsRocketTakeoff } from "react-icons/bs"
+import { useState } from "react"
+import RocketImage from '../../../public/rocket.png'
 
 export default function MainContent() {
-    const [isRocketFloating, setIsRocketFloating] = useState(false); // State to control the rocket floating animation.
+    const [isRocketFloating, setIsRocketFloating] = useState(false) // State to control the rocket floating animation.
 
     return (
         <Container className="flex flex-col gap-12">
@@ -67,5 +67,5 @@ export default function MainContent() {
                 <Solutions />
             </div>
         </Container>
-    );
+    )
 }

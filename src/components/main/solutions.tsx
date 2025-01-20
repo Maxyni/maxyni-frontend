@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import React from 'react';
-import { Container } from '@/components/global/container';
-import Image from 'next/image';
-import MaxyniSolutionsImage from '../../../public/maxyni-solutions.png';
+import React from 'react'
+import { Container } from '@/components/global/container'
+import Image from 'next/image'
+import MaxyniSolutionsImage from '../../../public/maxyni-solutions.png'
 
 export default function Solutions() {
     return (
@@ -31,12 +31,12 @@ export default function Solutions() {
 
                             <ul className="list-disc list-inside">
                                 <li className="font-light">Atualmente, desenvolvemos <strong>Web Apps Fullstack</strong> sob medida para empresas de pequeno e médio porte. Nosso foco é <strong>automatizar processos</strong> e economizar tempo, permitindo que sua equipe se concentre no que realmente importa.</li>
-                                <li className="font-light">Para o futuro, estamos trabalhando em soluções <strong>SaaS multi-tenant</strong>, projetadas para empresas de todos os tamanhos. Com ênfase em <strong>escalabilidade</strong> e <strong>segurança</strong>, essas ferramentas prometem transformar a forma como você gerencia seu negócio. Fique ligado!</li>
+                                <li className="font-light">Para o futuro, estamos trabalhando em soluções <strong>SaaS multi-tenant</strong>, como o <strong><a href="https://ahssets.com.br" target="_blank" className="hover:underline">Ahssets</a></strong>, uma plataforma completa de gestão de ativos e estoque interno. Com ênfase em <strong>escalabilidade</strong> e <strong>segurança</strong>, essas ferramentas prometem transformar a forma como você gerencia seu negócio. Fique ligado!</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </Container>
-    );
+    )
 }

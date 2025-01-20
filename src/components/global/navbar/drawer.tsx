@@ -1,31 +1,31 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from 'framer-motion';
-import Link from "next/link";
-import { LiaTimesSolid } from "react-icons/lia";
-import { HiMiniBars3BottomRight } from "react-icons/hi2";
-import { FaHouse } from "react-icons/fa6";
-import { BsPeopleFill } from "react-icons/bs";
-import { IoSparklesSharp } from "react-icons/io5";
+import { useEffect, useState } from "react"
+import { motion, AnimatePresence } from 'framer-motion'
+import Link from "next/link"
+import { LiaTimesSolid } from "react-icons/lia"
+import { HiMiniBars3BottomRight } from "react-icons/hi2"
+import { FaHouse } from "react-icons/fa6"
+import { BsPeopleFill } from "react-icons/bs"
+import { IoSparklesSharp } from "react-icons/io5"
 
 export default function Drawer() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false)
 
     const drawerVariants = {
         open: { x: 0, opacity: 1, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
         closed: { x: '100%', opacity: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
-    };
+    }
 
     useEffect(() => {
         const handleEsc = (event: KeyboardEvent) => {
             if (event.key === 'Escape') {
-                setIsOpen(false);
+                setIsOpen(false)
             }
-        };
-        window.addEventListener('keydown', handleEsc);
-        return () => window.removeEventListener('keydown', handleEsc);
-    }, []);
+        }
+        window.addEventListener('keydown', handleEsc)
+        return () => window.removeEventListener('keydown', handleEsc)
+    }, [])
 
     return (
         <div className="flex items-center relative">
@@ -96,5 +96,5 @@ export default function Drawer() {
                 )}
             </AnimatePresence>
         </div>
-    );
+    )
 }
