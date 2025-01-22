@@ -1,22 +1,19 @@
-'use client'
-
-export function LogoIcon({
-    width,
-    height,
-    className,
-}: {
+type LogoProps = {
     width?: number
     height?: number
     className?: string
-}) {
+}
+
+export function Logo({ width, height, className }: LogoProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={width}
-            height={height}
+            width={width || 50}
+            height={height || 50}
             fill="none"
             viewBox="0 0 423 395"
             className={className}
+            aria-label="Logo da Maxyni"
         >
             <rect
                 width="334.567"

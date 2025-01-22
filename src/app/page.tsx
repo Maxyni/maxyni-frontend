@@ -1,5 +1,7 @@
-import MainContent from "@/components/main/main-content"
+import { HomeContent } from "@/components/home/home-content"
 
 export default function Home() {
-  return <MainContent />
+  return (
+    <HomeContent />
+  )
 }

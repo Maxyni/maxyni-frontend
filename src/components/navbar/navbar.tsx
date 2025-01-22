@@ -1,33 +1,33 @@
-'use client'
+"use client"
 
-import Link from 'next/link'
-import { LogoIcon } from '../svgs/logo-icon'
-import { RiContactsLine } from 'react-icons/ri'
-import Drawer from './drawer'
-import { useEffect, useState } from 'react'
-import Modal from '../modal'
-import PhoneInput from '../inputs/phone-input'
+import { Logo } from "../svgs/logo"
+import Drawer from "./drawer"
+import Modal from "../ui/modal"
+import PhoneInput from "../ui/phone-input"
+import ContactSubmitedIcon from "../../../public/contact-submited-icon.png"
+import { RiContactsLine } from "react-icons/ri"
+import { z } from "zod"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { useRouter } from 'next/navigation'
-import { z } from 'zod'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import Image from 'next/image'
-import ContactSubmitedIcon from '../../../../public/contact-submited-icon.png'
 
 const submitContactSchema = z.object({
     fullName: z
         .string({ message: "O nome não deve conter caracteres especiais." })
         .nonempty({ message: "Insira o seu nome completo." })
-        .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)+$/, { message: 'Insira um nome completo válido.' }),
+        .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)+$/, { message: "Insira um nome completo válido." }),
     email: z
         .string()
-        .nonempty({ message: 'Insira o seu e-mail corporativo.' })
-        .email({ message: 'Insira um e-mail válido.' }),
+        .nonempty({ message: "Insira o seu e-mail corporativo." })
+        .email({ message: "Insira um e-mail válido." }),
     phone: z
-        .string({ message: 'O número de telefone não deve conter caracteres especiais.' })
-        .nonempty({ message: 'Insira o seu número de telefone.' })
-        .regex(/^\(\d{2}\)\s\d{4,5}-\d{4}$/, { message: 'Insira um número de telefone válido.' })
+        .string({ message: "O número de telefone não deve conter caracteres especiais." })
+        .nonempty({ message: "Insira o seu número de telefone." })
+        .regex(/^\(\d{2}\)\s\d{4,5}-\d{4}$/, { message: "Insira um número de telefone válido." })
 })
 
 type SubmitContactForm = z.infer<typeof submitContactSchema>
@@ -39,15 +39,15 @@ export function Navbar() {
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
     useEffect(() => {
-        if (window.location.hash === '#contact') {
-            document.getElementById('start')?.scrollIntoView()
+        if (window.location.hash === "#contact") {
+            document.getElementById("start")?.scrollIntoView()
             setModalIsOpen(true)
         }
     }, [])
 
     const { register, control, handleSubmit, formState: { errors }, clearErrors, trigger } = useForm<SubmitContactForm>({
         resolver: zodResolver(submitContactSchema),
-        defaultValues: { phone: '' }
+        defaultValues: { phone: "" }
     })
 
     const [submitting, setSubmitting] = useState(false)
@@ -64,7 +64,7 @@ export function Navbar() {
 
         return new Promise((resolve) => {
             setTimeout(() => {
-                setSubmitError('Não foi possível enviar seu formulário de contato no momento. Tente novamente mais tarde.')
+                setSubmitError("Não foi possível enviar seu formulário de contato no momento. Tente novamente mais tarde.")
                 setSubmitSuccess(false)
                 setSubmitting(false)
                 resolve(false)
@@ -81,7 +81,7 @@ export function Navbar() {
      * Handle the scroll event to change the navbar style.
      */
     useEffect(() => {
-        const navbarElement = document.getElementById('navbar')
+        const navbarElement = document.getElementById("navbar")
 
         if (navbarElement) {
             setNavbarHeight(navbarElement.offsetHeight)
@@ -110,13 +110,13 @@ export function Navbar() {
                 title="Fale conosco"
                 externalOpenState={modalIsOpen}
                 onClose={() => {
-                    router.push('/', { scroll: false })
+                    router.push("/", { scroll: false })
                     setSubmitting(false)
                     setSubmitError(null)
                     clearErrors()
                     setModalIsOpen(false)
                 }}
-                submitButtonText='Entrar em contato'
+                submitButtonText="Entrar em contato"
                 submitButtonDisabled={submitting}
                 handleSubmit={!submitSuccess ? handleSubmit : undefined}
                 onSubmit={!submitSuccess ? onSubmit : undefined}
@@ -124,7 +124,7 @@ export function Navbar() {
             >
                 <motion.div layout>
                     {submitSuccess ? (
-                        <div className='flex flex-col items-center gap-4'>
+                        <div className="flex flex-col items-center gap-4">
                             <Image
                                 src={ContactSubmitedIcon}
                                 alt="Contact form submited icon"
@@ -134,33 +134,33 @@ export function Navbar() {
                                 className="w-2/5 md:w-1/3 lg:w-1/3 xl:w-1/3"
                             />
 
-                            <div className='flex flex-col items-center gap-10'>
-                                <div className='flex flex-col gap-1'>
-                                    <h1 className='text-xl md:text-2xl font-semibold text-center'>Formulário enviado!</h1>
-                                    <p className='text-center text-sm'>Agradecemos o seu contato e interesse nos seviços da <span className='font-semibold'>Maxyni</span>.</p>
+                            <div className="flex flex-col items-center gap-10">
+                                <div className="flex flex-col gap-1">
+                                    <h1 className="text-xl md:text-2xl font-semibold text-center">Formulário enviado!</h1>
+                                    <p className="text-center text-sm">Agradecemos o seu contato e interesse nos seviços da <span className="font-semibold">Maxyni</span>.</p>
                                 </div>
 
-                                <div className='flex flex-col gap-4'>
-                                    <p className='text-center'>Em breve um de nossos especialistas entrará em contato através do e-mail e telefone corporativo que você informou no formulário.</p>
-                                    <p className='text-center text-xs'>O prazo para resposta é de normalmente até <span className='font-semibold'>48 horas</span>.</p>
+                                <div className="flex flex-col gap-4">
+                                    <p className="text-center">Em breve um de nossos especialistas entrará em contato através do e-mail e telefone corporativo que você informou no formulário.</p>
+                                    <p className="text-center text-xs">O prazo para resposta é de normalmente até <span className="font-semibold">48 horas</span>.</p>
                                 </div>
                             </div>
                         </div>
                     ) : (
-                        <div className='flex flex-col gap-4'>
+                        <div className="flex flex-col gap-4">
                             <motion.div
                                 layout
-                                className='relative flex flex-col'
+                                className="relative flex flex-col"
                             >
-                                <label htmlFor="fullName">Nome completo {errors.fullName && <span className='text-red-500'>*</span>}</label>
+                                <label htmlFor="fullName">Nome completo {errors.fullName && <span className="text-red-500">*</span>}</label>
                                 <input
                                     disabled={submitting}
                                     type="text"
-                                    placeholder='John Doe'
+                                    placeholder="John Doe"
                                     className={`${errors.fullName ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
-                                    {...register('fullName', {
-                                        onChange: () => { clearErrors('fullName') },
-                                        onBlur: () => { trigger('fullName') }
+                                    {...register("fullName", {
+                                        onChange: () => { clearErrors("fullName") },
+                                        onBlur: () => { trigger("fullName") }
                                     })}
                                 />
                                 {errors.fullName &&
@@ -169,7 +169,7 @@ export function Navbar() {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.3 }}
                                         exit={{ opacity: 0, y: 10 }}
-                                        className='text-red-500 text-xs ml-1'
+                                        className="text-red-500 text-xs ml-1"
                                     >
                                         {errors.fullName.message}
                                     </motion.p>
@@ -178,17 +178,17 @@ export function Navbar() {
 
                             <motion.div
                                 layout
-                                className='relative flex flex-col'
+                                className="relative flex flex-col"
                             >
-                                <label htmlFor="email">E-mail corporativo {errors.email && <span className='text-red-500'>*</span>}</label>
+                                <label htmlFor="email">E-mail corporativo {errors.email && <span className="text-red-500">*</span>}</label>
                                 <input
                                     disabled={submitting}
                                     type="email"
-                                    placeholder='john.doe@empresa.com'
+                                    placeholder="john.doe@empresa.com"
                                     className={`${errors.email ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
-                                    {...register('email', {
-                                        onChange: () => { clearErrors('email') },
-                                        onBlur: () => { trigger('email') }
+                                    {...register("email", {
+                                        onChange: () => { clearErrors("email") },
+                                        onBlur: () => { trigger("email") }
                                     })}
                                 />
                                 {errors.email &&
@@ -197,7 +197,7 @@ export function Navbar() {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.3 }}
                                         exit={{ opacity: 0, y: 10 }}
-                                        className='text-red-500 text-xs ml-1'
+                                        className="text-red-500 text-xs ml-1"
                                     >
                                         {errors.email.message}
                                     </motion.p>
@@ -206,17 +206,17 @@ export function Navbar() {
 
                             <PhoneInput
                                 control={control}
-                                onChange={() => { clearErrors('phone') }}
-                                onBlur={() => { trigger('phone') }}
+                                onChange={() => { clearErrors("phone") }}
+                                onBlur={() => { trigger("phone") }}
                                 errorMessage={errors.phone?.message}
                                 disabled={submitting}
                             />
 
                             <motion.p
                                 layout
-                                className='mt-2 mb-4 font-light text-gray-500'
+                                className="mt-2 mb-4 font-light text-gray-500"
                             >
-                                Ao enviar o formulário, você concorda com a <Link href={"#compliance"} target='_blank' className='font-medium bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent'>Política de Privacidade</Link>.
+                                Ao enviar o formulário, você concorda com a <Link href={"#compliance"} target="_blank" className="font-medium bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">Política de Privacidade</Link>.
                             </motion.p>
 
                             {submitError &&
@@ -225,7 +225,7 @@ export function Navbar() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.3 }}
                                     exit={{ opacity: 0, y: 10 }}
-                                    className='text-red-500 text-sm text-center'
+                                    className="text-red-500 text-sm text-center"
                                 >
                                     {submitError}
                                 </motion.p>
@@ -240,47 +240,48 @@ export function Navbar() {
             {isSticky && <div id="start" style={{ height: navbarHeight }} />}
 
             {/* Navbar */}
-            <motion.div
+            <motion.header
                 layout
-                id='navbar'
+                id="navbar"
                 className={`px-4 md:px-14 w-full z-20 flex ${isSticky ? "fixed shadow-lg bg-white top-0 inset-x-0 py-0" : "relative py-5"}`}
             >
                 <nav className={`w-full flex justify-between items-center ${isSticky ? "py-0" : "py-5"}`}>
-                    <div className='flex items-center gap-12'>
-                        <Link href="/">
-                            <LogoIcon width={isSticky ? 50 : 85} height={80} />
+                    <div className="flex items-center gap-12">
+                        <Link href="/" aria-label="Ir para a página inicial">
+                            <Logo width={isSticky ? 50 : 85} height={80} />
                         </Link>
 
-                        <ul className='hidden sm:flex gap-6'>
+                        <ul className="hidden sm:flex gap-6">
                             <li>
-                                <Link href='#start' className='nav-link'>
+                                <Link href="#start" className="nav-link" aria-label="Ir para o início da página">
                                     Início
                                 </Link>
                             </li>
                             <li>
-                                <Link href='#about' className='nav-link'>
+                                <Link href="#about" className="nav-link" aria-label="Ir para a seção Sobre nós">
                                     Sobre nós
                                 </Link>
                             </li>
                             <li>
-                                <Link href='#solutions' className='nav-link'>
+                                <Link href="#solutions" className="nav-link" aria-label="Ir para a seção Soluções">
                                     Soluções
                                 </Link>
                             </li>
                         </ul>
                     </div>
 
-                    <div className='flex items-center gap-6'>
+                    <div className="flex items-center gap-6">
                         <div className="relative h-12 w-40 rounded-xl group">
                             <div className="absolute inset-0 bg-gradient-to-r from-[#73BFFF] to-[#9A35E4] transition-transform duration-300 ease-in-out transform scale-90 group-hover:scale-x-[1.03] group-hover:scale-y-[1.1] rounded-xl" />
                             <a
                                 className="relative flex items-center gap-2 shadow-2xl justify-center w-full h-full rounded-xl bg-white text-black z-10 hover:cursor-pointer"
                                 onClick={() => {
                                     setModalIsOpen(true)
-                                    router.push('/#contact', { scroll: false })
+                                    router.push("/#contact", { scroll: false })
                                 }}
+                                aria-label="Abrir formulário de contato"
                             >
-                                <RiContactsLine className='text-lg' />
+                                <RiContactsLine className="text-lg" />
                                 <p>Fale conosco</p>
                             </a>
                         </div>
@@ -288,7 +289,7 @@ export function Navbar() {
                         <Drawer />
                     </div>
                 </nav>
-            </motion.div>
+            </motion.header>
         </>
     )
 }

@@ -1,17 +1,15 @@
-'use client'
+import React from "react"
+import { Section } from "@/components/container"
+import Image from "next/image"
+import MaxyniSolutionsImage from "../../../public/maxyni-solutions.png"
 
-import React from 'react'
-import { Container } from '@/components/global/container'
-import Image from 'next/image'
-import MaxyniSolutionsImage from '../../../public/maxyni-solutions.png'
-
-export default function Solutions() {
+export function Solutions() {
     return (
-        <Container>
+        <Section>
             <div id="solutions" className="flex flex-col lg:flex-row items-center justify-center gap-5">
                 <Image
                     src={MaxyniSolutionsImage}
-                    alt="Solutions image"
+                    alt="Pessoa com um óculos de realidade virtual impressionada com as soluções da Maxyni."
                     quality={100}
                     className="w-full md:w-3/5 lg:w-full xl:w-[80%] 2xl:w-[60%]"
                 />
@@ -26,7 +24,7 @@ export default function Solutions() {
 
                         <p className="text-base font-light">Cada produto é desenvolvido com foco nas <strong>necessidades reais</strong> do dia-a-dia, considerando as dores e desafios de cada área de atuação. Nossos produtos são projetados para serem <strong>intuitivos, eficientes e robustos</strong>, garantindo facilidade de uso sem abrir mão da performance.</p>
 
-                        <div className='flex flex-col gap-1'>
+                        <div className="flex flex-col gap-1">
                             <h2 className="font-bold">Conheça nossos produtos:</h2>
 
                             <ul className="list-disc list-inside">
@@ -37,6 +35,6 @@ export default function Solutions() {
                     </div>
                 </div>
             </div>
-        </Container>
+        </Section>
     )
 }

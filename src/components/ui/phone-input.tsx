@@ -1,5 +1,5 @@
 import React from "react"
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion"
 import { Controller, Control } from "react-hook-form"
 
 type PhoneInputProps = {
@@ -56,7 +56,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ control, onChange, onBlur, disa
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className='text-red-500 text-xs ml-1'
+                    className="text-red-500 text-xs ml-1"
                 >
                     {errorMessage}
                 </motion.p>

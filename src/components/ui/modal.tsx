@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { AnimatePresence, motion } from "framer-motion"
 import React, { ReactNode, useCallback, useEffect, useState } from "react"
@@ -33,14 +33,14 @@ type ModalProps = {
     /**
      * The text to display on the close button. Optional.
      * 
-     * @default 'Fechar'
+     * @default "Fechar"
      */
     closeButtonText?: string
 
     /**
      * The text to display on the submit button. Optional.
      * 
-     * @default 'Confirmar'
+     * @default "Confirmar"
      */
     submitButtonText?: string
 
@@ -106,14 +106,14 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
 
     useEffect(() => {
         if (isOpen) {
-            document.body.classList.add('overflow-hidden')
+            document.body.classList.add("overflow-hidden")
         } else {
-            document.body.classList.remove('overflow-hidden')
+            document.body.classList.remove("overflow-hidden")
         }
 
         // Cleanup when component unmounts
         return () => {
-            document.body.classList.remove('overflow-hidden')
+            document.body.classList.remove("overflow-hidden")
         }
     }, [isOpen])
 
@@ -184,7 +184,7 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.9 }}
-                            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         >
                             <motion.div
                                 layout
@@ -223,7 +223,7 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                             {(handleSubmit && onSubmit) && (
                                                 <button
                                                     type="submit"
-                                                    className={`${(isLoading || submitButtonDisabled) ? 'bg-[#4864e156] bg-opacity-70' : 'bg-gradient-to-r from-blue-500 to-purple-500 hover:scale-105'} w-44 py-3 text-white font-medium rounded-md text-[16px] leading-6 transition-all duration-300 ease-in-out`}
+                                                    className={`${(isLoading || submitButtonDisabled) ? "bg-[#4864e156] bg-opacity-70" : "bg-gradient-to-r from-blue-500 to-purple-500 hover:scale-105"} w-44 py-3 text-white font-medium rounded-md text-[16px] leading-6 transition-all duration-300 ease-in-out`}
                                                     disabled={isLoading || submitButtonDisabled}
                                                 >
                                                     {isLoading ? (
@@ -231,7 +231,7 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                                             <RiLoader5Fill className="animate-spin" size={24} />
                                                         </span>
                                                     ) : (
-                                                        <p>{submitButtonText ?? 'Confirmar'}</p>
+                                                        <p>{submitButtonText ?? "Confirmar"}</p>
                                                     )}
                                                 </button>
                                             )}

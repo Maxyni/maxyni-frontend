@@ -1,33 +1,33 @@
-'use client'
+"use client"
 
+import { Section } from "../container"
+import { Solutions } from "./solutions"
+import { BestChoice } from "./best-choice"
+import { About } from "./about"
+import RocketImage from "../../../public/rocket.png"
 import Image from "next/image"
-import { Container } from "../global/container"
-import Solutions from "./solutions"
-import BestChoice from "./best-choice"
-import AboutMaxyni from "./about-maxyni"
 import Link from "next/link"
 import { BsRocketTakeoff } from "react-icons/bs"
 import { useState } from "react"
-import RocketImage from '../../../public/rocket.png'
 
-export default function MainContent() {
-    const [isRocketFloating, setIsRocketFloating] = useState(false) // State to control the rocket floating animation.
+export function HomeContent() {
+    const [isRocketFloating, setIsRocketFloating] = useState(false)
 
     return (
-        <Container className="flex flex-col gap-12">
-            <div className='flex flex-col lg:flex-row items-center justify-center w-full h-auto lg:h-[400px] px-10 py-10 bg-gradient-to-r from-[#9A35E4] to-[#4682B4] rounded-t-[48px] rounded-bl-[48px] rounded-br-[250px]'>
-                <div className='max-w-xl w-full lg:w-[36rem] text-left'>
-                    <h1 className='text-white font-extrabold text-4xl lg:text-5xl'>
+        <Section id="home" className="flex flex-col gap-12">
+            <div className="flex flex-col lg:flex-row items-center justify-center w-full h-auto lg:h-[400px] px-10 py-10 bg-gradient-to-r from-[#9A35E4] to-[#4682B4] rounded-t-[48px] rounded-bl-[48px] rounded-br-[250px]">
+                <div className="max-w-xl w-full lg:w-[36rem] text-left">
+                    <h1 className="text-white font-extrabold text-4xl lg:text-5xl">
                         DECOLE O POTENCIAL <br />DA SUA EMPRESA <br />COM A MAXYNI
                     </h1>
 
                     <div className="flex flex-col what-we-do mt-2 gap-1">
                         <div>
-                            <p className='text-white text-medium'>
+                            <p className="text-white text-medium">
                                 Somos especialistas em criar soluções digitais para empresas e pessoas.
                             </p>
 
-                            <p className='text-white text-medium hidden xl:block'>
+                            <p className="text-white text-medium hidden xl:block">
                                 Transformamos suas ideias em realidade com qualidade, segurança e agilidade.
                             </p>
                         </div>
@@ -55,17 +55,17 @@ export default function MainContent() {
                 >
                     <Image
                         src={RocketImage}
-                        alt='Rocket image'
+                        alt="Foguete voando de lado para cima."
                         quality={100}
                     />
                 </div>
             </div>
 
             <div className="flex flex-col gap-24 mt-10">
-                <AboutMaxyni />
+                <About />
                 <BestChoice />
                 <Solutions />
             </div>
-        </Container>
+        </Section>
     )
 }
