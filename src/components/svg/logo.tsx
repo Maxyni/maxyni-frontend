@@ -13,7 +13,7 @@ export function Logo({ width, height, className }: LogoProps) {
             fill="none"
             viewBox="0 0 423 395"
             className={className}
-            aria-label="Logo da Maxyni"
+            aria-label="Maxyni"
         >
             <rect
                 width="334.567"

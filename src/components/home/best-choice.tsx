@@ -1,4 +1,4 @@
-import { Section } from "@/components/container"
+import { Section } from "@/components/section"
 import SupportIcon from "../../../public/support-icon.png"
 import CustomizationIcon from "../../../public/customization-icon.png"
 import MagicIcon from "../../../public/magic-icon.png"

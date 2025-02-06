@@ -1,6 +1,6 @@
 "use client"
 
-import { Logo } from "../svgs/logo"
+import { Logo } from "../svg/logo"
 import Drawer from "./drawer"
 import Modal from "../ui/modal"
 import PhoneInput from "../ui/phone-input"

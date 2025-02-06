@@ -3,48 +3,47 @@ import type { Metadata } from "next"
 import "./globals.css"
 import Footer from "@/components/footer"
 import { Navbar } from "@/components/navbar/navbar"
+import { getLocale, getMessages, getTranslations } from "next-intl/server"
+import { NextIntlClientProvider } from "next-intl"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("metadata")
+
+  return {
+    title: t("title"),
+    description: t("description"),
+    keywords: t("keywords"),
+    robots: "index, follow",
+    authors: [
+      {
+        name: "Mikael",
+        url: "https://github.com/MikaelMaster"
+      },
+      {
+        name: "Guilherme",
+        url: "https://github.com/guilhermehnf"
+      }
+    ],
+    metadataBase: new URL("https://maxyni.com.br")
+  }
+}
 
 const jost = Jost({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
-  title: "Maxyni | Soluções digitais sob medida para o seu negócio",
-  description: "Maximize o potencial da sua empresa com soluções digitais personalizadas, desenvolvidas com excelência, escalabilidade e segurança. Descubra como a Maxyni pode transformar desafios em oportunidades e levar seu negócio ao próximo nível!",
-  keywords: [
-    "maxyni",
-    "maxiny",
-    "maxini",
-    "startup",
-    "techstartup",
-    "tech startup",
-    "development",
-    "development startup",
-    "desenvolvimento corporativo",
-    "development corporativo"
-  ],
-  robots: "index, follow",
-  authors: [
-    {
-      name: "Mikael",
-      url: "https://github.com/MikaelMaster"
-    },
-    {
-      name: "Guilherme",
-      url: "https://github.com/guilhermehnf"
-    }
-  ]
-}
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const locale = await getLocale()
+  const messages = await getMessages({ locale })
 
-export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-BR">
+    <html lang={locale}>
       <body className={`bg-[#F1F7FD] ${jost.className}`}>
-        <Navbar />
-
-        <main>
-          {children}
-        </main>
-
-        <Footer />
+        <NextIntlClientProvider messages={messages}>
+          <Navbar />
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   )

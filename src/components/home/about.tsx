@@ -1,4 +1,4 @@
-import { Section } from "@/components/container"
+import { Section } from "@/components/section"
 import AboutMaxyniImage from "../../../public/about-maxyni.png"
 import Image from "next/image"
 import React from "react"

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Logo } from "./svgs/logo"
+import { Logo } from "./svg/logo"
 import { BsGithub, BsInstagram } from "react-icons/bs"
 import Modal from "./ui/modal"
 import { useEffect, useState } from "react"

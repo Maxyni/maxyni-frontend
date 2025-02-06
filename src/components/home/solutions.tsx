@@ -1,5 +1,5 @@
 import React from "react"
-import { Section } from "@/components/container"
+import { Section } from "@/components/section"
 import Image from "next/image"
 import MaxyniSolutionsImage from "../../../public/maxyni-solutions.png"
 
