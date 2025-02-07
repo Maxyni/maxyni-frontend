@@ -44,6 +44,16 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
                     />
                     <span>English</span>
                 </>
+            case "es-ES":
+                return <>
+                    <ReactCountryFlag
+                        countryCode="ES"
+                        title="Spain"
+                        style={{ width: '2em', height: '2em' }}
+                        svg
+                    />
+                    <span>Español</span>
+                </>
             default:
                 return code
         }
