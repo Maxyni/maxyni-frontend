@@ -1,6 +1,9 @@
+"use client"
+
 import React from "react"
 import { motion } from "framer-motion"
 import { Controller, Control } from "react-hook-form"
+import { useTranslations } from "next-intl"
 
 type PhoneInputProps = {
     control?: Control<any>
@@ -10,7 +13,9 @@ type PhoneInputProps = {
     errorMessage?: string
 }
 
-const PhoneInput: React.FC<PhoneInputProps> = ({ control, onChange, onBlur, disabled, errorMessage }) => {
+export function PhoneInput({ control, onChange, onBlur, disabled, errorMessage }: PhoneInputProps) {
+    const t = useTranslations("navbar.contact_modal.form.fields.phone")
+
     const formatPhoneNumber = (original: string): string => {
         const value = original.replace(/\D/g, "").slice(0, 11)
 
@@ -25,7 +30,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ control, onChange, onBlur, disa
 
     return (
         <motion.div layout className="relative flex flex-col">
-            <label htmlFor="number">Número de telefone {errorMessage && <span className="text-red-500">*</span>}</label>
+            <label htmlFor="number">{t("label")} {errorMessage && <span className="text-red-500">*</span>}</label>
             <div className={`bg-white flex items-center ${errorMessage ? "border border-red-400" : "border"}  rounded-md overflow-hidden group transition duration-300 ease-in-out focus-within:border-[#9800b6]`}>
                 <span className="pl-2 pr-2 text-sm font-medium">+55</span>
                 <Controller
@@ -50,6 +55,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ control, onChange, onBlur, disa
                     )}
                 />
             </div>
+
             {errorMessage &&
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
@@ -64,5 +70,3 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ control, onChange, onBlur, disa
         </motion.div>
     )
 }
-
-export default PhoneInput

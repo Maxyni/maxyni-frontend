@@ -2,80 +2,22 @@
 
 import { Logo } from "../svg/logo"
 import Drawer from "./drawer"
-import Modal from "../ui/modal"
-import PhoneInput from "../ui/phone-input"
-import ContactSubmitedIcon from "../../../public/contact-submited-icon.png"
 import { RiContactsLine } from "react-icons/ri"
-import { z } from "zod"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-
-const submitContactSchema = z.object({
-    fullName: z
-        .string({ message: "O nome não deve conter caracteres especiais." })
-        .nonempty({ message: "Insira o seu nome completo." })
-        .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)+$/, { message: "Insira um nome completo válido." }),
-    email: z
-        .string()
-        .nonempty({ message: "Insira o seu e-mail corporativo." })
-        .email({ message: "Insira um e-mail válido." }),
-    phone: z
-        .string({ message: "O número de telefone não deve conter caracteres especiais." })
-        .nonempty({ message: "Insira o seu número de telefone." })
-        .regex(/^\(\d{2}\)\s\d{4,5}-\d{4}$/, { message: "Insira um número de telefone válido." })
-})
-
-type SubmitContactForm = z.infer<typeof submitContactSchema>
+import { ContactModal } from "./contact/contact-modal"
+import { useTranslations } from "next-intl"
 
 export function Navbar() {
+    const t = useTranslations("navbar")
     const router = useRouter()
 
-    // Contact Maxyni modal - Start
-    const [modalIsOpen, setModalIsOpen] = useState(false)
-
-    useEffect(() => {
-        if (window.location.hash === "#contact") {
-            document.getElementById("start")?.scrollIntoView()
-            setModalIsOpen(true)
-        }
-    }, [])
-
-    const { register, control, handleSubmit, formState: { errors }, clearErrors, trigger } = useForm<SubmitContactForm>({
-        resolver: zodResolver(submitContactSchema),
-        defaultValues: { phone: "" }
-    })
-
-    const [submitting, setSubmitting] = useState(false)
-    const [submitSuccess, setSubmitSuccess] = useState(false)
-    const [submitError, setSubmitError] = useState<string | null>(null)
-
-    const onSubmit = (): Promise<boolean> => {
-        setSubmitting(true)
-        setSubmitSuccess(false)
-        setSubmitError(null)
-        clearErrors()
-
-        // TODO: Handle the form submission here when the backend is ready.
-
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                setSubmitError("Não foi possível enviar seu formulário de contato no momento. Tente novamente mais tarde.")
-                setSubmitSuccess(false)
-                setSubmitting(false)
-                resolve(false)
-            }, 1000)
-        })
-    }
-    // Contact Maxyni modal - End
-
-    // Sticky navbar - Start
     const [isSticky, setIsSticky] = useState(false) // State to control the navbar style - sticky or not.
     const [navbarHeight, setNavbarHeight] = useState(0) // Stores the navbar height - used in the placeholder div.
+
+    const [contactModalOpen, setContactModalOpen] = useState(false) // State to control the contact modal visibility.
 
     /**
      * Handle the scroll event to change the navbar style.
@@ -101,145 +43,13 @@ export function Navbar() {
             window.removeEventListener("scroll", handleScroll)
         }
     }, [])
-    // Sticky navbar - End
 
     return (
         <>
-            {/* Contact Maxyni modal - Start */}
-            <Modal
-                title="Fale conosco"
-                externalOpenState={modalIsOpen}
-                onClose={() => {
-                    router.push("/", { scroll: false })
-                    setSubmitting(false)
-                    setSubmitError(null)
-                    clearErrors()
-                    setModalIsOpen(false)
-                }}
-                submitButtonText="Entrar em contato"
-                submitButtonDisabled={submitting}
-                handleSubmit={!submitSuccess ? handleSubmit : undefined}
-                onSubmit={!submitSuccess ? onSubmit : undefined}
-                closeAfterSubmit
-            >
-                <motion.div layout>
-                    {submitSuccess ? (
-                        <div className="flex flex-col items-center gap-4">
-                            <Image
-                                src={ContactSubmitedIcon}
-                                alt="Contact form submited icon"
-                                width={200}
-                                height={250}
-                                quality={100}
-                                className="w-2/5 md:w-1/3 lg:w-1/3 xl:w-1/3"
-                            />
+            <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
 
-                            <div className="flex flex-col items-center gap-10">
-                                <div className="flex flex-col gap-1">
-                                    <h1 className="text-xl md:text-2xl font-semibold text-center">Formulário enviado!</h1>
-                                    <p className="text-center text-sm">Agradecemos o seu contato e interesse nos seviços da <span className="font-semibold">Maxyni</span>.</p>
-                                </div>
-
-                                <div className="flex flex-col gap-4">
-                                    <p className="text-center">Em breve um de nossos especialistas entrará em contato através do e-mail e telefone corporativo que você informou no formulário.</p>
-                                    <p className="text-center text-xs">O prazo para resposta é de normalmente até <span className="font-semibold">48 horas</span>.</p>
-                                </div>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="flex flex-col gap-4">
-                            <motion.div
-                                layout
-                                className="relative flex flex-col"
-                            >
-                                <label htmlFor="fullName">Nome completo {errors.fullName && <span className="text-red-500">*</span>}</label>
-                                <input
-                                    disabled={submitting}
-                                    type="text"
-                                    placeholder="John Doe"
-                                    className={`${errors.fullName ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
-                                    {...register("fullName", {
-                                        onChange: () => { clearErrors("fullName") },
-                                        onBlur: () => { trigger("fullName") }
-                                    })}
-                                />
-                                {errors.fullName &&
-                                    <motion.p
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                        exit={{ opacity: 0, y: 10 }}
-                                        className="text-red-500 text-xs ml-1"
-                                    >
-                                        {errors.fullName.message}
-                                    </motion.p>
-                                }
-                            </motion.div>
-
-                            <motion.div
-                                layout
-                                className="relative flex flex-col"
-                            >
-                                <label htmlFor="email">E-mail corporativo {errors.email && <span className="text-red-500">*</span>}</label>
-                                <input
-                                    disabled={submitting}
-                                    type="email"
-                                    placeholder="john.doe@empresa.com"
-                                    className={`${errors.email ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
-                                    {...register("email", {
-                                        onChange: () => { clearErrors("email") },
-                                        onBlur: () => { trigger("email") }
-                                    })}
-                                />
-                                {errors.email &&
-                                    <motion.p
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                        exit={{ opacity: 0, y: 10 }}
-                                        className="text-red-500 text-xs ml-1"
-                                    >
-                                        {errors.email.message}
-                                    </motion.p>
-                                }
-                            </motion.div>
-
-                            <PhoneInput
-                                control={control}
-                                onChange={() => { clearErrors("phone") }}
-                                onBlur={() => { trigger("phone") }}
-                                errorMessage={errors.phone?.message}
-                                disabled={submitting}
-                            />
-
-                            <motion.p
-                                layout
-                                className="mt-2 mb-4 font-light text-gray-500"
-                            >
-                                Ao enviar o formulário, você concorda com a <Link href={"#compliance"} target="_blank" className="font-medium bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">Política de Privacidade</Link>.
-                            </motion.p>
-
-                            {submitError &&
-                                <motion.p
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.3 }}
-                                    exit={{ opacity: 0, y: 10 }}
-                                    className="text-red-500 text-sm text-center"
-                                >
-                                    {submitError}
-                                </motion.p>
-                            }
-                        </div>
-                    )}
-                </motion.div>
-            </Modal>
-            {/* Contact Maxyni modal - End */}
-
-            {/* Placeholder div to prevent content jump when the navbar becomes sticky */}
             {isSticky && <div id="start" style={{ height: navbarHeight }} />}
 
-            {/* Navbar */}
             <motion.header
                 layout
                 id="navbar"
@@ -247,24 +57,24 @@ export function Navbar() {
             >
                 <nav className={`w-full flex justify-between items-center ${isSticky ? "py-0" : "py-5"}`}>
                     <div className="flex items-center gap-12">
-                        <Link href="/" aria-label="Ir para a página inicial">
+                        <Link href="/" aria-label={t("logo_aria_label")}>
                             <Logo width={isSticky ? 50 : 85} height={80} />
                         </Link>
 
                         <ul className="hidden sm:flex gap-6">
                             <li>
-                                <Link href="#start" className="nav-link" aria-label="Ir para o início da página">
-                                    Início
+                                <Link href="#start" className="nav-link" aria-label={t("home.aria_label")}>
+                                    {t("home.text")}
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#about" className="nav-link" aria-label="Ir para a seção Sobre nós">
-                                    Sobre nós
+                                <Link href="#about" className="nav-link" aria-label={t("about.aria_label")}>
+                                    {t("about.text")}
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#solutions" className="nav-link" aria-label="Ir para a seção Soluções">
-                                    Soluções
+                                <Link href="#solutions" className="nav-link" aria-label={t("solutions.aria_label")}>
+                                    {t("solutions.text")}
                                 </Link>
                             </li>
                         </ul>
@@ -274,15 +84,17 @@ export function Navbar() {
                         <div className="relative h-12 w-40 rounded-xl group">
                             <div className="absolute inset-0 bg-gradient-to-r from-[#73BFFF] to-[#9A35E4] transition-transform duration-300 ease-in-out transform scale-90 group-hover:scale-x-[1.03] group-hover:scale-y-[1.1] rounded-xl" />
                             <a
+                                href="#contact"
                                 className="relative flex items-center gap-2 shadow-2xl justify-center w-full h-full rounded-xl bg-white text-black z-10 hover:cursor-pointer"
-                                onClick={() => {
-                                    setModalIsOpen(true)
+                                aria-label={t("contact_button.aria_label")}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    setContactModalOpen(true)
                                     router.push("/#contact", { scroll: false })
                                 }}
-                                aria-label="Abrir formulário de contato"
                             >
                                 <RiContactsLine className="text-lg" />
-                                <p>Fale conosco</p>
+                                <span>{t("contact_button.text")}</span>
                             </a>
                         </div>
 

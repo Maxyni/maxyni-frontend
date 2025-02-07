@@ -8,9 +8,11 @@ import { HiMiniBars3BottomRight } from "react-icons/hi2"
 import { FaHouse } from "react-icons/fa6"
 import { BsPeopleFill } from "react-icons/bs"
 import { IoSparklesSharp } from "react-icons/io5"
+import { useTranslations } from "next-intl"
 
 export default function Drawer() {
-    const [isOpen, setIsOpen] = useState(false)
+    const t = useTranslations("navbar")
+    const [open, setOpen] = useState(false)
 
     const drawerVariants = {
         open: { x: 0, opacity: 1, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
@@ -20,31 +22,34 @@ export default function Drawer() {
     useEffect(() => {
         const handleEsc = (event: KeyboardEvent) => {
             if (event.key === "Escape") {
-                setIsOpen(false)
+                setOpen(false)
             }
         }
         window.addEventListener("keydown", handleEsc)
-        return () => window.removeEventListener("keydown", handleEsc)
+
+        return () => {
+            window.removeEventListener("keydown", handleEsc)
+        }
     }, [])
 
     return (
         <div className="flex items-center relative">
             <button
-                onClick={() => setIsOpen(true)}
                 className="text-stone-900 text-3xl sm:hidden focus:outline-none"
+                onClick={() => setOpen(true)}
             >
                 <HiMiniBars3BottomRight />
             </button>
 
             <AnimatePresence>
-                {isOpen && (
+                {open && (
                     <>
                         <motion.div
-                            onClick={() => setIsOpen(false)}
+                            className="fixed inset-0 bg-black z-40"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 0.5 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 bg-black z-40"
+                            onClick={() => setOpen(false)}
                         />
 
                         <motion.div
@@ -57,7 +62,7 @@ export default function Drawer() {
                             <div className="flex items-center justify-end mt-5 mb-5">
                                 <span className="w-full text-left text-2xl font-semibold whitespace-nowrap">Maxyni</span>
                                 <button
-                                    onClick={() => setIsOpen(false)}
+                                    onClick={() => setOpen(false)}
                                     className="text-black text-3xl focus:outline-none"
                                 >
                                     <LiaTimesSolid />
@@ -70,24 +75,27 @@ export default function Drawer() {
                                 <div className="flex flex-col gap-5 items-start justify-start">
                                     <Link
                                         href="#start"
-                                        onClick={() => setIsOpen(false)}
                                         className="flex flex-row gap-2 items-center justify-center text-xl px-4 py-2 rounded-md text-black font-medium transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-400/10"
+                                        aria-label={t("home.aria_label")}
+                                        onClick={() => setOpen(false)}
                                     >
-                                        <FaHouse /> Início
+                                        <FaHouse /> {t("home.text")}
                                     </Link>
                                     <Link
                                         href="#about"
-                                        onClick={() => setIsOpen(false)}
                                         className="flex flex-row gap-2 items-center justify-center text-xl px-4 py-2 rounded-md text-black font-medium transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-400/10"
+                                        aria-label={t("about.aria_label")}
+                                        onClick={() => setOpen(false)}
                                     >
-                                        <BsPeopleFill /> Sobre nós
+                                        <BsPeopleFill /> {t("about.text")}
                                     </Link>
                                     <Link
                                         href="#solutions"
-                                        onClick={() => setIsOpen(false)}
                                         className="flex flex-row gap-2 items-center justify-center text-xl px-4 py-2 rounded-md text-black font-medium transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-400/10"
+                                        aria-label={t("solutions.aria_label")}
+                                        onClick={() => setOpen(false)}
                                     >
-                                        <IoSparklesSharp />  Soluções
+                                        <IoSparklesSharp /> {t("solutions.text")}
                                     </Link>
                                 </div>
                             </nav>

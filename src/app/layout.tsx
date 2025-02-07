@@ -1,10 +1,10 @@
 import { Jost } from "next/font/google"
 import type { Metadata } from "next"
-import "./globals.css"
-import Footer from "@/components/footer"
+import Footer from "@/components/footer/footer"
 import { Navbar } from "@/components/navbar/navbar"
 import { getLocale, getMessages, getTranslations } from "next-intl/server"
 import { NextIntlClientProvider } from "next-intl"
+import "./globals.css"
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("metadata")
