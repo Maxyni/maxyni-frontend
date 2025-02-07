@@ -80,7 +80,7 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
     }, [])
 
     return (
-        <div ref={containerRef} className={`${hideSelect ? "hidden" : "block"} relative`}>
+        <div ref={containerRef} className={`relative hidden ${!hideSelect && "sm:block"}`}>
             <motion.button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center p-3 rounded-xl border border-gray-300 bg-white text-black shadow-md hover:bg-gray-100 transition-all duration-300"

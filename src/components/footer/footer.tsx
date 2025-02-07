@@ -53,7 +53,7 @@ export default function Footer() {
                         </li>
                         <li>
                             <Modal
-                                title="Política de Privacidade"
+                                title={t("compliance.title")}
                                 externalOpenState={isOpen}
                                 buttonToOpen={
                                     <a href="#compliance" className="hover:underline me-4 md:me-6">{t("links.compliance_text")}</a>
