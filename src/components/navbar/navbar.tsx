@@ -9,6 +9,7 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { ContactModal } from "./contact/contact-modal"
 import { useTranslations } from "next-intl"
+import { LanguageSelect } from "../language-select"
 
 export function Navbar() {
     const t = useTranslations("navbar")
@@ -80,7 +81,7 @@ export function Navbar() {
                         </ul>
                     </div>
 
-                    <div className="flex items-center gap-6">
+                    <motion.div layout className="flex items-center gap-6">
                         <div className="relative h-12 w-40 rounded-xl group">
                             <div className="absolute inset-0 bg-gradient-to-r from-[#73BFFF] to-[#9A35E4] transition-transform duration-300 ease-in-out transform scale-90 group-hover:scale-x-[1.03] group-hover:scale-y-[1.1] rounded-xl" />
                             <a
@@ -98,8 +99,9 @@ export function Navbar() {
                             </a>
                         </div>
 
+                        <LanguageSelect hideSelect={isSticky} />
                         <Drawer />
-                    </div>
+                    </motion.div>
                 </nav>
             </motion.header>
         </>

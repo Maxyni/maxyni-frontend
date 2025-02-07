@@ -1,0 +1,132 @@
+{
+    "metadata": {
+        "title": "Maxyni | Custom Digital Solutions Tailored for Your Business",
+        "description": "Maximize your company's potential with custom digital solutions, developed with excellence, scalability and security. Discover how Maxyni can turn challenges into opportunities and elevate your business to the next level!",
+        "keywords": "maxyni, maxiny, maxini, startup, techstartup, tech startup, development, development startup, corporate development, corporate development"
+    },
+    "navbar": {
+        "logo_aria_label": "Go to the homepage",
+        "home": {
+            "text": "Home",
+            "aria_label": "Go to the start of the page"
+        },
+        "about": {
+            "text": "About",
+            "aria_label": "Go to the About Us section"
+        },
+        "solutions": {
+            "text": "Solutions",
+            "aria_label": "Go to the Solutions section"
+        },
+        "contact_button": {
+            "text": "Contact Us",
+            "aria_label": "Open contact form"
+        },
+        "contact_modal": {
+            "title": "Contact Us",
+            "submit_button_text": "Get in Touch",
+            "form": {
+                "generic_error_text": "We were unable to send your contact form at this time. Please try again later",
+                "compliance_text": "By submitting the form, you agree to the <a>Privacy Policy</a>.",
+                "fields": {
+                    "full_name": {
+                        "label": "Full Name",
+                        "placeholder": "John Doe",
+                        "errors": {
+                            "nonempty": "Please enter your full name.",
+                            "regex": "Please enter a valid full name."
+                        }
+                    },
+                    "email": {
+                        "label": "Corporate Email",
+                        "placeholder": "john.doe@company.com",
+                        "errors": {
+                            "nonempty": "Please enter your corporate email.",
+                            "regex": "Please enter a valid email address."
+                        }
+                    },
+                    "phone": {
+                        "label": "Phone Number",
+                        "errors": {
+                            "nonempty": "Please enter your phone number.",
+                            "regex": "Please enter a valid phone number."
+                        }
+                    }
+                },
+                "sent": {
+                    "icon_alt": "Form icon with a check mark",
+                    "title": "Form Submitted!",
+                    "subtitle": "Thank you for reaching out and showing interest in <span>Maxyni</span>'s services.",
+                    "description_1": "One of our specialists will get in touch soon using the email and corporate phone number you provided.",
+                    "description_2": "Response time is typically within <span>48 hours</span>."
+                }
+            }
+        }
+    },
+    "welcome": {
+        "rocket_img_alt": "Rocket flying diagonally upward.",
+        "title": "TAKE OFF YOUR COMPANY'S POTENTIAL \nWITH MAXYNI",
+        "description_1": "We are specialists in crafting digital solutions for businesses and individuals.",
+        "description_2": "We transform your ideas into reality with quality, security and speed.",
+        "description_3": "Our unique advantages set us apart in the market. Click <strong>Take Off</strong> and discover how we can boost your results!",
+        "takeoff_button_text": "Take Off"
+    },
+    "about": {
+        "person_img_alt": "Person working with a laptop on their lap, relaxed and comfortable.",
+        "title": "Who is <span>Maxyni</span>?",
+        "description_1": "Maxyni was born to <strong>simplify</strong> the way companies manage their processes and make decisions.",
+        "description_2": "More than just creating digital products, we aim to be a <strong>benchmark</strong>. We believe that technology should be <strong>accessible</strong> and <strong>intuitive</strong>. That's why we develop solutions designed for companies of all sizes and industries.",
+        "description_3": "What sets us apart? <strong>People, quality and care.</strong> Everything we do is aimed at <strong>making everyday life easier</strong> for companies and <strong>positively impacting</strong> people. Our essence is to deliver <strong>quality</strong> in every detail."
+    },
+    "best_choice": {
+        "title": "Why are we your <span>best</span> choice?",
+        "description": "Some companies offer software — we deliver <strong>complete solutions</strong>. So, what makes us unique? Here are a few reasons why Maxyni is the right choice for your business:",
+        "support": {
+            "icon_alt": "Speech bubble.",
+            "title": "Support",
+            "description": "Our friendly, human-centric support is always ready to help and solve any problem, ensuring your day runs smoothly."
+        },
+        "customization": {
+            "icon_alt": "Watercolor with brush and palette.",
+            "title": "Customization",
+            "description": "We understand that every business is unique. That’s why our systems are highly customizable and adaptable, providing comfort and efficiency for you."
+        },
+        "excellence": {
+            "icon_alt": "Shining star.",
+            "title": "Excellence",
+            "description": "We have an incredible speed when it comes to rolling out updates. We're constantly delivering new solutions and features because innovation is in our DNA."
+        }
+    },
+    "solutions": {
+        "person_img_alt": "Person wearing VR goggles, amazed by Maxyni's solutions.",
+        "title": "Solutions to Reach Your <span>MAXIMUM</span>",
+        "description_1": "Unlock the full potential of your business with <strong>Maxyni's solutions</strong>!",
+        "description_2": "Each product is designed with a focus on the <strong>real needs</strong> of everyday operations, taking into account the pain points and challenges of every field. Our products are built to be <strong>intuitive, efficient and robust</strong>, ensuring ease of use without sacrificing performance.",
+        "products": {
+            "title": "Discover our products:",
+            "li_1": "Currently, we develop custom <strong>Fullstack Web Apps</strong> for small and medium-sized companies. Our focus is on <strong>automating processes</strong> and saving time, so your team can concentrate on what truly matters.",
+            "li_2": "Looking ahead, we're working on <strong>multi-tenant SaaS</strong> solutions, like <strong><a>Ahssets</a></strong>, a comprehensive platform for asset and inventory management. Emphasizing <strong>scalability</strong> and <strong>security</strong>, these tools promise to transform the way you manage your business. Stay tuned!"
+        }
+    },
+    "footer": {
+        "slogan": "Building the future that's already here.",
+        "rights": "© {year} <Link>Maxyni</Link>. All rights reserved.",
+        "links": {
+            "company_text": "Company",
+            "compliance_text": "Privacy Policy"
+        },
+        "compliance": {
+            "title": "Privacy Policy",
+            "terms": {
+                "1": "<p><strong>1. About the site:</strong> The Maxyni website is an informational landing page designed to showcase our products and services. No personal data is directly collected through the site, except in cases of specified future interactions.</p>",
+                "2": "<p><strong>2. Use of Cookies and Similar Technologies:</strong> We may use cookies and similar technologies to enhance the user experience and analyze site usage. By continuing to use the site, you consent to the use of these technologies. You can configure your browser to block cookies, but this may affect your browsing experience.</p>",
+                "3": "<p><strong>3. Intellectual Property:</strong> All content on the site, including texts, images, logos and other materials, is protected by copyright and other intellectual property laws. You are not permitted to reproduce, distribute, modify or use any part of the content without prior written authorization from Maxyni.</p>",
+                "4": "<p><strong>4. Limitation of Liability:</strong> Maxyni strives to ensure that the information presented on the site is accurate and up-to-date. However, we are not responsible for any errors, omissions or misinterpretations of the information contained on the site. Use of the site is at your own risk.</p>",
+                "5": "<p><strong>5. Links to Third-Party Sites:</strong> The site may contain links to other websites. Maxyni is not responsible for the content, policies or privacy practices of third-party sites.</p>",
+                "6": "<p><strong>6. Changes to the Policy and the Site:</strong> We reserve the right to modify our Privacy Policy at any time without prior notice. We recommend that you review this page periodically to stay informed of any changes. We may also modify or discontinue any part of the site without notice.</p>",
+                "7": "<p><strong>7. Governing Law:</strong> These Terms are governed by the laws of the Federative Republic of Brazil. Any disputes arising from the use of the site shall be resolved in the jurisdiction of the Blumenau district.</p>",
+                "8": "<p><strong>8. Contact:</strong> If you have any questions regarding our Privacy Policy, or any other issues, please contact us at <Link>suporte@maxyni.com.br</Link>.</p>"
+            }
+        }
+    }
+}
