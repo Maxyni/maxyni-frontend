@@ -1,0 +1,132 @@
+{
+    "metadata": {
+        "title": "Maxyni | Soluciones digitales a medida para tu negocio",
+        "description": "Maximiza el potencial de tu empresa con soluciones digitales personalizadas, desarrolladas con excelencia, escalabilidad y seguridad. Descubre cómo Maxyni puede transformar desafíos en oportunidades y llevar tu negocio al siguiente nivel!",
+        "keywords": "maxyni, maxiny, maxini, startup, techstartup, tech startup, desarrollo, startup de desarrollo, desarrollo corporativo, desarrollo corporativo"
+    },
+    "navbar": {
+        "logo_aria_label": "Ir a la página principal",
+        "home": {
+            "text": "Inicio",
+            "aria_label": "Ir al inicio de la página"
+        },
+        "about": {
+            "text": "Acerca",
+            "aria_label": "Ir a la sección Acerca de nosotros"
+        },
+        "solutions": {
+            "text": "Soluciones",
+            "aria_label": "Ir a la sección Soluciones"
+        },
+        "contact_button": {
+            "text": "Contáctanos",
+            "aria_label": "Abrir formulario de contacto"
+        },
+        "contact_modal": {
+            "title": "Contáctanos",
+            "submit_button_text": "Enviar mensaje",
+            "form": {
+                "generic_error_text": "No se pudo enviar tu formulario de contacto en este momento. Inténtalo de nuevo más tarde",
+                "compliance_text": "Al enviar el formulario, aceptas la <a>Política de Privacidad</a>.",
+                "fields": {
+                    "full_name": {
+                        "label": "Nombre completo",
+                        "placeholder": "John Doe",
+                        "errors": {
+                            "nonempty": "Ingresa tu nombre completo.",
+                            "regex": "Ingresa un nombre completo válido."
+                        }
+                    },
+                    "email": {
+                        "label": "Correo electrónico corporativo",
+                        "placeholder": "john.doe@empresa.com",
+                        "errors": {
+                            "nonempty": "Ingresa tu correo electrónico corporativo.",
+                            "regex": "Ingresa un correo electrónico válido."
+                        }
+                    },
+                    "phone": {
+                        "label": "Número de teléfono",
+                        "errors": {
+                            "nonempty": "Ingresa tu número de teléfono.",
+                            "regex": "Ingresa un número de teléfono válido."
+                        }
+                    }
+                },
+                "sent": {
+                    "icon_alt": "Icono del formulario con una marca de verificación",
+                    "title": "¡Formulario enviado!",
+                    "subtitle": "Agradecemos tu contacto e interés en los servicios de <span>Maxyni</span>.",
+                    "description_1": "En breve, uno de nuestros especialistas se pondrá en contacto a través del correo electrónico y teléfono corporativo que proporcionaste en el formulario.",
+                    "description_2": "El tiempo de respuesta es normalmente de hasta <span>48 horas</span>."
+                }
+            }
+        }
+    },
+    "welcome": {
+        "rocket_img_alt": "Cohete volando en diagonal hacia arriba.",
+        "title": "DESPEGA EL POTENCIAL \nDE TU EMPRESA \nCON MAXYNI",
+        "description_1": "Somos especialistas en crear soluciones digitales para empresas y personas.",
+        "description_2": "Transformamos tus ideas en realidad con calidad, seguridad y agilidad.",
+        "description_3": "Nuestros diferenciadores nos destacan en el mercado. ¡Haz clic en <strong>Despegar</strong> y descubre cómo podemos impulsar tus resultados!",
+        "takeoff_button_text": "Despegar"
+    },
+    "about": {
+        "person_img_alt": "Persona trabajando con una laptop en el regazo, cómoda y relajada.",
+        "title": "¿Quién es <span>Maxyni</span>?",
+        "description_1": "Maxyni nació para <strong>simplificar</strong> la forma en que las empresas gestionan sus procesos y toman decisiones.",
+        "description_2": "Más que crear productos digitales, queremos ser una <strong>referencia</strong>. Creemos que la tecnología debe ser <strong>accesible</strong> e <strong>intuitiva</strong>. Por eso, desarrollamos soluciones pensadas para empresas de todos los tamaños y sectores.",
+        "description_3": "¿Qué nos diferencia? <strong>Personas, calidad y cuidado.</strong> Todo lo que hacemos tiene como objetivo <strong>facilitar</strong> el día a día de las empresas y <strong>impactar positivamente</strong> a las personas. Nuestra esencia es entregar <strong>calidad</strong> en cada detalle."
+    },
+    "best_choice": {
+        "title": "¿Por qué somos tu <span>mejor</span> elección?",
+        "description": "Algunas empresas ofrecen software, pero nosotros entregamos <strong>soluciones completas</strong>. ¿Y qué nos hace únicos? Aquí tienes algunas de las razones por las cuales Maxyni es la elección correcta para tu negocio:",
+        "support": {
+            "icon_alt": "Globo de diálogo.",
+            "title": "Soporte",
+            "description": "Nuestro servicio humanizado siempre está listo para ayudar y resolver cualquier problema, asegurando que tu día a día transcurra sin complicaciones."
+        },
+        "customization": {
+            "icon_alt": "Acuarela con pincel y paleta de colores",
+            "title": "Personalización",
+            "description": "Entendemos que cada negocio es único. Por eso, nuestros sistemas son altamente personalizables y adaptables, proporcionando comodidad y eficiencia para ti."
+        },
+        "excellence": {
+            "icon_alt": "Estrella brillante.",
+            "title": "Excelencia",
+            "description": "Tenemos una velocidad increíble para lanzar actualizaciones. Constantemente estamos trayendo nuevas soluciones y funciones para ti, porque la innovación forma parte de nuestro ADN."
+        }
+    },
+    "solutions": {
+        "person_img_alt": "Persona con gafas de realidad virtual impresionada con las soluciones de Maxyni.",
+        "title": "Soluciones para alcanzar el <span>MÁXIMO</span>",
+        "description_1": "¡Desbloquea todo el potencial de tu negocio con las <strong>soluciones de Maxyni</strong>!",
+        "description_2": "Cada producto se desarrolla enfocado en las <strong>necesidades reales</strong> del día a día, considerando los dolores y desafíos de cada área. Nuestros productos están diseñados para ser <strong>intuitivos, eficientes y robustos</strong>, garantizando facilidad de uso sin sacrificar el rendimiento.",
+        "products": {
+            "title": "Conoce nuestros productos:",
+            "li_1": "Actualmente, desarrollamos <strong>Web Apps Fullstack</strong> a medida para empresas pequeñas y medianas. Nuestro enfoque es <strong>automatizar procesos</strong> y ahorrar tiempo, permitiendo que tu equipo se concentre en lo que realmente importa.",
+            "li_2": "Para el futuro, estamos trabajando en soluciones <strong>SaaS multi-tenant</strong>, como <strong><a>Ahssets</a></strong>, una plataforma completa de gestión de activos e inventario interno. Con énfasis en <strong>escalabilidad</strong> y <strong>seguridad</strong>, estas herramientas prometen transformar la forma en que gestionas tu negocio. ¡Mantente atento!"
+        }
+    },
+    "footer": {
+        "slogan": "Desarrollando el futuro que ya ha llegado.",
+        "rights": "© {year} <Link>Maxyni</Link>. Todos los derechos reservados.",
+        "links": {
+            "company_text": "Institucional",
+            "compliance_text": "Política de Privacidad"
+        },
+        "compliance": {
+            "title": "Política de Privacidad",
+            "terms": {
+                "1": "<p><strong>1. Sobre el sitio:</strong> El sitio de Maxyni es una landing page informativa, diseñada para presentar nuestros productos y servicios. No se recopilan datos personales directamente a través del sitio, salvo en caso de interacciones futuras especificadas.</p>",
+                "2": "<p><strong>2. Uso de Cookies y Tecnologías Similares:</strong> Podemos utilizar cookies y tecnologías similares para mejorar la experiencia del usuario y analizar el uso del sitio. Al continuar utilizando el sitio, aceptas el uso de estas tecnologías. Puedes configurar tu navegador para bloquear cookies, pero esto puede afectar la experiencia de navegación.</p>",
+                "3": "<p><strong>3. Propiedad Intelectual:</strong> Todo el contenido del sitio, incluidos textos, imágenes, logotipos y otros materiales, está protegido por derechos de autor y otras leyes de propiedad intelectual. No estás autorizado a reproducir, distribuir, modificar o utilizar ninguna parte del contenido sin la autorización previa por escrito de Maxyni.</p>",
+                "4": "<p><strong>4. Limitación de Responsabilidad:</strong> Maxyni se esfuerza por garantizar que la información presentada en el sitio sea precisa y esté actualizada. Sin embargo, no nos hacemos responsables de errores, omisiones o de la interpretación incorrecta de la información contenida en el sitio. El uso del sitio es bajo tu propia responsabilidad.</p>",
+                "5": "<p><strong>5. Enlaces a Sitios de Terceros:</strong> El sitio puede contener enlaces a otros sitios. Maxyni no se hace responsable del contenido, políticas o prácticas de privacidad de sitios de terceros.</p>",
+                "6": "<p><strong>6. Modificaciones en la Política y en el Sitio:</strong> Nos reservamos el derecho de modificar nuestra Política de Privacidad en cualquier momento, sin previo aviso. Recomendamos que revises esta página periódicamente para estar al tanto de posibles cambios. También podremos modificar o descontinuar cualquier parte del sitio sin previo aviso.</p>",
+                "7": "<p><strong>7. Legislación Aplicable:</strong> Estos Términos se rigen por las leyes de la República Federativa de Brasil. Cualquier disputa derivada del uso del sitio deberá resolverse en el fuero de la Comarca de Blumenau.</p>",
+                "8": "<p><strong>8. Contacto:</strong> Si tienes alguna duda sobre nuestra Política de Privacidad, o cualquier otra consulta, ponte en contacto con nosotros a través del correo electrónico: <Link>suporte@maxyni.com.br</Link>.</p>"
+            }
+        }
+    }
+}
