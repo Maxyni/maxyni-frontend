@@ -1,7 +1,7 @@
 import { Section } from "@/components/section"
 import SupportIcon from "../../../public/support-icon.png"
 import CustomizationIcon from "../../../public/customization-icon.png"
-import MagicIcon from "../../../public/magic-icon.png"
+import ExcellencIcon from "../../../public/excellence-icon.png"
 import Image from "next/image"
 import React from "react"
 import { getTranslations } from "next-intl/server"
@@ -56,10 +56,10 @@ export async function BestChoice() {
 
                 <div className="flex flex-col items-center">
                     <Image
-                        src={MagicIcon}
+                        src={ExcellencIcon}
                         alt={t("excellence.icon_alt")}
                         quality={100}
-                        className="z-10 max-w-[150px]"
+                        className="z-10 max-w-[180px] ml-10"
                     />
 
                     <div className="flex flex-col bg-white shadow-2xl rounded-md w-72 h-52 p-2 -mt-16 py-12">
