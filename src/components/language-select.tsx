@@ -20,6 +20,8 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
     const [changingLocale, setChangingLocale] = useState(false)
 
     const handleLocaleChange = async (locale: string) => {
+        if (usingLocale === locale) return
+
         try {
             setChangingLocale(true)
             setDropdownOpen(false)
@@ -132,9 +134,10 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
                         {locales.map((locale) => (
                             <motion.li
                                 key={locale}
+                                aria-disabled={usingLocale === locale}
                                 onClick={() => handleLocaleChange(locale)}
-                                className={`flex items-center gap-4 px-4 py-2 hover:bg-gray-100 cursor-pointer transition-all duration-300 ${usingLocale === locale ? "bg-gray-100" : ""}`}
-                                whileHover={{ scale: 1.02 }}
+                                className={`flex items-center gap-4 px-4 py-2 cursor-pointer aria-disabled:cursor-not-allowed transition-all duration-300 ${usingLocale === locale ? "bg-gray-100" : ""}`}
+                                whileHover={{ scale: (usingLocale === locale) ? 1 : 1.02 }}
                             >
                                 {getLocaleJSX(locale)}
                             </motion.li>
