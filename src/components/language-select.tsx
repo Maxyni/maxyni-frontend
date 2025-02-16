@@ -5,6 +5,7 @@ import { IoLanguage } from "react-icons/io5"
 import { getCookie, setCookie } from "@/lib/cookies"
 import { motion, AnimatePresence } from "framer-motion"
 import ReactCountryFlag from "react-country-flag"
+import { BiLoaderAlt } from "react-icons/bi"
 
 type LanguageSelectProps = {
     hideSelect: boolean
@@ -16,10 +17,18 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
     const locales = (process.env.NEXT_PUBLIC_AVAILABLE_LOCALES as string).split(",")
     const [usingLocale, setUsingLocale] = useState("")
 
+    const [changingLocale, setChangingLocale] = useState(false)
+
     const handleLocaleChange = async (locale: string) => {
-        await setCookie("i18n@locale", locale)
-        setUsingLocale(locale)
-        setDropdownOpen(false)
+        try {
+            setChangingLocale(true)
+            setDropdownOpen(false)
+
+            await setCookie("i18n@locale", locale)
+            setUsingLocale(locale)
+        } finally {
+            setChangingLocale(false)
+        }
     }
 
     function getLocaleJSX(code: string) {
@@ -53,6 +62,16 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
                         svg
                     />
                     <span>Español</span>
+                </>
+            case "fr-FR":
+                return <>
+                    <ReactCountryFlag
+                        countryCode="FR"
+                        title="France"
+                        style={{ width: '2em', height: '2em' }}
+                        svg
+                    />
+                    <span>Français</span>
                 </>
             default:
                 return code
@@ -92,12 +111,13 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
     return (
         <div ref={containerRef} className={`relative hidden ${!hideSelect && "sm:block"}`}>
             <motion.button
+                disabled={changingLocale}
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center p-3 rounded-xl border border-gray-300 bg-white text-black shadow-md hover:bg-gray-100 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
             >
-                <IoLanguage className="text-lg" />
+                {changingLocale ? <BiLoaderAlt className="animate-spin" size={18} /> : <IoLanguage size={18} />}
             </motion.button>
 
             <AnimatePresence>
