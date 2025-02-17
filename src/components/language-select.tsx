@@ -75,6 +75,16 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
                     />
                     <span>Français</span>
                 </>
+            case "de-DE":
+                return <>
+                    <ReactCountryFlag
+                        countryCode="DE"
+                        title="Germany"
+                        style={{ width: '2em', height: '2em' }}
+                        svg
+                    />
+                    <span>Deutsch</span>
+                </>
             default:
                 return code
         }

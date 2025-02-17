@@ -46,7 +46,7 @@
                         }
                     },
                     "phone": {
-                        "label": "Número de teléfono",
+                        "label": "Número de teléfono (Brasil)",
                         "errors": {
                             "nonempty": "Ingresa tu número de teléfono.",
                             "regex": "Ingresa un número de teléfono válido."

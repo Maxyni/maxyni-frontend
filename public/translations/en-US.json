@@ -46,7 +46,7 @@
                         }
                     },
                     "phone": {
-                        "label": "Phone Number",
+                        "label": "Phone Number (Brazil)",
                         "errors": {
                             "nonempty": "Please enter your phone number.",
                             "regex": "Please enter a valid phone number."
