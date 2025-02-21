@@ -206,7 +206,7 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                 {/* Scrollable contect */}
                                 <motion.div
                                     layout
-                                    className="flex-grow overflow-y-auto pb-1"
+                                    className="flex-grow overflow-y-auto overflow-x-hidden pb-1"
                                 >
                                     <form
                                         className="flex flex-col"
