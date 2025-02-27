@@ -229,7 +229,11 @@ export default function Drawer() {
                                         ref={containerRef}
                                         key={usingLocale ?? "loading-locale"}
                                         className={`w-full flex items-center justify-between px-4 py-2 cursor-pointer aria-disabled:cursor-not-allowed transition-all duration-300 bg-gray-200 rounded-lg`}
-                                        onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                                        onClick={() => {
+                                            if (changingLocale) return
+                                            setLangDropdownOpen(!langDropdownOpen)
+                                        }}
+                                        aria-disabled={changingLocale}
                                     >
                                         {getLocaleJSX(usingLocale)}
 
