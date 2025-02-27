@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { LiaTimesSolid } from "react-icons/lia"
@@ -9,15 +9,18 @@ import { FaHouse } from "react-icons/fa6"
 import { BsPeopleFill } from "react-icons/bs"
 import { IoSparklesSharp } from "react-icons/io5"
 import { useTranslations } from "next-intl"
+import { getCookie, setCookie } from "@/lib/cookies"
+import { getLocaleJSX } from "../i18n/language-select"
+import { GrDown } from "react-icons/gr"
+import { Logo } from "../svg/logo"
+import { useRouter } from "next/navigation"
+import { BiLoaderAlt } from "react-icons/bi"
 
 export default function Drawer() {
     const t = useTranslations("navbar")
-    const [open, setOpen] = useState(false)
+    const router = useRouter()
 
-    const drawerVariants = {
-        open: { x: 0, opacity: 1, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
-        closed: { x: "100%", opacity: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
-    }
+    const [open, setOpen] = useState(false)
 
     useEffect(() => {
         const handleEsc = (event: KeyboardEvent) => {
@@ -32,11 +35,87 @@ export default function Drawer() {
         }
     }, [])
 
+    useEffect(() => {
+        if (window.location.hash === "#nav") {
+            setOpen(true)
+        }
+    }, [])
+
+    const drawerVariants = {
+        open: { x: 0, opacity: 1, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
+        closed: { x: "100%", opacity: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
+    }
+
+    // Language select - Start
+    const [langDropdownOpen, setLangDropdownOpen] = useState(false)
+
+    const locales = (process.env.NEXT_PUBLIC_AVAILABLE_LOCALES as string).split(",")
+    const [usingLocale, setUsingLocale] = useState("")
+
+    const [changingLocale, setChangingLocale] = useState(false)
+
+    const handleLocaleChange = async (locale: string) => {
+        if (usingLocale === locale) return
+
+        try {
+            setChangingLocale(true)
+            setLangDropdownOpen(false)
+
+            await setCookie("i18n@locale", locale)
+            setUsingLocale(locale)
+
+            setOpen(false)
+            router.push("/", { scroll: false })
+        } finally {
+            setChangingLocale(false)
+        }
+    }
+
+    useEffect(() => {
+        const updateLocale = async () => {
+            const locale = await getCookie("i18n@locale")
+            if (locale) {
+                setUsingLocale(locale)
+            } else {
+                const defaultLocale = process.env.NEXT_PUBLIC_DEFAULT_LOCALE as string
+                await setCookie("i18n@locale", defaultLocale)
+                setUsingLocale(defaultLocale)
+            }
+        }
+
+        updateLocale()
+    }, [])
+
+    const containerRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+                setLangDropdownOpen(false)
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!open) {
+            setLangDropdownOpen(false)
+        }
+    }, [open])
+    // Language select - End
+
     return (
         <div className="flex items-center relative">
             <button
                 className="text-stone-900 text-3xl sm:hidden focus:outline-none"
-                onClick={() => setOpen(true)}
+                onClick={() => {
+                    setOpen(true)
+                    router.push("#nav", { scroll: false })
+                }}
             >
                 <HiMiniBars3BottomRight />
             </button>
@@ -49,7 +128,10 @@ export default function Drawer() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 0.5 }}
                             exit={{ opacity: 0 }}
-                            onClick={() => setOpen(false)}
+                            onClick={() => {
+                                setOpen(false)
+                                router.push("/", { scroll: false })
+                            }}
                         />
 
                         <motion.div
@@ -59,46 +141,102 @@ export default function Drawer() {
                             variants={drawerVariants}
                             className="fixed top-0 right-0 w-2/3 h-full bg-[#F1F7FD] z-50 p-5 shadow-lg"
                         >
-                            <div className="flex items-center justify-end mt-5 mb-5">
-                                <span className="w-full text-left text-2xl font-semibold whitespace-nowrap">Maxyni</span>
+                            <div className="flex items-center justify-end gap-2 mb-2">
+                                <div className="w-full flex items-center gap-2">
+                                    <Logo width={60} height={60} />
+                                    <span className="w-full text-left text-2xl font-bold whitespace-nowrap">Maxyni</span>
+                                </div>
+
                                 <button
-                                    onClick={() => setOpen(false)}
                                     className="text-black text-3xl focus:outline-none"
+                                    onClick={() => {
+                                        setOpen(false)
+                                        router.push("/", { scroll: false })
+                                    }}
                                 >
                                     <LiaTimesSolid />
                                 </button>
                             </div>
 
-                            <nav className="flex flex-col items-start justify-start">
-                                <hr className="w-full border-gray-300 mb-5" />
+                            <div className="flex flex-col items-start justify-between h-full">
+                                <nav className="w-full flex flex-col items-start justify-start gap-4">
+                                    <div className="w-full flex items-center justify-between gap-2">
+                                        <h3 className="text-lg font-medium">{t("menu.navigation_title")}</h3>
+                                        <hr className="w-full border-gray-300" />
+                                    </div>
 
-                                <div className="flex flex-col gap-5 items-start justify-start">
-                                    <Link
-                                        href="#start"
-                                        className="flex flex-row gap-2 items-center justify-center text-xl px-4 py-2 rounded-md text-black font-medium transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-400/10"
-                                        aria-label={t("home.aria_label")}
-                                        onClick={() => setOpen(false)}
+                                    <div className="flex flex-col gap-4 items-start justify-start">
+                                        <Link
+                                            href="#start"
+                                            className="flex flex-row gap-2 items-center justify-center text-xl px-2 py-3 rounded-md text-black font-medium transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-400/10"
+                                            aria-label={t("home.aria_label")}
+                                            onClick={() => setOpen(false)}
+                                        >
+                                            <FaHouse /> {t("home.text")}
+                                        </Link>
+
+                                        <Link
+                                            href="#about"
+                                            className="flex flex-row gap-2 items-center justify-center text-xl px-2 py-3 rounded-md text-black font-medium transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-400/10"
+                                            aria-label={t("about.aria_label")}
+                                            onClick={() => setOpen(false)}
+                                        >
+                                            <BsPeopleFill /> {t("about.text")}
+                                        </Link>
+
+                                        <Link
+                                            href="#solutions"
+                                            className="flex flex-row gap-2 items-center justify-center text-xl px-2 py-3 rounded-md text-black font-medium transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-400/10"
+                                            aria-label={t("solutions.aria_label")}
+                                            onClick={() => setOpen(false)}
+                                        >
+                                            <IoSparklesSharp /> {t("solutions.text")}
+                                        </Link>
+                                    </div>
+                                </nav>
+
+                                <div className="w-full flex flex-col gap-4 pb-16">
+                                    <div className="w-full flex items-center justify-between gap-2">
+                                        <h3 className="text-lg font-medium">{t("menu.language_title")}</h3>
+                                        <hr className="w-full border-gray-300" />
+                                    </div>
+
+                                    <AnimatePresence>
+                                        {langDropdownOpen && (
+                                            <motion.ul
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: 10 }}
+                                                transition={{ duration: 0.2 }}
+                                                className="absolute bottom-20 right-5 mt-4 w-52 bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden"
+                                            >
+                                                {locales.map((locale) => (
+                                                    <motion.li
+                                                        key={locale}
+                                                        aria-disabled={usingLocale === locale}
+                                                        onClick={() => handleLocaleChange(locale)}
+                                                        className={`flex items-center gap-4 px-4 py-2 cursor-pointer aria-disabled:cursor-not-allowed transition-all duration-300 ${usingLocale === locale ? "bg-gray-100" : ""}`}
+                                                        whileHover={{ scale: (usingLocale === locale) ? 1 : 1.02 }}
+                                                    >
+                                                        {getLocaleJSX(locale)}
+                                                    </motion.li>
+                                                ))}
+                                            </motion.ul>
+                                        )}
+                                    </AnimatePresence>
+
+                                    <div
+                                        ref={containerRef}
+                                        key={usingLocale ?? "loading-locale"}
+                                        className={`w-full flex items-center justify-between px-4 py-2 cursor-pointer aria-disabled:cursor-not-allowed transition-all duration-300 bg-gray-200 rounded-lg`}
+                                        onClick={() => setLangDropdownOpen(!langDropdownOpen)}
                                     >
-                                        <FaHouse /> {t("home.text")}
-                                    </Link>
-                                    <Link
-                                        href="#about"
-                                        className="flex flex-row gap-2 items-center justify-center text-xl px-4 py-2 rounded-md text-black font-medium transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-400/10"
-                                        aria-label={t("about.aria_label")}
-                                        onClick={() => setOpen(false)}
-                                    >
-                                        <BsPeopleFill /> {t("about.text")}
-                                    </Link>
-                                    <Link
-                                        href="#solutions"
-                                        className="flex flex-row gap-2 items-center justify-center text-xl px-4 py-2 rounded-md text-black font-medium transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-sky-400/10"
-                                        aria-label={t("solutions.aria_label")}
-                                        onClick={() => setOpen(false)}
-                                    >
-                                        <IoSparklesSharp /> {t("solutions.text")}
-                                    </Link>
+                                        {getLocaleJSX(usingLocale)}
+
+                                        {changingLocale ? <BiLoaderAlt className="animate-spin" size={18} /> : <GrDown size={18} className={`transition-all duration-300 ${langDropdownOpen && "transform rotate-180"}`} />}
+                                    </div>
                                 </div>
-                            </nav>
+                            </div>
                         </motion.div>
                     </>
                 )}

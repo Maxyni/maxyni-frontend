@@ -9,7 +9,7 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { ContactModal } from "./contact/contact-modal"
 import { useTranslations } from "next-intl"
-import { LanguageSelect } from "../language-select"
+import { LanguageSelect } from "../i18n/language-select"
 
 export function Navbar() {
     const t = useTranslations("navbar")

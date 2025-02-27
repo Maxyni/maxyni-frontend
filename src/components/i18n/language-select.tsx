@@ -7,6 +7,64 @@ import { motion, AnimatePresence } from "framer-motion"
 import ReactCountryFlag from "react-country-flag"
 import { BiLoaderAlt } from "react-icons/bi"
 
+export function getLocaleJSX(code: string) {
+    switch (code) {
+        case "pt-BR":
+            return <div className="flex items-center gap-2">
+                <ReactCountryFlag
+                    countryCode="BR"
+                    title="Brasil"
+                    style={{ width: '2em', height: '2em' }
+                    }
+                    svg
+                />
+                <span>Português</span>
+            </div>
+        case "en-US":
+            return <div className="flex items-center gap-2">
+                <ReactCountryFlag
+                    countryCode="US"
+                    title="United States"
+                    style={{ width: '2em', height: '2em' }}
+                    svg
+                />
+                <span>English</span>
+            </div>
+        case "es-ES":
+            return <div className="flex items-center gap-2">
+                <ReactCountryFlag
+                    countryCode="ES"
+                    title="Spain"
+                    style={{ width: '2em', height: '2em' }}
+                    svg
+                />
+                <span>Español</span>
+            </div>
+        case "fr-FR":
+            return <div className="flex items-center gap-2">
+                <ReactCountryFlag
+                    countryCode="FR"
+                    title="France"
+                    style={{ width: '2em', height: '2em' }}
+                    svg
+                />
+                <span>Français</span>
+            </div>
+        case "de-DE":
+            return <div className="flex items-center gap-2">
+                <ReactCountryFlag
+                    countryCode="DE"
+                    title="Germany"
+                    style={{ width: '2em', height: '2em' }}
+                    svg
+                />
+                <span>Deutsch</span>
+            </div>
+        default:
+            return code
+    }
+}
+
 type LanguageSelectProps = {
     hideSelect: boolean
 }
@@ -30,63 +88,6 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
             setUsingLocale(locale)
         } finally {
             setChangingLocale(false)
-        }
-    }
-
-    function getLocaleJSX(code: string) {
-        switch (code) {
-            case "pt-BR":
-                return <>
-                    <ReactCountryFlag
-                        countryCode="BR"
-                        title="Brasil"
-                        style={{ width: '2em', height: '2em' }}
-                        svg
-                    />
-                    <span>Português</span>
-                </>
-            case "en-US":
-                return <>
-                    <ReactCountryFlag
-                        countryCode="US"
-                        title="United States"
-                        style={{ width: '2em', height: '2em' }}
-                        svg
-                    />
-                    <span>English</span>
-                </>
-            case "es-ES":
-                return <>
-                    <ReactCountryFlag
-                        countryCode="ES"
-                        title="Spain"
-                        style={{ width: '2em', height: '2em' }}
-                        svg
-                    />
-                    <span>Español</span>
-                </>
-            case "fr-FR":
-                return <>
-                    <ReactCountryFlag
-                        countryCode="FR"
-                        title="France"
-                        style={{ width: '2em', height: '2em' }}
-                        svg
-                    />
-                    <span>Français</span>
-                </>
-            case "de-DE":
-                return <>
-                    <ReactCountryFlag
-                        countryCode="DE"
-                        title="Germany"
-                        style={{ width: '2em', height: '2em' }}
-                        svg
-                    />
-                    <span>Deutsch</span>
-                </>
-            default:
-                return code
         }
     }
 

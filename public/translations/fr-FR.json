@@ -61,6 +61,10 @@
                     "description_2": "Le délai de réponse est généralement de <span>48 heures</span>."
                 }
             }
+        },
+        "menu": {
+            "navigation_title": "Navigation",
+            "language_title": "Langue"
         }
     },
     "welcome": {

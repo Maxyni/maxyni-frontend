@@ -61,6 +61,10 @@
                     "description_2": "Die Antwortzeit beträgt in der Regel bis zu <span>48 Stunden</span>."
                 }
             }
+        },
+        "menu": {
+            "navigation_title": "Navigation",
+            "language_title": "Sprache"
         }
     },
     "welcome": {

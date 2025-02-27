@@ -61,6 +61,10 @@
                     "description_2": "O prazo para resposta é de normalmente até <span>48 horas</span>."
                 }
             }
+        },
+        "menu": {
+            "navigation_title": "Navegação",
+            "language_title": "Idioma"
         }
     },
     "welcome": {

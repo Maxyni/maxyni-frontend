@@ -61,6 +61,10 @@
                     "description_2": "Response time is typically within <span>48 hours</span>."
                 }
             }
+        },
+        "menu": {
+            "navigation_title": "Navigation",
+            "language_title": "Language"
         }
     },
     "welcome": {
