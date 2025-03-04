@@ -100,6 +100,7 @@ export function Navbar() {
                         </div>
 
                         <LanguageSelect hideSelect={isSticky} />
+                        
                         <Drawer />
                     </motion.div>
                 </nav>

@@ -1,13 +1,13 @@
 "use client"
 
+import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Link from "next/link"
 import { LiaTimesSolid } from "react-icons/lia"
-import { HiMiniBars3BottomRight } from "react-icons/hi2"
+import { HiMiniBars3BottomLeft } from "react-icons/hi2"
 import { FaHouse } from "react-icons/fa6"
 import { BsPeopleFill } from "react-icons/bs"
-import { IoSparklesSharp } from "react-icons/io5"
+import { IoLanguage, IoSparklesSharp } from "react-icons/io5"
 import { useTranslations } from "next-intl"
 import { getCookie, setCookie } from "@/lib/cookies"
 import { getLocaleJSX } from "../i18n/language-select"
@@ -102,8 +102,16 @@ export default function Drawer() {
     }, [])
 
     useEffect(() => {
-        if (!open) {
+        if (open) {
             setLangDropdownOpen(false)
+            document.body.classList.add("overflow-hidden")
+        } else {
+            document.body.classList.remove("overflow-hidden")
+        }
+
+        return () => {
+            setLangDropdownOpen(false)
+            document.body.classList.remove("overflow-hidden")
         }
     }, [open])
     // Language select - End
@@ -111,13 +119,16 @@ export default function Drawer() {
     return (
         <div className="flex items-center relative">
             <button
-                className="text-stone-900 text-3xl sm:hidden focus:outline-none"
+                className="relative text-stone-900 text-3xl sm:hidden focus:outline-none"
                 onClick={() => {
                     setOpen(true)
                     router.push("#nav", { scroll: false })
                 }}
             >
-                <HiMiniBars3BottomRight />
+                <HiMiniBars3BottomLeft className="mr-2 mb-1" />
+                <span className="absolute -bottom-2 -right-1 p-1 text-xl">
+                    <IoLanguage />
+                </span>
             </button>
 
             <AnimatePresence>
