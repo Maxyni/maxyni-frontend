@@ -219,7 +219,7 @@ export default function Drawer() {
                                                 animate={{ opacity: 1, y: 0 }}
                                                 exit={{ opacity: 0, y: 10 }}
                                                 transition={{ duration: 0.2 }}
-                                                className="absolute bottom-20 right-5 mt-4 w-52 bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden"
+                                                className="absolute bottom-20 right-5 mt-4 w-44 bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden"
                                             >
                                                 {locales.map((locale) => (
                                                     <motion.li
