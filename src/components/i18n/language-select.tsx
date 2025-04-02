@@ -2,68 +2,28 @@
 
 import { useEffect, useRef, useState } from "react"
 import { IoLanguage } from "react-icons/io5"
-import { getCookie, setCookie } from "@/lib/cookies"
+import { setCookie } from "@/lib/cookies"
 import { motion, AnimatePresence } from "framer-motion"
 import ReactCountryFlag from "react-country-flag"
 import { BiLoaderAlt } from "react-icons/bi"
+import { useLocale } from "next-intl"
 
-export function getLocaleJSX(code: string) {
-    switch (code) {
-        case "pt-BR":
-            return <div className="flex items-center gap-2">
-                <ReactCountryFlag
-                    countryCode="BR"
-                    title="Brasil"
-                    style={{ width: '2em', height: '2em' }
-                    }
-                    svg
-                />
-                <span>Português</span>
-            </div>
-        case "en-US":
-            return <div className="flex items-center gap-2">
-                <ReactCountryFlag
-                    countryCode="US"
-                    title="United States"
-                    style={{ width: '2em', height: '2em' }}
-                    svg
-                />
-                <span>English</span>
-            </div>
-        case "es-ES":
-            return <div className="flex items-center gap-2">
-                <ReactCountryFlag
-                    countryCode="ES"
-                    title="Spain"
-                    style={{ width: '2em', height: '2em' }}
-                    svg
-                />
-                <span>Español</span>
-            </div>
-        case "fr-FR":
-            return <div className="flex items-center gap-2">
-                <ReactCountryFlag
-                    countryCode="FR"
-                    title="France"
-                    style={{ width: '2em', height: '2em' }}
-                    svg
-                />
-                <span>Français</span>
-            </div>
-        case "de-DE":
-            return <div className="flex items-center gap-2">
-                <ReactCountryFlag
-                    countryCode="DE"
-                    title="Germany"
-                    style={{ width: '2em', height: '2em' }}
-                    svg
-                />
-                <span>Deutsch</span>
-            </div>
-        default:
-            return code
-    }
+// Exports - Start
+export type LocaleCode = "pt-BR" | "en-US" | "es-ES" | "fr-FR" | "de-DE"
+export type Locale = {
+    code: LocaleCode
+    countryName: string
+    languageName: string
 }
+
+export const locales: Locale[] = [
+    { code: "pt-BR", countryName: "Brasil", languageName: "Português" },
+    { code: "en-US", countryName: "United States", languageName: "English" },
+    { code: "es-ES", countryName: "España", languageName: "Español" },
+    { code: "fr-FR", countryName: "France", languageName: "Français" },
+    { code: "de-DE", countryName: "Germany", languageName: "Deutsch" }
+]
+// Exports - End
 
 type LanguageSelectProps = {
     hideSelect: boolean
@@ -72,39 +32,23 @@ type LanguageSelectProps = {
 export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
     const [dropdownOpen, setDropdownOpen] = useState(false)
 
-    const locales = (process.env.NEXT_PUBLIC_AVAILABLE_LOCALES as string).split(",")
-    const [usingLocale, setUsingLocale] = useState("")
+    const usingLocaleCode = useLocale()
+    const usingLocale = locales.find((locale) => locale.code === usingLocaleCode) || locales[0]
 
     const [changingLocale, setChangingLocale] = useState(false)
 
-    const handleLocaleChange = async (locale: string) => {
+    const handleLocaleChange = async (locale: Locale) => {
         if (usingLocale === locale) return
 
         try {
             setChangingLocale(true)
             setDropdownOpen(false)
 
-            await setCookie("i18n@locale", locale)
-            setUsingLocale(locale)
+            await setCookie("i18n@locale", locale.code)
         } finally {
             setChangingLocale(false)
         }
     }
-
-    useEffect(() => {
-        const updateLocale = async () => {
-            const locale = await getCookie("i18n@locale")
-            if (locale) {
-                setUsingLocale(locale)
-            } else {
-                const defaultLocale = process.env.NEXT_PUBLIC_DEFAULT_LOCALE as string
-                await setCookie("i18n@locale", defaultLocale)
-                setUsingLocale(defaultLocale)
-            }
-        }
-
-        updateLocale()
-    }, [])
 
     const containerRef = useRef<HTMLDivElement>(null)
 
@@ -144,13 +88,21 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
                     >
                         {locales.map((locale) => (
                             <motion.li
-                                key={locale}
+                                key={locale.code}
                                 aria-disabled={usingLocale === locale}
                                 onClick={() => handleLocaleChange(locale)}
                                 className={`flex items-center gap-4 px-4 py-2 cursor-pointer aria-disabled:cursor-not-allowed transition-all duration-300 ${usingLocale === locale ? "bg-gray-100" : ""}`}
                                 whileHover={{ scale: (usingLocale === locale) ? 1 : 1.02 }}
                             >
-                                {getLocaleJSX(locale)}
+                                <div className="flex items-center gap-2">
+                                    <ReactCountryFlag
+                                        countryCode={locale.code.split("-")[1].toUpperCase()}
+                                        title={locale.countryName}
+                                        style={{ width: '2em', height: '2em' }}
+                                        svg
+                                    />
+                                    <span>{locale.languageName}</span>
+                                </div>
                             </motion.li>
                         ))}
                     </motion.ul>

@@ -1,6 +1,6 @@
 "use client"
 
-import { Logo } from "../svg/logo"
+import Logo from "../svg/logo"
 import Drawer from "./drawer"
 import { RiContactsLine } from "react-icons/ri"
 import Link from "next/link"

@@ -4,9 +4,12 @@ type SectionProps = {
     children: React.ReactNode
 }
 
-export function Section({ id, className, children }: SectionProps) {
+export default async function Section({ id, className, children }: SectionProps) {
     return (
-        <section id={id} className={`container mx-auto px-4 ${className}`}>
+        <section
+            id={id}
+            className={`container mx-auto px-4 ${className}`}
+        >
             {children}
         </section>
     )

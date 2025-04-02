@@ -1,10 +1,10 @@
-import { Section } from "@/components/section"
+import Section from "@/components/section"
 import AboutMaxyniImage from "../../../public/about-maxyni.png"
 import Image from "next/image"
 import React from "react"
 import { getTranslations } from "next-intl/server"
 
-export async function About() {
+export default async function About() {
     const t = await getTranslations("about")
 
     return (

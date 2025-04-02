@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { LiaTimesSolid } from "react-icons/lia"
@@ -8,13 +7,15 @@ import { HiMiniBars3BottomLeft } from "react-icons/hi2"
 import { FaHouse } from "react-icons/fa6"
 import { BsPeopleFill } from "react-icons/bs"
 import { IoLanguage, IoSparklesSharp } from "react-icons/io5"
-import { useTranslations } from "next-intl"
-import { getCookie, setCookie } from "@/lib/cookies"
-import { getLocaleJSX } from "../i18n/language-select"
+import { useLocale, useTranslations } from "next-intl"
+import { setCookie } from "@/lib/cookies"
 import { GrDown } from "react-icons/gr"
-import { Logo } from "../svg/logo"
 import { useRouter } from "next/navigation"
 import { BiLoaderAlt } from "react-icons/bi"
+import { Locale, locales } from "../i18n/language-select"
+import Link from "next/link"
+import Logo from "../svg/logo"
+import ReactCountryFlag from "react-country-flag"
 
 export default function Drawer() {
     const t = useTranslations("navbar")
@@ -49,20 +50,19 @@ export default function Drawer() {
     // Language select - Start
     const [langDropdownOpen, setLangDropdownOpen] = useState(false)
 
-    const locales = (process.env.NEXT_PUBLIC_AVAILABLE_LOCALES as string).split(",")
-    const [usingLocale, setUsingLocale] = useState("")
+    const usingLocaleCode = useLocale()
+    const usingLocale = locales.find((locale) => locale.code === usingLocaleCode) || locales[0]
 
     const [changingLocale, setChangingLocale] = useState(false)
 
-    const handleLocaleChange = async (locale: string) => {
+    const handleLocaleChange = async (locale: Locale) => {
         if (usingLocale === locale) return
 
         try {
             setChangingLocale(true)
             setLangDropdownOpen(false)
 
-            await setCookie("i18n@locale", locale)
-            setUsingLocale(locale)
+            await setCookie("i18n@locale", locale.code)
 
             setOpen(false)
             router.push("/", { scroll: false })
@@ -70,21 +70,6 @@ export default function Drawer() {
             setChangingLocale(false)
         }
     }
-
-    useEffect(() => {
-        const updateLocale = async () => {
-            const locale = await getCookie("i18n@locale")
-            if (locale) {
-                setUsingLocale(locale)
-            } else {
-                const defaultLocale = process.env.NEXT_PUBLIC_DEFAULT_LOCALE as string
-                await setCookie("i18n@locale", defaultLocale)
-                setUsingLocale(defaultLocale)
-            }
-        }
-
-        updateLocale()
-    }, [])
 
     const containerRef = useRef<HTMLDivElement>(null)
 
@@ -223,13 +208,21 @@ export default function Drawer() {
                                             >
                                                 {locales.map((locale) => (
                                                     <motion.li
-                                                        key={locale}
+                                                        key={locale.code}
                                                         aria-disabled={usingLocale === locale}
                                                         onClick={() => handleLocaleChange(locale)}
                                                         className={`flex items-center gap-4 px-4 py-2 cursor-pointer aria-disabled:cursor-not-allowed transition-all duration-300 ${usingLocale === locale ? "bg-gray-100" : ""}`}
                                                         whileHover={{ scale: (usingLocale === locale) ? 1 : 1.02 }}
                                                     >
-                                                        {getLocaleJSX(locale)}
+                                                        <div className="flex items-center gap-2">
+                                                            <ReactCountryFlag
+                                                                countryCode={locale.code.split("-")[1].toUpperCase()}
+                                                                title={locale.countryName}
+                                                                style={{ width: '2em', height: '2em' }}
+                                                                svg
+                                                            />
+                                                            <span>{locale.languageName}</span>
+                                                        </div>
                                                     </motion.li>
                                                 ))}
                                             </motion.ul>
@@ -238,7 +231,6 @@ export default function Drawer() {
 
                                     <div
                                         ref={containerRef}
-                                        key={usingLocale ?? "loading-locale"}
                                         className={`w-full flex items-center justify-between px-4 py-2 cursor-pointer aria-disabled:cursor-not-allowed transition-all duration-300 bg-gray-200 rounded-lg`}
                                         onClick={() => {
                                             if (changingLocale) return
@@ -246,7 +238,15 @@ export default function Drawer() {
                                         }}
                                         aria-disabled={changingLocale}
                                     >
-                                        {getLocaleJSX(usingLocale)}
+                                        <div className="flex items-center gap-2">
+                                            <ReactCountryFlag
+                                                countryCode={usingLocale.code.split("-")[1].toUpperCase()}
+                                                title={usingLocale.countryName}
+                                                style={{ width: '2em', height: '2em' }}
+                                                svg
+                                            />
+                                            <span>{usingLocale.languageName}</span>
+                                        </div>
 
                                         {changingLocale ? <BiLoaderAlt className="animate-spin" size={18} /> : <GrDown size={18} className={`transition-all duration-300 ${langDropdownOpen && "transform rotate-180"}`} />}
                                     </div>

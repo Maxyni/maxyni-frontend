@@ -8,7 +8,7 @@ import "./globals.css"
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("metadata")
-
+  
   return {
     title: t("title"),
     description: t("description"),

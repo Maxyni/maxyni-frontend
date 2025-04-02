@@ -1,4 +1,4 @@
-import { Section } from "@/components/section"
+import Section from "@/components/section"
 import SupportIcon from "../../../public/support-icon.png"
 import CustomizationIcon from "../../../public/customization-icon.png"
 import ExcellenceIcon from "../../../public/excellence-icon.png"
@@ -6,7 +6,7 @@ import Image from "next/image"
 import React from "react"
 import { getTranslations } from "next-intl/server"
 
-export async function BestChoice() {
+export default async function BestChoice() {
     const t = await getTranslations("best_choice")
 
     return (

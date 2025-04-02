@@ -1,10 +1,10 @@
 import React from "react"
-import { Section } from "@/components/section"
+import Section from "@/components/section"
 import Image from "next/image"
 import MaxyniSolutionsImage from "../../../public/maxyni-solutions.png"
 import { getTranslations } from "next-intl/server"
 
-export async function Solutions() {
+export default async function Solutions() {
     const t = await getTranslations("solutions")
 
     return (

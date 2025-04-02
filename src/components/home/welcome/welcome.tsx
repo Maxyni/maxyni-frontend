@@ -1,23 +1,16 @@
-"use client"
-
-import { Section } from "../section"
 import { BsRocketTakeoff } from "react-icons/bs"
-import { useState } from "react"
-import { useTranslations } from "next-intl"
-import RocketImage from "../../../public/rocket.png"
-import Image from "next/image"
+import { getTranslations } from "next-intl/server"
 import Link from "next/link"
-import { motion } from "framer-motion"
+import Section from "../../section"
+import WelcomeRocket from "./welcome-rocket"
 
-export function Welcome() {
-    const t = useTranslations("welcome")
-
-    const [isRocketFloating, setIsRocketFloating] = useState(false)
+export default async function Welcome() {
+    const t = await getTranslations("welcome")
 
     return (
         <Section id="welcome">
-            <motion.div layout className="flex flex-col lg:flex-row items-center justify-center w-full h-auto lg:h-[400px] px-10 py-10 bg-gradient-to-r from-[#9A35E4] to-[#4682B4] rounded-t-[48px] rounded-bl-[48px] rounded-br-[250px]">
-                <motion.div layout className="max-w-xl w-full lg:w-[36rem] text-left">
+            <div className="flex flex-col lg:flex-row items-center justify-center w-full h-auto lg:h-[400px] px-10 py-10 bg-gradient-to-r from-[#9A35E4] to-[#4682B4] rounded-t-[48px] rounded-bl-[48px] rounded-br-[250px]">
+                <div className="max-w-xl w-full lg:w-[36rem] text-left">
                     <h1 className="text-white font-extrabold text-4xl lg:text-5xl lg:w-[95%]">
                         {t("title")}
                     </h1>
@@ -50,19 +43,10 @@ export function Welcome() {
                             <strong>{t("takeoff_button_text")}</strong>
                         </Link>
                     </div>
-                </motion.div>
-
-                <div
-                    className={`hidden lg:block animate-[rocketEntry_1.5s_ease-out_forwards] ${isRocketFloating && "animate-[rocketFloat_3s_ease-in-out_infinite]"}`}
-                    onAnimationEnd={() => setIsRocketFloating(true)} // When the rocket entry animation ends, starts the floating animation.
-                >
-                    <Image
-                        src={RocketImage}
-                        alt={t("rocket_img_alt")}
-                        quality={100}
-                    />
                 </div>
-            </motion.div>
+
+                <WelcomeRocket />
+            </div>
         </Section>
     )
 }

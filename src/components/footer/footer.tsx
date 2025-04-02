@@ -1,37 +1,11 @@
-"use client"
-
-import Link from "next/link"
-import { Logo } from "../svg/logo"
+import Logo from "../svg/logo"
 import { BsGithub, BsInstagram } from "react-icons/bs"
-import Modal from "../ui/modal"
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
+import FooterCompliance from "./footer-compliance"
+import Link from "next/link"
 
-export default function Footer() {
-    const t = useTranslations("footer")
-    const router = useRouter()
-    const [isOpen, setIsOpen] = useState(false)
-
-    useEffect(() => {
-        if (window.location.hash === "#compliance") {
-            document.getElementById("footer")?.scrollIntoView()
-            setIsOpen(true)
-        }
-    }, [])
-
-    const [loading, setLoading] = useState(true)
-    // const [termsHTML, setTermsHTML] = useState<string | undefined>(undefined)
-
-    const fetchTerms = async () => {
-        setLoading(true)
-
-        // TODO: Fetch terms from API.
-
-        setTimeout(() => {
-            setLoading(false)
-        }, 500)
-    }
+export default async function Footer() {
+    const t = await getTranslations("footer")
 
     return (
         <footer id="footer" className="mt-28 bg-white rounded-lg shadow">
@@ -52,45 +26,7 @@ export default function Footer() {
                             <a href="#about" className="hover:underline me-4 md:me-6">{t("links.company_text")}</a>
                         </li>
                         <li>
-                            <Modal
-                                title={t("compliance.title")}
-                                externalOpenState={isOpen}
-                                buttonToOpen={
-                                    <a href="#compliance" className="hover:underline me-4 md:me-6">{t("links.compliance_text")}</a>
-                                }
-                                onOpen={fetchTerms}
-                                onClose={() => {
-                                    setIsOpen(false)
-                                    router.push("/", { scroll: false })
-                                }}
-                            >
-                                <div className="p-4">
-                                    {loading ? (
-                                        <div className="flex flex-col gap-6">
-                                            {Array.from({ length: 3 }).map((_, i) => (
-                                                <div key={i} className="flex flex-col gap-2">
-                                                    <div className="animate-pulse h-5 w-full bg-gray-300 rounded-lg" />
-                                                    <div className="animate-pulse h-5 w-[50%] bg-gray-300 rounded-lg" />
-                                                    <div className="animate-pulse h-5 w-[80%] bg-gray-300 rounded-lg" />
-                                                    <div className="animate-pulse h-5 w-[35%] bg-gray-300 rounded-lg" />
-                                                </div>
-                                            ))}
-                                        </div>
-                                    ) : (
-                                        <>
-                                            {Array.from({ length: 8 }).map((_, i) => (
-                                                <span key={i}>
-                                                    {t.rich(`compliance.terms.${i + 1}`, {
-                                                        p: (text) => <p className="text-black font-normal">{text}</p>,
-                                                        strong: (text) => <strong>{text}</strong>,
-                                                        Link: (text) => <Link href="mailto:suporte@maxyni.com.br" className="hover:underline font-semibold">{text}</Link>
-                                                    })}
-                                                </span>
-                                            ))}
-                                        </>
-                                    )}
-                                </div>
-                            </Modal>
+                            <FooterCompliance />
                         </li>
 
                         <li className="flex">

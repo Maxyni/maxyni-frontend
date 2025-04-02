@@ -4,7 +4,7 @@ type LogoProps = {
     className?: string
 }
 
-export function Logo({ width, height, className }: LogoProps) {
+export default function Logo({ width, height, className }: LogoProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
