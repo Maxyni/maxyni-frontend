@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import ReactCountryFlag from "react-country-flag"
 import { BiLoaderAlt } from "react-icons/bi"
 import { useLocale } from "next-intl"
+import { useRouter } from "next/navigation"
 
 // Exports - Start
 export type LocaleCode = "pt-BR" | "en-US" | "es-ES" | "fr-FR" | "de-DE"
@@ -30,6 +31,8 @@ type LanguageSelectProps = {
 }
 
 export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
+    const router = useRouter()
+
     const [dropdownOpen, setDropdownOpen] = useState(false)
 
     const usingLocaleCode = useLocale()
@@ -45,6 +48,8 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
             setDropdownOpen(false)
 
             await setCookie("i18n@locale", locale.code)
+
+            router.push(`/?loc=${locale.code}`, { scroll: false })
         } finally {
             setChangingLocale(false)
         }
@@ -98,7 +103,7 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
                                     <ReactCountryFlag
                                         countryCode={locale.code.split("-")[1].toUpperCase()}
                                         title={locale.countryName}
-                                        style={{ width: '2em', height: '2em' }}
+                                        style={{ width: "2em", height: "2em" }}
                                         svg
                                     />
                                     <span>{locale.languageName}</span>

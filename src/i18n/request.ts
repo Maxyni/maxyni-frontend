@@ -1,7 +1,7 @@
 import { getCookie } from "@/lib/cookies"
 import { getRequestConfig, GetRequestConfigParams } from "next-intl/server"
 
-const supportedLocales = process.env.NEXT_PUBLIC_AVAILABLE_LOCALES?.split(',') ?? []
+const supportedLocales = process.env.NEXT_PUBLIC_AVAILABLE_LOCALES?.split(",") ?? []
 
 export default getRequestConfig(async (req: GetRequestConfigParams) => {
     let locale = await getCookie("i18n@locale") ||

@@ -65,7 +65,7 @@ export default function Drawer() {
             await setCookie("i18n@locale", locale.code)
 
             setOpen(false)
-            router.push("/", { scroll: false })
+            router.push(`/?loc=${locale.code}`, { scroll: false })
         } finally {
             setChangingLocale(false)
         }
@@ -218,7 +218,7 @@ export default function Drawer() {
                                                             <ReactCountryFlag
                                                                 countryCode={locale.code.split("-")[1].toUpperCase()}
                                                                 title={locale.countryName}
-                                                                style={{ width: '2em', height: '2em' }}
+                                                                style={{ width: "2em", height: "2em" }}
                                                                 svg
                                                             />
                                                             <span>{locale.languageName}</span>
@@ -242,7 +242,7 @@ export default function Drawer() {
                                             <ReactCountryFlag
                                                 countryCode={usingLocale.code.split("-")[1].toUpperCase()}
                                                 title={usingLocale.countryName}
-                                                style={{ width: '2em', height: '2em' }}
+                                                style={{ width: "2em", height: "2em" }}
                                                 svg
                                             />
                                             <span>{usingLocale.languageName}</span>
