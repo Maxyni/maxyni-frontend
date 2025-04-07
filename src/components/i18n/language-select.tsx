@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import ReactCountryFlag from "react-country-flag"
 import { BiLoaderAlt } from "react-icons/bi"
 import { useLocale } from "next-intl"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 // Exports - Start
 export type LocaleCode = "pt-BR" | "en-US" | "es-ES" | "fr-FR" | "de-DE"
@@ -32,7 +32,6 @@ type LanguageSelectProps = {
 
 export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
     const router = useRouter()
-    const params = useSearchParams()
 
     const [dropdownOpen, setDropdownOpen] = useState(false)
 
@@ -50,9 +49,9 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
 
             await setCookie("i18n@locale", locale.code)
 
-            if (params.get("loc") !== null) {
-                router.push("/", { scroll: false })
-            }
+            router.replace(`/?loc=${locale.code}`, { scroll: false })
+        } catch (error: any) {
+            window.alert(`Error while changing the locale: ${error}`)
         } finally {
             setChangingLocale(false)
         }
@@ -78,7 +77,7 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
             <motion.button
                 disabled={changingLocale}
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center p-3 rounded-xl border border-gray-300 bg-white text-black shadow-md hover:bg-gray-100 transition-all duration-300"
+                className="flex items-center p-3 rounded-xl border border-gray-300 bg-white text-black shadow-md hover:bg-gray-100 transition-all duration-300 disabled:cursor-not-allowed"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
             >
