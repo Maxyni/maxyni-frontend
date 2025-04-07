@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import ReactCountryFlag from "react-country-flag"
 import { BiLoaderAlt } from "react-icons/bi"
 import { useLocale } from "next-intl"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 
 // Exports - Start
 export type LocaleCode = "pt-BR" | "en-US" | "es-ES" | "fr-FR" | "de-DE"
@@ -32,6 +32,7 @@ type LanguageSelectProps = {
 
 export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
     const router = useRouter()
+    const params = useSearchParams()
 
     const [dropdownOpen, setDropdownOpen] = useState(false)
 
@@ -49,7 +50,9 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
 
             await setCookie("i18n@locale", locale.code)
 
-            router.push(`/?loc=${locale.code}`, { scroll: false })
+            if (params.get("loc") !== null) {
+                router.push("/", { scroll: false })
+            }
         } finally {
             setChangingLocale(false)
         }

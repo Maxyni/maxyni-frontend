@@ -10,7 +10,7 @@ import { IoLanguage, IoSparklesSharp } from "react-icons/io5"
 import { useLocale, useTranslations } from "next-intl"
 import { setCookie } from "@/lib/cookies"
 import { GrDown } from "react-icons/gr"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { BiLoaderAlt } from "react-icons/bi"
 import { Locale, locales } from "../i18n/language-select"
 import Link from "next/link"
@@ -20,6 +20,7 @@ import ReactCountryFlag from "react-country-flag"
 export default function Drawer() {
     const t = useTranslations("navbar")
     const router = useRouter()
+    const params = useSearchParams()
 
     const [open, setOpen] = useState(false)
 
@@ -64,9 +65,11 @@ export default function Drawer() {
 
             await setCookie("i18n@locale", locale.code)
 
-            setOpen(false)
-            router.push(`/?loc=${locale.code}`, { scroll: false })
+            if (params.get("loc") !== null) {
+                router.push("/", { scroll: false })
+            }
         } finally {
+            setOpen(false)
             setChangingLocale(false)
         }
     }
