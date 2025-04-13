@@ -11,6 +11,7 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
+import axios from "axios"
 
 type ContactModalProps = {
     open: boolean
@@ -46,22 +47,30 @@ export function ContactModal({ open, setOpen }: ContactModalProps) {
     const [submitSuccess, setSubmitSuccess] = useState(false)
     const [submitError, setSubmitError] = useState<string | null>(null)
 
-    const onSubmit = (): Promise<boolean> => {
+    const onSubmit = async (data: SubmitContactForm) => {
         setSubmitting(true)
         setSubmitSuccess(false)
         setSubmitError(null)
         clearErrors()
 
-        // TODO: Handle the form submission here when the backend is ready.
+        try {
+            const response = await axios.post("/api/contact", {
+                fullName: data.fullName,
+                email: data.email,
+                phone: data.phone
+            })
 
-        return new Promise((resolve) => {
-            setTimeout(() => {
+            if (response.status === 200) {
+                setSubmitSuccess(true)
+            } else {
                 setSubmitError(t("generic_error_text"))
-                setSubmitSuccess(false)
-                setSubmitting(false)
-                resolve(false)
-            }, 1000)
-        })
+            }
+        } catch (error: any) {
+            console.log("Error while submitting contact request:", error)
+            setSubmitError(t("generic_error_text"))
+        } finally {
+            setSubmitting(false)
+        }
     }
 
     useEffect(() => {

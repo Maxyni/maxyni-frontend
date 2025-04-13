@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
+    "@types/axios": "^0.14.4",
+    "@types/lru-cache": "^7.10.10",
+    "axios": "^1.8.4",
     "framer-motion": "^11.14.4",
+    "lru-cache": "^11.1.0",
     "next": "15.1.0",
     "next-intl": "^3.26.3",
     "react": "^19.0.0",
