@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import { LRUCache } from "lru-cache"
-import axios from "axios"
 
 const RATE_LIMIT_OPTIONS = {
     max: 30, // 30 requests limit
@@ -75,16 +74,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
-        await axios.post(DISCORD_WEBHOOK_URL, {
+        await fetch(DISCORD_WEBHOOK_URL, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: {
-                content: `📬 Novo contato recebido:\n**Nome completo:** ${fullName}\n**E-mail:** ${email}\n**Telefone:** ${phone}`
-            }
+            body: JSON.stringify({
+                content: `📬 Novo contato recebido: \n\n**Nome completo:** ${fullName} \n**E-mail:** ${email} \n**Telefone:** ${phone}`
+            })
         })
 
-        return res.status(200)
+        return res.status(200).json({
+            message: "Contact request sent successfully."
+        })
     } catch (error: any) {
         console.error("Error while sending message to Discord:", error)
         return res.status(500).json({

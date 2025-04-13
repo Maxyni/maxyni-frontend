@@ -59,9 +59,9 @@
                 "sent": {
                     "icon_alt": "Formular-Symbol mit einem Häkchen",
                     "title": "Formular gesendet!",
-                    "subtitle": "Vielen Dank für Ihre Kontaktaufnahme und Ihr Interesse an den Dienstleistungen von <span>Maxyni</span>.",
+                    "subtitle": "Vielen Dank für Ihre Kontaktaufnahme und Ihr Interesse an den Dienstleistungen von <strong>Maxyni</strong>.",
                     "description_1": "In Kürze wird sich einer unserer Spezialisten über die von Ihnen im Formular angegebene E-Mail-Adresse und Telefonnummer mit Ihnen in Verbindung setzen.",
-                    "description_2": "Die Antwortzeit beträgt in der Regel bis zu <span>48 Stunden</span>."
+                    "description_2": "Die Antwortzeit beträgt in der Regel bis zu <strong>48 Stunden</strong>."
                 }
             }
         },

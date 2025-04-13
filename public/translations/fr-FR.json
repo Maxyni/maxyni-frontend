@@ -59,9 +59,9 @@
                 "sent": {
                     "icon_alt": "Icône de formulaire avec une coche",
                     "title": "Formulaire envoyé !",
-                    "subtitle": "Nous vous remercions pour votre contact et votre intérêt pour les services de <span>Maxyni</span>.",
+                    "subtitle": "Nous vous remercions pour votre contact et votre intérêt pour les services de <strong>Maxyni</strong>.",
                     "description_1": "Un de nos spécialistes vous contactera bientôt via l'e-mail et le téléphone professionnel que vous avez fournis dans le formulaire.",
-                    "description_2": "Le délai de réponse est généralement de <span>48 heures</span>."
+                    "description_2": "Le délai de réponse est généralement de <strong>48 heures</strong>."
                 }
             }
         },

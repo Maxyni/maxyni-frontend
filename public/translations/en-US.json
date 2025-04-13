@@ -59,9 +59,9 @@
                 "sent": {
                     "icon_alt": "Form icon with a checkmark",
                     "title": "Form Submitted!",
-                    "subtitle": "Thank you for contacting us and for your interest in <span>Maxyni</span>'s services.",
+                    "subtitle": "Thank you for contacting us and for your interest in <strong>Maxyni</strong>'s services.",
                     "description_1": "One of our specialists will contact you soon through the corporate email and phone number you provided in the form.",
-                    "description_2": "The response time is typically up to <span>48 hours</span>."
+                    "description_2": "The response time is typically up to <strong>48 hours</strong>."
                 }
             }
         },

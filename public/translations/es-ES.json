@@ -59,9 +59,9 @@
                 "sent": {
                     "icon_alt": "Icono de formulario con un check",
                     "title": "¡Formulario enviado!",
-                    "subtitle": "Agradecemos tu contacto e interés en los servicios de <span>Maxyni</span>.",
+                    "subtitle": "Agradecemos tu contacto e interés en los servicios de <strong>Maxyni</strong>.",
                     "description_1": "En breve, uno de nuestros especialistas se pondrá en contacto a través del correo electrónico y teléfono corporativo que proporcionaste en el formulario.",
-                    "description_2": "El tiempo de respuesta es normalmente hasta <span>48 horas</span>."
+                    "description_2": "El tiempo de respuesta es normalmente hasta <strong>48 horas</strong>."
                 }
             }
         },
