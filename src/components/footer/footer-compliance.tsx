@@ -57,12 +57,12 @@ export default function FooterCompliance() {
                     </div>
                 ) : (
                     <>
-                        {Array.from({ length: 8 }).map((_, i) => (
+                        {Array.from({ length: 7 }).map((_, i) => (
                             <span key={i}>
                                 {t.rich(`compliance.terms.${i + 1}`, {
                                     p: (text) => <p className="text-black font-normal">{text}</p>,
                                     strong: (text) => <strong>{text}</strong>,
-                                    Link: (text) => <Link href="mailto:suporte@maxyni.com.br" className="hover:underline font-semibold">{text}</Link>
+                                    Link: (text) => <Link href="mailto:contato@maxyni.com.br" className="hover:underline font-semibold">{text}</Link>
                                 })}
                             </span>
                         ))}

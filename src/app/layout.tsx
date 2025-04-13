@@ -39,9 +39,11 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       <body className={`bg-[#F1F7FD] ${jost.className}`}>
         <NextIntlClientProvider messages={messages}>
           <Navbar />
+
           <main>
             {children}
           </main>
+
           <Footer />
         </NextIntlClientProvider>
       </body>

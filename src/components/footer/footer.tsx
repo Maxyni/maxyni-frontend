@@ -15,7 +15,7 @@ export default async function Footer() {
                         <Link href="/" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                             <Logo width={50} height={50} />
                             <div className="flex flex-col items-start justify-start text-left">
-                                <span className="text-2xl font-semibold whitespace-nowrap">Maxyni</span>
+                                <span className="text-2xl font-semibold whitespace-nowrap">{t("brand_name")}</span>
                                 <p className="text-xs text-gray-500">{t("slogan")}</p>
                             </div>
                         </Link>
@@ -30,10 +30,10 @@ export default async function Footer() {
                         </li>
 
                         <li className="flex">
-                            <a href="https://github.com/Maxyni" target="_blank" className="me-4 md:me-6"><BsGithub /></a>
+                            <a href="https://github.com/Maxyni" target="_blank" className="me-4 md:me-6" aria-label={t("links.github")}><BsGithub /></a>
                         </li>
                         <li className="flex">
-                            <a href="https://instagram.com/MaxyniSistemas" target="_blank" className="me-4 md:me-6"><BsInstagram /></a>
+                            <a href="https://instagram.com/MaxyniSistemas" target="_blank" className="me-4 md:me-6" aria-label={t("links.instagram")}><BsInstagram /></a>
                         </li>
                     </ul>
                 </div>

@@ -107,6 +107,7 @@ export default function Drawer() {
         <div className="flex items-center relative">
             <button
                 className="relative text-stone-900 text-3xl sm:hidden focus:outline-none"
+                aria-label={t("menu.navigation_title")}
                 onClick={() => {
                     setOpen(true)
                     router.push("#nav", { scroll: false })
@@ -142,7 +143,7 @@ export default function Drawer() {
                             <div className="flex items-center justify-end gap-2 mb-2">
                                 <div className="w-full flex items-center gap-2">
                                     <Logo width={60} height={60} />
-                                    <span className="w-full text-left text-2xl font-bold whitespace-nowrap">Maxyni</span>
+                                    <span className="w-full text-left text-2xl font-bold whitespace-nowrap">{t("brand_name")}</span>
                                 </div>
 
                                 <button

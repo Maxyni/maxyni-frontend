@@ -1,3 +1,7 @@
+"use client"
+
+import { useTranslations } from "next-intl"
+
 type LogoProps = {
     width?: number
     height?: number
@@ -5,6 +9,8 @@ type LogoProps = {
 }
 
 export default function Logo({ width, height, className }: LogoProps) {
+    const t = useTranslations("navbar")
+    
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +19,7 @@ export default function Logo({ width, height, className }: LogoProps) {
             fill="none"
             viewBox="0 0 423 395"
             className={className}
-            aria-label="Maxyni"
+            aria-label={t("logo_aria_label")}
         >
             <rect
                 width="334.567"

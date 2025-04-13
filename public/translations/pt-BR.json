@@ -6,6 +6,7 @@
     },
     "navbar": {
         "logo_aria_label": "Ir para a página inicial",
+        "brand_name": "Maxyni",
         "home": {
             "text": "Início",
             "aria_label": "Ir para o início da página"
@@ -47,6 +48,8 @@
                     },
                     "phone": {
                         "label": "Número de telefone",
+                        "placeholder": "(00) 00000-0000",
+                        "country_code": "+55",
                         "errors": {
                             "nonempty": "Insira o seu número de telefone.",
                             "regex": "Insira um número de telefone válido."
@@ -106,6 +109,27 @@
         "title": "Soluções para atingir o <span>MÁXIMO</span>",
         "description_1": "Desbloqueie todo o potencial do seu negócio com as <strong>soluções da Maxyni</strong>!",
         "description_2": "Cada produto é desenvolvido com foco nas <strong>necessidades reais</strong> do dia-a-dia, considerando as dores e desafios de cada área de atuação. Nossos produtos são projetados para serem <strong>intuitivos, eficientes e robustos</strong>, garantindo facilidade de uso sem abrir mão da performance.",
+        "custom_description": "Desbloqueie todo o potencial do seu negócio com as <strong>soluções da Maxyni</strong>! Criamos experiências digitais sob medida que transformam visão em realidade.",
+        "cards": {
+            "institutional_sites": {
+                "title": "Sites Institucionais",
+                "description": "Vitrines digitais que apresentam sua marca ao mundo com design elegante e profissional.",
+                "ideal_for_prefix": "Ideal para:",
+                "ideal_for": "Empresas que desejam estabelecer presença online, fortalecer sua marca e comunicar valores."
+            },
+            "ecommerce": {
+                "title": "E-commerce",
+                "description": "Lojas virtuais completas, otimizadas para conversão e com excelente experiência de compra para seus clientes.",
+                "ideal_for_prefix": "Ideal para:",
+                "ideal_for": "Negócios que desejam vender produtos online, expandir seu alcance e automatizar vendas."
+            },
+            "web_systems": {
+                "title": "Sistemas Web",
+                "description": "Aplicações personalizadas que automatizam processos e unificam dados em uma plataforma central.",
+                "ideal_for_prefix": "Ideal para:",
+                "ideal_for": "Empresas que precisam otimizar fluxos de trabalho, eliminar processos manuais e centralizar informações."
+            }
+        },
         "products": {
             "title": "Conheça nossos produtos:",
             "li_1": "Atualmente, desenvolvemos <strong>Web Apps Fullstack</strong> sob medida para empresas de pequeno e médio porte. Nosso foco é <strong>automatizar processos</strong> e economizar tempo, permitindo que sua equipe se concentre no que realmente importa.",
@@ -113,23 +137,25 @@
         }
     },
     "footer": {
+        "brand_name": "Maxyni",
         "slogan": "Desenvolvendo o futuro que já chegou.",
         "rights": "© {year} <Link>Maxyni</Link>. Todos os direitos reservados.",
         "links": {
             "company_text": "Institucional",
-            "compliance_text": "Política de Privacidade"
+            "compliance_text": "Política de Privacidade",
+            "github": "GitHub da Maxyni",
+            "instagram": "Instagram da Maxyni"
         },
         "compliance": {
             "title": "Política de Privacidade",
             "terms": {
-                "1": "<p><strong>1. Sobre o site:</strong> O site da Maxyni é uma landing page informativa, destinada a apresentar nossos produtos e serviços. Nenhum dado pessoal é coletado diretamente por meio do site, salvo em caso de interações futuras especificadas.</p>",
+                "1": "<p><strong>1. Sobre o site:</strong> O site da Maxyni é uma landing page informativa, destinada a apresentar nossos produtos e serviços. Dados pessoais são coletados apenas quando você interage com o formulário de 'Fale conosco', fornecendo informações como nome, e-mail e telefone. Esses dados são utilizados exclusivamente para responder ao seu contato.</p>",
                 "2": "<p><strong>2. Uso de Cookies e Tecnologias Similares:</strong> Podemos utilizar cookies e tecnologias similares para melhorar a experiência do usuário e analisar a utilização do site. Ao continuar utilizando o site, você consente com o uso dessas tecnologias. Você pode configurar seu navegador para bloquear cookies, mas isso pode impactar a experiência de navegação.</p>",
                 "3": "<p><strong>3. Propriedade Intelectual:</strong> Todo o conteúdo do site, incluindo textos, imagens, logotipos e outros materiais, é protegido por direitos autorais e outras leis de propriedade intelectual. Você não está autorizado a reproduzir, distribuir, modificar ou utilizar qualquer parte do conteúdo sem prévia autorização por escrito da Maxyni.</p>",
                 "4": "<p><strong>4. Limitação de Responsabilidade:</strong> A Maxyni se esforça para garantir que as informações apresentadas no site sejam precisas e atualizadas. No entanto, não nos responsabilizamos por erros, omissões ou pela interpretação incorreta das informações contidas no site. O uso do site é de sua própria responsabilidade.</p>",
                 "5": "<p><strong>5. Links para Sites de Terceiros:</strong> O site pode conter links para outros sites. A Maxyni não se responsabiliza pelo conteúdo, políticas ou práticas de privacidade de sites de terceiros.</p>",
                 "6": "<p><strong>6. Modificações na Política e no Site:</strong> Reservamo-nos o direito de alterar nossa Política de Privacidade a qualquer momento, sem aviso prévio. Recomendamos que você revise esta página periodicamente para estar ciente de eventuais mudanças. Também poderemos modificar ou descontinuar qualquer parte do site sem aviso prévio.</p>",
-                "7": "<p><strong>7. Legislação Aplicável:</strong> Estes Termos são regidos pelas leis da República Federativa do Brasil. Qualquer disputa decorrente do uso do site deverá ser resolvida no foro da Comarca de Blumenau.</p>",
-                "8": "<p><strong>8. Contato:</strong> Caso tenha alguma dúvida sobre nossa Política de Privacidade, ou qualquer outra questão, entre em contato conosco pelo e-mail: <Link>suporte@maxyni.com.br</Link>.</p>"
+                "7": "<p><strong>7. Contato:</strong> Caso tenha alguma dúvida sobre nossa Política de Privacidade, ou qualquer outra questão, entre em contato conosco pelo e-mail: <Link>contato@maxyni.com.br</Link>.</p>"
             }
         }
     }
