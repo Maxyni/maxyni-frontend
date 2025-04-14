@@ -13,9 +13,11 @@ type CardProps = {
 }
 
 export default function BestChoiceCards({
-    cards
+    cards,
+    className = ""
 }: {
-    cards: CardProps[]
+    cards: CardProps[];
+    className?: string;
 }) {
     const cardVariants = {
         hidden: { opacity: 0, y: 20 },
@@ -43,7 +45,7 @@ export default function BestChoiceCards({
     }
 
     return (
-        <div className="flex flex-col lg:flex-row gap-5">
+        <div className={`flex flex-col lg:flex-row gap-5 ${className}`}>
             {cards.map((card, index) => (
                 <motion.div
                     key={index}
@@ -70,7 +72,7 @@ export default function BestChoiceCards({
                     </motion.div>
 
                     <motion.div
-                        className="flex flex-col bg-white shadow-md rounded-xl w-full h-[260px] p-6 -mt-16 pt-12 relative z-5"
+                        className="flex flex-col bg-white shadow-md rounded-xl w-full h-[260px] max-w-xl p-6 -mt-16 pt-12 relative z-5"
                         whileHover={{ y: -5, transition: { duration: 0.3 } }}
                     >
                         <h3 className={`font-bold text-center mb-4 text-lg`}>{card.title}</h3>

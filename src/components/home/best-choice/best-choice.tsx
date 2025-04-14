@@ -34,22 +34,24 @@ export default async function BestChoice() {
     ]
 
     return (
-        <Section id="best-choice" className="flex flex-col 2xl:flex-row items-center justify-center gap-10 2xl:gap-20">
-            <div className="w-[90%] lg:w-[420px] mt-2 text-center lg:text-left">
-                <h1 className="w-full lg:w-[420px] text-4xl lg:text-5xl font-bold leading-snug">
-                    {t.rich("title", {
-                        span: (text) => <span className="bg-gradient-to-r from-[#4682B4] to-[#4B0082] bg-clip-text text-transparent">{text}</span>
-                    })}
-                </h1>
+        <Section id="best-choice" className="flex text-center items-center justify-center">
+            <div className="px-5 md:px-0 flex flex-col 2xl:flex-row items-center 2xl:items-start gap-10 2xl:gap-20">
+                <div className="w-full 2xl:w-[30%] flex flex-col items-center gap-6 2xl:mt-12">
+                    <h1 className="text-4xl lg:text-5xl font-bold max-w-lg">
+                        {t.rich("title", {
+                            span: (text) => <span className="bg-gradient-to-r from-[#4682B4] to-[#4B0082] bg-clip-text text-transparent">{text}</span>
+                        })}
+                    </h1>
 
-                <p className="text-base font-light mt-4">
-                    {t.rich("description", {
-                        strong: (text) => <strong>{text}</strong>
-                    })}
-                </p>
+                    <p className="text-base font-light max-w-xl 2xl:max-w-none">
+                        {t.rich("description", {
+                            strong: (text) => <strong>{text}</strong>
+                        })}
+                    </p>
+                </div>
+
+                <BestChoiceCards cards={cards} className="w-full 2xl:w-[70%]" />
             </div>
-
-            <BestChoiceCards cards={cards} />
         </Section>
     )
 }

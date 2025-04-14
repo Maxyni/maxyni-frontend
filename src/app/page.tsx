@@ -5,7 +5,7 @@ import Solutions from "@/components/home/solutions/solutions"
 
 export default async function HomePage() {
   return (
-    <div className="flex flex-col gap-24 mt-10">
+    <div className="flex flex-col gap-24 md:mt-10 md:px-10">
       <Welcome />
       <About />
       <BestChoice />

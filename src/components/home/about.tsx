@@ -8,12 +8,12 @@ export default async function About() {
     const t = await getTranslations("about")
 
     return (
-        <Section id="about" className="flex lg:flex-row flex-col items-center justify-center gap-5">
+        <Section id="about" className="flex lg:flex-row flex-col items-center justify-center gap-10 2xl:gap-20">
             <Image
                 src={AboutMaxyniImage}
                 alt={t("person_img_alt")}
                 quality={100}
-                className="w-full md:w-1/2 lg:w-1/3 xl:w-1/3"
+                className="w-full md:w-2/6"
             />
 
             <div className="text-center sm:text-left flex flex-col items-center sm:items-start">
