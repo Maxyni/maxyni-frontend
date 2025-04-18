@@ -74,15 +74,16 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
 
     return (
         <div ref={containerRef} className={`relative hidden ${!hideSelect && "sm:block"}`}>
-            <motion.button
-                disabled={changingLocale}
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center p-3 rounded-xl border border-gray-300 bg-white text-black shadow-md hover:bg-gray-100 transition-all duration-300 disabled:cursor-not-allowed"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-            >
-                {changingLocale ? <BiLoaderAlt className="animate-spin" size={18} /> : <IoLanguage size={18} />}
-            </motion.button>
+            <div className="relative h-12 w-12 rounded-xl group">
+                <div className={`absolute inset-0 bg-gradient-to-r from-[#73BFFF] to-[#9A35E4] transition-transform duration-300 ease-in-out transform scale-90 group-hover:scale-x-[1.1] group-hover:scale-y-[1.1] rounded-xl ${dropdownOpen && "scale-x-[1.1] scale-y-[1.1]"}`} />
+                <button
+                    disabled={changingLocale}
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    className="relative flex items-center justify-center w-full h-full rounded-xl bg-white text-black shadow-2xl z-10 hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                    {changingLocale ? <BiLoaderAlt className="animate-spin" size={18} /> : <IoLanguage size={18} />}
+                </button>
+            </div>
 
             <AnimatePresence>
                 {dropdownOpen && (

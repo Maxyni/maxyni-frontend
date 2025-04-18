@@ -1,7 +1,8 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 
 type LogoProps = {
     width?: number
@@ -11,9 +12,12 @@ type LogoProps = {
 
 export default function Logo({ width, height, className }: LogoProps) {
     const t = useTranslations("navbar")
+    const ref = useRef(null)
+    const isInView = useInView(ref, { once: true })
 
     return (
         <svg
+            ref={ref}
             xmlns="http://www.w3.org/2000/svg"
             width={width || 50}
             height={height || 50}
@@ -40,21 +44,21 @@ export default function Logo({ width, height, className }: LogoProps) {
                 fill="url(#paint2_linear_7_4)"
                 d="M120.818 106H49.244c-2.926 2.465-3.057 3.987 0 7h71.574l5.182-3.244-5.182-3.756z"
                 initial={{ x: -100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
+                animate={isInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
             />
             <motion.path
                 fill="url(#paint3_linear_7_4)"
                 d="M73.818 256H2.244c-2.926 2.465-3.057 3.987 0 7h71.574L79 259.756 73.818 256z"
                 initial={{ x: -100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
+                animate={isInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             />
             <motion.path
                 fill="url(#paint4_linear_7_4)"
                 d="M212.703 194h-86.976c-3.556 2.465-3.715 3.987 0 7h86.976l6.297-3.244-6.297-3.756z"
                 initial={{ x: -100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
+                animate={isInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
                 transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             />
 

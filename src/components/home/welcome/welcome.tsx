@@ -11,7 +11,7 @@ export default async function Welcome() {
         <Section id="welcome">
             <div className="flex flex-col lg:flex-row items-center justify-center w-full h-auto lg:h-[400px] px-10 py-10 bg-gradient-to-r from-[#9A35E4] to-[#4682B4] rounded-t-[48px] rounded-bl-[48px] rounded-br-[250px]">
                 <div className="max-w-xl w-full lg:w-[36rem] text-left">
-                    <h1 className="text-white font-extrabold text-4xl lg:text-5xl lg:w-[95%]">
+                    <h1 className="text-white font-extrabold uppercase text-4xl lg:text-5xl">
                         {t("title")}
                     </h1>
 
