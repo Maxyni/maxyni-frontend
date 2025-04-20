@@ -9,12 +9,12 @@ import Link from "next/link"
 export default function FooterCompliance() {
     const t = useTranslations("footer")
     const router = useRouter()
-    const [isOpen, setIsOpen] = useState(false)
+    const [open, setOpen] = useState(false)
 
     useEffect(() => {
         if (window.location.hash === "#compliance") {
             document.getElementById("footer")?.scrollIntoView()
-            setIsOpen(true)
+            setOpen(true)
         }
     }, [])
 
@@ -33,13 +33,13 @@ export default function FooterCompliance() {
     return (
         <Modal
             title={t("compliance.title")}
-            externalOpenState={isOpen}
+            externalOpenState={open}
             buttonToOpen={
                 <a href="#compliance" className="hover:underline me-4 md:me-6">{t("links.compliance_text")}</a>
             }
             onOpen={fetchTerms}
             onClose={() => {
-                setIsOpen(false)
+                setOpen(false)
                 router.push("/", { scroll: false })
             }}
         >
