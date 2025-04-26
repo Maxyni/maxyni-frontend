@@ -47,6 +47,9 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
             setChangingLocale(true)
             setDropdownOpen(false)
 
+            // fake delay
+            await new Promise((resolve) => setTimeout(resolve, 1000))
+
             await setCookie("i18n@locale", locale.code)
 
             router.replace(`/?loc=${locale.code}`, { scroll: false })
@@ -75,7 +78,7 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
     return (
         <div ref={containerRef} className={`relative hidden ${!hideSelect && "sm:block"}`}>
             <div className="relative h-12 w-12 rounded-xl group">
-                <div className={`absolute inset-0 bg-gradient-to-r from-[#73BFFF] to-[#9A35E4] transition-transform duration-300 ease-in-out transform scale-90 group-hover:scale-x-[1.1] group-hover:scale-y-[1.1] rounded-xl ${dropdownOpen && "scale-x-[1.1] scale-y-[1.1]"}`} />
+                <div className={`${changingLocale ? "hidden" : "absolute"} inset-0 bg-gradient-to-r from-[#73BFFF] to-[#9A35E4] transition-transform duration-300 ease-in-out transform scale-90 group-hover:scale-x-[1.1] group-hover:scale-y-[1.1] rounded-xl ${dropdownOpen && "scale-x-[1.1] scale-y-[1.1]"}`} />
                 <button
                     disabled={changingLocale}
                     onClick={() => setDropdownOpen(!dropdownOpen)}
