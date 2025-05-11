@@ -1,13 +1,12 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { IoLanguage } from "react-icons/io5"
-import { setCookie } from "@/lib/cookies"
-import { motion, AnimatePresence } from "framer-motion"
 import ReactCountryFlag from "react-country-flag"
-import { BiLoaderAlt } from "react-icons/bi"
-import { useLocale } from "next-intl"
+import { LanguagesIcon, Loader2Icon } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
+import { setCookie } from "@/lib/cookies"
+import { useLocale } from "next-intl"
 
 // Exports - Start
 export type LocaleCode = "pt-BR" | "en-US" | "es-ES" | "fr-FR" | "de-DE"
@@ -84,7 +83,7 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
                     onClick={() => setDropdownOpen(!dropdownOpen)}
                     className="relative flex items-center justify-center w-full h-full rounded-xl bg-white text-black shadow-2xl z-10 hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                    {changingLocale ? <BiLoaderAlt className="animate-spin" size={18} /> : <IoLanguage size={18} />}
+                    {changingLocale ? <Loader2Icon size={18} className="animate-spin" /> : <LanguagesIcon size={24} />}
                 </button>
             </div>
 

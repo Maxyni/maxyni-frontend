@@ -1,21 +1,15 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { LiaTimesSolid } from "react-icons/lia"
-import { HiMiniBars3BottomLeft } from "react-icons/hi2"
-import { FaHouse } from "react-icons/fa6"
-import { BsPeopleFill } from "react-icons/bs"
-import { IoLanguage, IoSparklesSharp } from "react-icons/io5"
-import { useLocale, useTranslations } from "next-intl"
-import { setCookie } from "@/lib/cookies"
-import { GrDown } from "react-icons/gr"
-import { useRouter } from "next/navigation"
-import { BiLoaderAlt } from "react-icons/bi"
-import { Locale, locales } from "../i18n/language-select"
 import Link from "next/link"
 import Logo from "../svg/logo"
 import ReactCountryFlag from "react-country-flag"
+import { Locale, locales } from "../i18n/language-select"
+import { motion, AnimatePresence } from "framer-motion"
+import { useLocale, useTranslations } from "next-intl"
+import { useEffect, useRef, useState } from "react"
+import { useRouter } from "next/navigation"
+import { setCookie } from "@/lib/cookies"
+import { ChevronDownIcon, HouseIcon, Languages, Loader2Icon, MenuIcon, Sparkles, Users, XIcon } from "lucide-react"
 
 export default function Drawer() {
     const t = useTranslations("navbar")
@@ -37,7 +31,7 @@ export default function Drawer() {
     }, [])
 
     useEffect(() => {
-        if (window.location.hash === "#nav") {
+        if (window.location.hash === "#menu") {
             setOpen(true)
         }
     }, [])
@@ -110,12 +104,12 @@ export default function Drawer() {
                 aria-label={t("menu.navigation_title")}
                 onClick={() => {
                     setOpen(true)
-                    router.push("#nav", { scroll: false })
+                    router.push("#menu", { scroll: false })
                 }}
             >
-                <HiMiniBars3BottomLeft className="mr-2 mb-1" />
+                <MenuIcon className="mr-2 mb-1" />
                 <span className="absolute -bottom-2 -right-1 p-1 text-xl">
-                    <IoLanguage />
+                    <Languages />
                 </span>
             </button>
 
@@ -129,7 +123,7 @@ export default function Drawer() {
                             exit={{ opacity: 0 }}
                             onClick={() => {
                                 setOpen(false)
-                                router.push("/", { scroll: false })
+                                router.push("#", { scroll: false })
                             }}
                         />
 
@@ -150,10 +144,10 @@ export default function Drawer() {
                                     className="text-black text-3xl focus:outline-none"
                                     onClick={() => {
                                         setOpen(false)
-                                        router.push("/", { scroll: false })
+                                        router.push("#", { scroll: false })
                                     }}
                                 >
-                                    <LiaTimesSolid />
+                                    <XIcon />
                                 </button>
                             </div>
 
@@ -171,7 +165,7 @@ export default function Drawer() {
                                             aria-label={t("home.aria_label")}
                                             onClick={() => setOpen(false)}
                                         >
-                                            <FaHouse /> {t("home.text")}
+                                            <HouseIcon /> {t("home.text")}
                                         </Link>
 
                                         <Link
@@ -180,7 +174,7 @@ export default function Drawer() {
                                             aria-label={t("about.aria_label")}
                                             onClick={() => setOpen(false)}
                                         >
-                                            <BsPeopleFill /> {t("about.text")}
+                                            <Users /> {t("about.text")}
                                         </Link>
 
                                         <Link
@@ -189,7 +183,7 @@ export default function Drawer() {
                                             aria-label={t("solutions.aria_label")}
                                             onClick={() => setOpen(false)}
                                         >
-                                            <IoSparklesSharp /> {t("solutions.text")}
+                                            <Sparkles /> {t("solutions.text")}
                                         </Link>
                                     </div>
                                 </nav>
@@ -251,7 +245,7 @@ export default function Drawer() {
                                             <span>{usingLocale.languageName}</span>
                                         </div>
 
-                                        {changingLocale ? <BiLoaderAlt className="animate-spin" size={18} /> : <GrDown size={18} className={`transition-all duration-300 ${langDropdownOpen && "transform rotate-180"}`} />}
+                                        {changingLocale ? <Loader2Icon className="animate-spin" size={18} /> : <ChevronDownIcon size={18} className={`transition-all duration-300 ${langDropdownOpen && "transform rotate-180"}`} />}
                                     </div>
                                 </div>
                             </div>

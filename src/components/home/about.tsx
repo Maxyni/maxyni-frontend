@@ -1,7 +1,7 @@
-import Section from "@/components/section"
-import AboutMaxyniImage from "../../../public/about-maxyni.png"
-import Image from "next/image"
 import React from "react"
+import Image from "next/image"
+import Section from "@/components/section"
+import AboutMaxyniImage from "../../../public/images/about-maxyni.png"
 import { getTranslations } from "next-intl/server"
 
 export default async function About() {

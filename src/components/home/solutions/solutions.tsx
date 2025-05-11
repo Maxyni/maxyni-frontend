@@ -1,8 +1,8 @@
 import React from "react"
-import Section from "@/components/section"
 import Image from "next/image"
-import MaxyniSolutionsImage from "../../../../public/maxyni-solutions.png"
+import Section from "@/components/section"
 import SolutionsCards from "./solutions-cards"
+import MaxyniSolutionsImage from "../../../../public/images/maxyni-solutions.png"
 import { getTranslations } from "next-intl/server"
 
 export default async function Solutions() {

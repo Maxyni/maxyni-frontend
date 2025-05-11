@@ -1,10 +1,10 @@
-import Section from "@/components/section"
-import SupportIcon from "../../../../public/support-icon.png"
-import CustomizationIcon from "../../../../public/customization-icon.png"
-import ExcellenceIcon from "../../../../public/excellence-icon.png"
 import React from "react"
-import { getTranslations } from "next-intl/server"
+import Section from "@/components/section"
 import BestChoiceCards from "./best-choice-cards"
+import SupportIcon from "../../../../public/images/support-icon.png"
+import CustomizationIcon from "../../../../public/images/customization-icon.png"
+import ExcellenceIcon from "../../../../public/images/excellence-icon.png"
+import { getTranslations } from "next-intl/server"
 
 export default async function BestChoice() {
     const t = await getTranslations("best_choice")

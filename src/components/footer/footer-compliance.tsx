@@ -1,10 +1,10 @@
 "use client"
 
+import Modal from "../ui/modal"
+import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import Modal from "../ui/modal"
-import Link from "next/link"
 
 export default function FooterCompliance() {
     const t = useTranslations("footer")
@@ -40,7 +40,7 @@ export default function FooterCompliance() {
             onOpen={fetchTerms}
             onClose={() => {
                 setOpen(false)
-                router.push("/", { scroll: false })
+                router.push("#", { scroll: false })
             }}
         >
             <div className="p-4">

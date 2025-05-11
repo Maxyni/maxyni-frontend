@@ -3,13 +3,13 @@
 import Logo from "../svg/logo"
 import Drawer from "./drawer"
 import Link from "next/link"
-import { RiContactsLine } from "react-icons/ri"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { ContactModal } from "./contact/contact-modal"
 import { useTranslations } from "next-intl"
 import { LanguageSelect } from "../i18n/language-select"
+import { UserPen } from "lucide-react"
 
 export function Navbar() {
     const t = useTranslations("navbar")
@@ -91,10 +91,10 @@ export function Navbar() {
                                 onClick={(e) => {
                                     e.preventDefault()
                                     setContactModalOpen(true)
-                                    router.push("/#contact", { scroll: false })
+                                    router.push("#contact", { scroll: false })
                                 }}
                             >
-                                <RiContactsLine className="text-lg" />
+                                <UserPen size={18} />
                                 <span>{t("contact_button.text")}</span>
                             </a>
                         </div>

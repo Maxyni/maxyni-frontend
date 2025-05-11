@@ -1,9 +1,9 @@
 "use client"
 
+import Image from "next/image"
+import RocketImage from "../../../../public/images/rocket.png"
 import { useTranslations } from "next-intl"
 import { motion, Variants } from "framer-motion"
-import Image from "next/image"
-import RocketImage from "../../../../public/rocket.png"
 
 export default function WelcomeRocket() {
     const t = useTranslations("welcome")

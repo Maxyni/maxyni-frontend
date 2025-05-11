@@ -1,8 +1,10 @@
-import Logo from "../svg/logo"
-import { BsGithub, BsInstagram } from "react-icons/bs"
-import { getTranslations } from "next-intl/server"
-import FooterCompliance from "./footer-compliance"
 import Link from "next/link"
+import Logo from "../svg/logo"
+import Image from "next/image"
+import FooterCompliance from "./footer-compliance"
+import GitHubSVG from "../../../public/svgs/github.svg"
+import InstagramSVG from "../../../public/svgs/instagram.svg"
+import { getTranslations } from "next-intl/server"
 
 export default async function Footer() {
     const t = await getTranslations("footer")
@@ -30,10 +32,14 @@ export default async function Footer() {
                         </li>
 
                         <li className="flex">
-                            <a href="https://github.com/Maxyni" target="_blank" className="me-4 md:me-6" aria-label={t("links.github")}><BsGithub /></a>
+                            <a href="https://github.com/Maxyni" target="_blank" className="me-4 md:me-6" aria-label={t("links.github")}>
+                                <Image src={GitHubSVG} alt="GitHub" width={18} height={18} />
+                            </a>
                         </li>
                         <li className="flex">
-                            <a href="https://instagram.com/MaxyniSistemas" target="_blank" className="me-4 md:me-6" aria-label={t("links.instagram")}><BsInstagram /></a>
+                            <a href="https://instagram.com/MaxyniSistemas" target="_blank" className="me-4 md:me-6" aria-label={t("links.instagram")}>
+                                <Image src={InstagramSVG} alt="Instagram" width={18} height={18} />
+                            </a>
                         </li>
                     </ul>
                 </div>

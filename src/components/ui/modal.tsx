@@ -1,10 +1,9 @@
 "use client"
 
-import { AnimatePresence, motion } from "framer-motion"
 import React, { ReactNode, useCallback, useEffect, useState } from "react"
 import { SubmitHandler, UseFormHandleSubmit } from "react-hook-form"
-import { IoIosClose } from "react-icons/io"
-import { RiLoader5Fill } from "react-icons/ri"
+import { AnimatePresence, motion } from "framer-motion"
+import { XIcon, Loader2Icon } from "lucide-react"
 
 /**
  * The props for the modal component.
@@ -29,13 +28,6 @@ type ModalProps = {
      * The button that opens the modal.
      */
     buttonToOpen?: ReactNode
-
-    /**
-     * The text to display on the close button. Optional.
-     * 
-     * @default "Fechar"
-     */
-    closeButtonText?: string
 
     /**
      * The text to display on the submit button. Optional.
@@ -88,7 +80,7 @@ type ModalProps = {
     children: ReactNode
 }
 
-const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, buttonToOpen, closeButtonText, submitButtonText, submitButtonDisabled, handleSubmit, onSubmit, closeAfterSubmit, onOpen, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, buttonToOpen, submitButtonText, submitButtonDisabled, handleSubmit, onSubmit, closeAfterSubmit, onOpen, onClose, children }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(false) // This state is used to show a loading spinner if the modal supports and is submitting data.
 
@@ -191,19 +183,18 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                 className={`${className} bg-[#F1F7FD] relative w-full h-full sm:w-[70%] sm:max-w-[40rem] sm:h-auto sm:max-h-[80%] sm:h-de mx-auto py-3 px-6 sm:rounded-3xl shadow-lg flex flex-col`}
                             >
                                 <div className="w-full flex items-center justify-between h-[72px]">
-                                    <h1 className="font-bold text-2xl leading-7 text-black truncate line-clamp-1">{title}</h1>
+                                    <h1 className="font-bold text-2xl leading-7 text-black truncate line-clamp-1">
+                                        {title}
+                                    </h1>
                                     <button
-                                        type="button"
-                                        className="p-2 text-black/70 text-[16px] leading-6 transition-all duration-300 ease-in-out hover:scale-105"
+                                        className="p-2 text-black/70 leading-6 transition-all duration-300 ease-in-out hover:scale-105"
                                         onClick={handleModalClose}
                                     >
-                                        <p>
-                                            {closeButtonText ?? <IoIosClose className="text-3xl" />}
-                                        </p>
+                                        <XIcon size={24} />
                                     </button>
                                 </div>
 
-                                {/* Scrollable contect */}
+                                {/* Scrollable content */}
                                 <motion.div
                                     layout
                                     className="flex-grow overflow-y-auto overflow-x-hidden pb-1"
@@ -226,13 +217,15 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                                     className={`${(isLoading || submitButtonDisabled) ? "bg-[#4864e156] bg-opacity-70" : "bg-gradient-to-r from-blue-500 to-purple-500 hover:scale-105"} w-44 py-3 text-white font-medium rounded-md text-[16px] leading-6 transition-all duration-300 ease-in-out`}
                                                     disabled={isLoading || submitButtonDisabled}
                                                 >
-                                                    {isLoading ? (
-                                                        <span className="w-full flex items-center justify-center">
-                                                            <RiLoader5Fill className="animate-spin" size={24} />
-                                                        </span>
-                                                    ) : (
-                                                        <p>{submitButtonText ?? "Confirmar"}</p>
-                                                    )}
+                                                    <span className="w-full flex items-center justify-center">
+                                                        {isLoading ? (
+                                                            <Loader2Icon size={24} className="animate-spin" />
+                                                        ) : (
+                                                            <>
+                                                                {submitButtonText ?? "Confirmar"}
+                                                            </>
+                                                        )}
+                                                    </span>
                                                 </button>
                                             )}
                                         </motion.div>
