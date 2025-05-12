@@ -48,6 +48,7 @@
                     },
                     "phone": {
                         "label": "Número de telefone",
+                        "optional_label": "(opcional)",
                         "placeholder": "(00) 00000-0000",
                         "country_code": "+55",
                         "errors": {

@@ -22,7 +22,7 @@ function rateLimiter(req: NextApiRequest): boolean {
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-function validateContactData(fullName: string, email: string, phone: string) {
+function validateContactData(fullName: string, email: string, phone: string | undefined) {
     const errors: string[] = []
     if (!EMAIL_REGEX.test(email)) {
         errors.push("Invalid email format.")
@@ -32,9 +32,9 @@ function validateContactData(fullName: string, email: string, phone: string) {
         errors.push("Full name is required and should contain at least two words.")
     }
 
-
-    if (phone.length === 0 || /^\(\d{2}\)\s\d{4,5}-\d{4}$/.test(phone) === false) {
-        errors.push("Phone number is required and should be in the format (XX) XXXX-XXXX or (XX) XXXXX-XXXX.")
+    // Only validate phone if it's provided
+    if (phone && phone.length > 0 && /^\(\d{2}\)\s\d{4,5}-\d{4}$/.test(phone) === false) {
+        errors.push("Phone number should be in the format (XX) XXXX-XXXX or (XX) XXXXX-XXXX.")
     }
 
     return {
@@ -61,9 +61,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const { fullName, email, phone } = req.body
 
-    if (!fullName || !email || !phone) {
+    if (!fullName || !email) {
         return res.status(400).json({
-            error: "Full name, email, and phone are required."
+            error: "Full name and email are required."
         })
     }
 
@@ -80,7 +80,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                content: `📬 Novo contato recebido: \n\n**Nome completo:** ${fullName} \n**E-mail:** ${email} \n**Telefone:** ${phone}`
+                embeds: [{
+                    title: "📬 Novo contato recebido!",
+                    color: 0x6A0DAD, // Dark purple
+                    fields: [
+                        {
+                            name: "Nome completo",
+                            value: fullName
+                        },
+                        {
+                            name: "E-mail",
+                            value: email
+                        },
+                        {
+                            name: "Telefone",
+                            value: phone || "Não informado"
+                        }
+                    ],
+                    timestamp: new Date().toISOString(),
+                    footer: {
+                        text: "© Maxyni - Leads"
+                    }
+                }]
             })
         })
 

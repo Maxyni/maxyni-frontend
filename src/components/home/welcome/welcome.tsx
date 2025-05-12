@@ -40,7 +40,7 @@ export default async function Welcome() {
                             className="relative flex items-center gap-2 shadow-2xl justify-center w-full h-full rounded-xl bg-white text-black z-10"
                         >
                             <RocketIcon size={18} />
-                            <strong>{t("takeoff_button_text")}</strong>
+                            <span className="font-semibold">{t("takeoff_button_text")}</span>
                         </Link>
                     </div>
                 </div>

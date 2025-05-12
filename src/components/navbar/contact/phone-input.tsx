@@ -10,18 +10,19 @@ type PhoneInputProps = {
     onBlur?: () => void
     disabled?: boolean
     errorMessage?: string
+    optional?: boolean
 }
 
 // Logic for formatting phone number to Brazilian pattern
 const formatPhoneNumber = (input: string) => {
     if (!input) return ""
-    
+
     // Remove all non-numeric characters
     let cleaned = input.replace(/\D/g, "")
-    
+
     // Limit to a maximum of 11 digits (Brazilian pattern)
     cleaned = cleaned.substring(0, 11)
-    
+
     // Format according to Brazilian pattern
     if (cleaned.length <= 2) {
         return `(${cleaned}`
@@ -36,17 +37,18 @@ const formatPhoneNumber = (input: string) => {
     }
 }
 
-export function PhoneInput({ control, onChange, onBlur, disabled, errorMessage }: PhoneInputProps) {
+export function PhoneInput({ control, onChange, onBlur, disabled, errorMessage, optional = false }: PhoneInputProps) {
     const t = useTranslations("navbar.contact_modal.form.fields.phone")
-    
+
     return (
-        <motion.div
-            layout
-            className="relative flex flex-col"
-        >
-            <label htmlFor="phone">{t("label")} {errorMessage && <span className="text-red-500">*</span>}</label>
+        <motion.div layout className="relative flex flex-col">
+            <label htmlFor="phone" className="flex items-center gap-1">
+                {t("label")} {optional && <span className="text-gray-400 text-sm">{t("optional_label")}</span>}  {errorMessage && <span className="text-red-500 items-center">*</span>}
+            </label>
             <div className={`bg-white flex items-center ${errorMessage ? "border border-red-400" : "border"}  rounded-md overflow-hidden group transition duration-300 ease-in-out focus-within:border-[#9800b6]`}>
-                <span className="pl-2 pr-2 text-sm font-medium">{t("country_code")}</span>
+                <span className="px-2 text-sm font-medium text-gray-500">
+                    {t("country_code")}
+                </span>
                 <Controller
                     name="phone"
                     control={control}

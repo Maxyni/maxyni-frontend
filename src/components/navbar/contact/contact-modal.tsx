@@ -12,6 +12,7 @@ import { PhoneInput } from "./phone-input"
 import { useForm } from "react-hook-form"
 import { AnimatePresence, motion } from "framer-motion"
 import { z } from "zod"
+import { User, Mail } from "lucide-react"
 
 type ContactModalProps = {
     open: boolean
@@ -32,9 +33,10 @@ export function ContactModal({ open, setOpen }: ContactModalProps) {
             .nonempty({ message: t("form.fields.email.errors.nonempty") })
             .email({ message: t("form.fields.email.errors.regex") }),
         phone: z
-            .string({ message: t("form.fields.phone.errors.nonempty") })
-            .nonempty({ message: t("form.fields.phone.errors.nonempty") })
+            .string()
             .regex(/^\(\d{2}\)\s\d{4,5}-\d{4}$/, { message: t("form.fields.phone.errors.regex") })
+            .optional()
+            .or(z.literal(''))
     })
     type SubmitContactForm = z.infer<typeof submitContactSchema>
 
@@ -137,16 +139,21 @@ export function ContactModal({ open, setOpen }: ContactModalProps) {
                                 className="relative flex flex-col"
                             >
                                 <label htmlFor="fullName">{t("form.fields.full_name.label")} {errors.fullName && <span className="text-red-500">*</span>}</label>
-                                <input
-                                    disabled={submitting}
-                                    type="text"
-                                    placeholder={t("form.fields.full_name.placeholder")}
-                                    className={`${errors.fullName ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
-                                    {...register("fullName", {
-                                        onChange: () => { clearErrors("fullName") },
-                                        onBlur: () => { trigger("fullName") }
-                                    })}
-                                />
+                                <div className={`flex items-center ${errors.fullName ? "border border-red-400" : "border"} rounded-md overflow-hidden transition duration-300 ease-out focus-within:border-[#9800b6]`}>
+                                    <div className="px-3 text-gray-500">
+                                        <User size={18} />
+                                    </div>
+                                    <input
+                                        disabled={submitting}
+                                        type="text"
+                                        placeholder={t("form.fields.full_name.placeholder")}
+                                        className="flex-1 px-3 py-2 outline-none"
+                                        {...register("fullName", {
+                                            onChange: () => { clearErrors("fullName") },
+                                            onBlur: () => { trigger("fullName") }
+                                        })}
+                                    />
+                                </div>
                                 {errors.fullName &&
                                     <motion.p
                                         initial={{ opacity: 0, y: 10 }}
@@ -160,21 +167,25 @@ export function ContactModal({ open, setOpen }: ContactModalProps) {
                                 }
                             </motion.div>
 
-                            <motion.div
-                                layout
-                                className="relative flex flex-col"
-                            >
-                                <label htmlFor="email">{t("form.fields.email.label")} {errors.email && <span className="text-red-500">*</span>}</label>
-                                <input
-                                    disabled={submitting}
-                                    type="email"
-                                    placeholder={t("form.fields.email.placeholder")}
-                                    className={`${errors.email ? "border border-red-400" : "border"} px-3 py-2 rounded-md outline-none transition duration-300 ease-out focus:border-[#9800b6]`}
-                                    {...register("email", {
-                                        onChange: () => { clearErrors("email") },
-                                        onBlur: () => { trigger("email") }
-                                    })}
-                                />
+                            <motion.div layout className="relative flex flex-col">
+                                <label htmlFor="email">
+                                    {t("form.fields.email.label")} {errors.email && <span className="text-red-500">*</span>}
+                                </label>
+                                <div className={`flex items-center ${errors.email ? "border border-red-400" : "border"} rounded-md overflow-hidden transition duration-300 ease-out focus-within:border-[#9800b6]`}>
+                                    <div className="px-3 text-gray-500">
+                                        <Mail size={18} />
+                                    </div>
+                                    <input
+                                        disabled={submitting}
+                                        type="email"
+                                        placeholder={t("form.fields.email.placeholder")}
+                                        className="flex-1 px-3 py-2 outline-none"
+                                        {...register("email", {
+                                            onChange: () => { clearErrors("email") },
+                                            onBlur: () => { trigger("email") }
+                                        })}
+                                    />
+                                </div>
                                 {errors.email &&
                                     <motion.p
                                         initial={{ opacity: 0, y: 10 }}
@@ -194,6 +205,7 @@ export function ContactModal({ open, setOpen }: ContactModalProps) {
                                 onBlur={() => { trigger("phone") }}
                                 errorMessage={errors.phone?.message}
                                 disabled={submitting}
+                                optional={true}
                             />
 
                             <motion.p
