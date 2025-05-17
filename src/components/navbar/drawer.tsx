@@ -9,7 +9,7 @@ import { useLocale, useTranslations } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { setCookie } from "@/lib/cookies"
-import { ChevronDownIcon, Globe, Globe2, GlobeIcon, HouseIcon, Languages, Loader2Icon, MenuIcon, Sparkles, Users, XIcon } from "lucide-react"
+import { ChevronDownIcon, HouseIcon, Loader2Icon, MenuIcon, Sparkles, Users, XIcon } from "lucide-react"
 
 export default function Drawer() {
     const t = useTranslations("navbar")
