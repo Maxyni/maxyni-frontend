@@ -45,7 +45,7 @@ export function PhoneInput({ control, onChange, onBlur, disabled, errorMessage, 
             <label htmlFor="phone" className="flex items-center gap-1">
                 {t("label")} {optional && <span className="text-gray-400 text-sm">{t("optional_label")}</span>}  {errorMessage && <span className="text-red-500 items-center">*</span>}
             </label>
-            <div className={`bg-white flex items-center ${errorMessage ? "border border-red-400" : "border"}  rounded-md overflow-hidden group transition duration-300 ease-in-out focus-within:border-[#9800b6]`}>
+            <div className={`flex items-center ${errorMessage ? "border border-red-400" : "border"}  rounded-md overflow-hidden group transition duration-300 ease-in-out focus-within:border-[#9800b6]`}>
                 <span className="px-2 text-sm font-medium text-gray-500">
                     {t("country_code")}
                 </span>

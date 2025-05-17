@@ -9,7 +9,7 @@ import { useLocale, useTranslations } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { setCookie } from "@/lib/cookies"
-import { ChevronDownIcon, HouseIcon, Languages, Loader2Icon, MenuIcon, Sparkles, Users, XIcon } from "lucide-react"
+import { ChevronDownIcon, Globe, Globe2, GlobeIcon, HouseIcon, Languages, Loader2Icon, MenuIcon, Sparkles, Users, XIcon } from "lucide-react"
 
 export default function Drawer() {
     const t = useTranslations("navbar")
@@ -100,17 +100,14 @@ export default function Drawer() {
     return (
         <div className="flex items-center relative">
             <button
-                className="relative text-stone-900 text-3xl sm:hidden focus:outline-none"
+                className="relative sm:hidden focus:outline-none"
                 aria-label={t("menu.navigation_title")}
                 onClick={() => {
                     setOpen(true)
                     router.push("#menu", { scroll: false })
                 }}
             >
-                <MenuIcon className="mr-2 mb-1" />
-                <span className="absolute -bottom-2 -right-1 p-1 text-xl">
-                    <Languages />
-                </span>
+                <MenuIcon size={32} className="mr-2 mb-1" />
             </button>
 
             <AnimatePresence>
