@@ -3,7 +3,8 @@
 import React, { ReactNode, useCallback, useEffect, useState } from "react"
 import { SubmitHandler, UseFormHandleSubmit } from "react-hook-form"
 import { AnimatePresence, motion } from "framer-motion"
-import { XIcon, Loader2Icon } from "lucide-react"
+import { IoIosClose } from "react-icons/io"
+import { RiLoader5Fill } from "react-icons/ri"
 
 /**
  * The props for the modal component.
@@ -190,7 +191,7 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                         className="p-2 text-black/70 leading-6 transition-all duration-300 ease-in-out hover:scale-105"
                                         onClick={handleModalClose}
                                     >
-                                        <XIcon size={24} />
+                                        <IoIosClose size={24} />
                                     </button>
                                 </div>
 
@@ -219,7 +220,7 @@ const Modal: React.FC<ModalProps> = ({ title, className, externalOpenState, butt
                                                 >
                                                     <span className="w-full flex items-center justify-center">
                                                         {isLoading ? (
-                                                            <Loader2Icon size={24} className="animate-spin" />
+                                                            <RiLoader5Fill size={24} className="animate-spin" />
                                                         ) : (
                                                             <>
                                                                 {submitButtonText ?? "Confirmar"}

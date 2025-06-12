@@ -11,8 +11,8 @@ import { useRouter } from "next/navigation"
 import { PhoneInput } from "./phone-input"
 import { useForm } from "react-hook-form"
 import { AnimatePresence, motion } from "framer-motion"
+import { FiMail, FiUser } from "react-icons/fi"
 import { z } from "zod"
-import { User, Mail } from "lucide-react"
 
 type ContactModalProps = {
     open: boolean
@@ -141,7 +141,7 @@ export function ContactModal({ open, setOpen }: ContactModalProps) {
                                 <label htmlFor="fullName">{t("form.fields.full_name.label")} {errors.fullName && <span className="text-red-500">*</span>}</label>
                                 <div className={`flex items-center ${errors.fullName ? "border border-red-400" : "border"} rounded-md overflow-hidden transition duration-300 ease-out focus-within:border-[#9800b6]`}>
                                     <div className="px-3 text-gray-500">
-                                        <User size={18} />
+                                        <FiUser size={18} />
                                     </div>
                                     <input
                                         disabled={submitting}
@@ -173,7 +173,7 @@ export function ContactModal({ open, setOpen }: ContactModalProps) {
                                 </label>
                                 <div className={`flex items-center ${errors.email ? "border border-red-400" : "border"} rounded-md overflow-hidden transition duration-300 ease-out focus-within:border-[#9800b6]`}>
                                     <div className="px-3 text-gray-500">
-                                        <Mail size={18} />
+                                        <FiMail size={18} />
                                     </div>
                                     <input
                                         disabled={submitting}

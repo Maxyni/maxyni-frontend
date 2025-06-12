@@ -9,7 +9,7 @@ import { motion } from "framer-motion"
 import { ContactModal } from "./contact/contact-modal"
 import { useTranslations } from "next-intl"
 import { LanguageSelect } from "../i18n/language-select"
-import { UserPen } from "lucide-react"
+import { RiContactsLine } from "react-icons/ri"
 
 export function Navbar() {
     const t = useTranslations("navbar")
@@ -94,7 +94,7 @@ export function Navbar() {
                                     router.push("#contact", { scroll: false })
                                 }}
                             >
-                                <UserPen size={18} />
+                                <RiContactsLine size={18} />
                                 <span>{t("contact_button.text")}</span>
                             </a>
                         </div>

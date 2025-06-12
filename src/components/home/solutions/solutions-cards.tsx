@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useTranslations } from "next-intl"
-import { MonitorIcon, ShoppingBagIcon, SlidersVerticalIcon } from "lucide-react"
+import { FiMonitor, FiShoppingBag, FiSliders } from "react-icons/fi"
 
 export default function SolutionsCards() {
     const t = useTranslations("solutions.cards")
@@ -49,7 +49,7 @@ export default function SolutionsCards() {
                     whileInView="visible"
                     viewport={{ once: true }}
                 >
-                    <MonitorIcon size={42} className="text-white" />
+                    <FiMonitor size={42} className="text-white" />
                 </motion.div>
 
                 <motion.div
@@ -83,7 +83,7 @@ export default function SolutionsCards() {
                     whileInView="visible"
                     viewport={{ once: true }}
                 >
-                   <ShoppingBagIcon size={42} className="text-white" />
+                   <FiShoppingBag size={42} className="text-white" />
                 </motion.div>
 
                 <motion.div
@@ -117,7 +117,7 @@ export default function SolutionsCards() {
                     whileInView="visible"
                     viewport={{ once: true }}
                 >
-                    <SlidersVerticalIcon size={42} className="text-white" />
+                    <FiSliders size={42} className="text-white" />
                 </motion.div>
 
                 <motion.div

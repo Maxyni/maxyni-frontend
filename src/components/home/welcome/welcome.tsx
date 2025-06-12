@@ -2,7 +2,7 @@ import Link from "next/link"
 import Section from "../../section"
 import WelcomeRocket from "./welcome-rocket"
 import { getTranslations } from "next-intl/server"
-import { RocketIcon } from "lucide-react"
+import { BsRocketTakeoff } from "react-icons/bs"
 
 export default async function Welcome() {
     const t = await getTranslations("welcome")
@@ -39,7 +39,7 @@ export default async function Welcome() {
                             href="#solutions"
                             className="relative flex items-center gap-2 shadow-2xl justify-center w-full h-full rounded-xl bg-white text-black z-10"
                         >
-                            <RocketIcon size={18} />
+                            <BsRocketTakeoff size={18} />
                             <span className="font-semibold">{t("takeoff_button_text")}</span>
                         </Link>
                     </div>

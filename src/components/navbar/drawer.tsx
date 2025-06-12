@@ -9,7 +9,10 @@ import { useLocale, useTranslations } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { setCookie } from "@/lib/cookies"
-import { ChevronDownIcon, HouseIcon, Loader2Icon, MenuIcon, Sparkles, Users, XIcon } from "lucide-react"
+import { HiBars3, HiChevronDown, HiSparkles } from "react-icons/hi2"
+import { BsHouseFill, BsPeopleFill } from "react-icons/bs"
+import { RiLoader5Fill } from "react-icons/ri"
+import { IoIosClose } from "react-icons/io"
 
 export default function Drawer() {
     const t = useTranslations("navbar")
@@ -107,7 +110,7 @@ export default function Drawer() {
                     router.push("#menu", { scroll: false })
                 }}
             >
-                <MenuIcon size={32} className="mr-2 mb-1" />
+                <HiBars3 size={32} className="mr-2 mb-1" />
             </button>
 
             <AnimatePresence>
@@ -144,7 +147,7 @@ export default function Drawer() {
                                         router.push("#", { scroll: false })
                                     }}
                                 >
-                                    <XIcon />
+                                    <IoIosClose size={32} />
                                 </button>
                             </div>
 
@@ -162,7 +165,7 @@ export default function Drawer() {
                                             aria-label={t("home.aria_label")}
                                             onClick={() => setOpen(false)}
                                         >
-                                            <HouseIcon /> {t("home.text")}
+                                            <BsHouseFill /> {t("home.text")}
                                         </Link>
 
                                         <Link
@@ -171,7 +174,7 @@ export default function Drawer() {
                                             aria-label={t("about.aria_label")}
                                             onClick={() => setOpen(false)}
                                         >
-                                            <Users /> {t("about.text")}
+                                            <BsPeopleFill /> {t("about.text")}
                                         </Link>
 
                                         <Link
@@ -180,7 +183,7 @@ export default function Drawer() {
                                             aria-label={t("solutions.aria_label")}
                                             onClick={() => setOpen(false)}
                                         >
-                                            <Sparkles /> {t("solutions.text")}
+                                            <HiSparkles /> {t("solutions.text")}
                                         </Link>
                                     </div>
                                 </nav>
@@ -242,7 +245,7 @@ export default function Drawer() {
                                             <span>{usingLocale.languageName}</span>
                                         </div>
 
-                                        {changingLocale ? <Loader2Icon className="animate-spin" size={18} /> : <ChevronDownIcon size={18} className={`transition-all duration-300 ${langDropdownOpen && "transform rotate-180"}`} />}
+                                        {changingLocale ? <RiLoader5Fill className="animate-spin" size={18} /> : <HiChevronDown size={18} className={`transition-all duration-300 ${langDropdownOpen && "transform rotate-180"}`} />}
                                     </div>
                                 </div>
                             </div>

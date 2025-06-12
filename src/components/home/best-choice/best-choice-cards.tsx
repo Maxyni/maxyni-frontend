@@ -1,24 +1,23 @@
 "use client"
 
-import { motion } from "framer-motion"
 import Image from "next/image"
+import { motion } from "framer-motion"
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
 
 type CardProps = {
-    icon: StaticImport;
-    iconAlt: string;
-    title: string;
-    description: string;
-    index: number;
+    icon: StaticImport
+    iconAlt: string
+    title: string
+    description: string
+    index: number
 }
 
-export default function BestChoiceCards({
-    cards,
-    className = ""
-}: {
-    cards: CardProps[];
-    className?: string;
-}) {
+type BesctChoiceCardsProps = {
+    cards: CardProps[]
+    className?: string
+}
+
+export default function BestChoiceCards({ cards, className }: BesctChoiceCardsProps) {
     const cardVariants = {
         hidden: { opacity: 0, y: 20 },
         visible: (i: number) => ({
