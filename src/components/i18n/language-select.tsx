@@ -84,7 +84,7 @@ export function LanguageSelect({ hideSelect }: LanguageSelectProps) {
                     onClick={() => setDropdownOpen(!dropdownOpen)}
                     className="relative flex items-center justify-center w-full h-full rounded-xl bg-white text-black shadow-2xl z-10 hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                    {changingLocale ? <RiLoader5Fill size={18} className="animate-spin" /> : <IoLanguage size={18} />}
+                    {changingLocale ? <RiLoader5Fill size={18} className="animate-spin" /> : <IoLanguage size={22} />}
                 </button>
             </div>
 
