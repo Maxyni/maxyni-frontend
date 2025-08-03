@@ -8,9 +8,12 @@ export default async function Welcome() {
     const t = await getTranslations("welcome")
 
     return (
-        <Section id="welcome">
-            <div className="flex flex-col lg:flex-row items-center justify-center w-full h-auto lg:h-[400px] px-10 py-10 bg-gradient-to-r from-[#9A35E4] to-[#4682B4] rounded-t-[48px] rounded-bl-[48px] rounded-br-[250px]">
-                <div className="max-w-xl w-full lg:w-[36rem] text-left">
+        <Section id="welcome" className="welcome-3d-container">
+            <div className="welcome-3d-block floating flex flex-col lg:flex-row items-center justify-center w-full h-auto lg:h-[400px] px-10 py-10 bg-gradient-to-r from-[#9A35E4] to-[#4682B4] rounded-t-[48px] rounded-bl-[48px] rounded-br-[250px] relative overflow-hidden">
+                {/* Gradient overlay for extra depth */}
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent pointer-events-none"></div>
+                
+                <div className="max-w-xl w-full lg:w-[36rem] text-left relative z-10">
                     <h1 className="text-white font-extrabold uppercase text-4xl lg:text-5xl">
                         {t("title")}
                     </h1>
@@ -45,7 +48,9 @@ export default async function Welcome() {
                     </div>
                 </div>
 
-                <WelcomeRocket />
+                <div className="relative z-10">
+                    <WelcomeRocket />
+                </div>
             </div>
         </Section>
     )
