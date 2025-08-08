@@ -75,23 +75,19 @@ body {
 /* Main content Rocket Image animations - End */
 
 /* Welcome section 3D effect - Start */
-.welcome-3d-container {
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-
 .welcome-3d-block {
-  transform: rotateX(2deg) rotateY(-1deg);
+  transform: translateZ(0);
   box-shadow: 
     0 25px 50px -12px rgba(139, 69, 255, 0.4),
     0 15px 35px -5px rgba(79, 130, 202, 0.3),
     0 5px 15px -3px rgba(139, 69, 255, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  backface-visibility: hidden;
 }
 
 .welcome-3d-block:hover {
-  transform: rotateX(1deg) rotateY(-0.5deg) translateY(-8px);
+  transform: translateY(-8px) translateZ(0);
   box-shadow: 
     0 35px 70px -12px rgba(139, 69, 255, 0.5),
     0 25px 50px -5px rgba(79, 130, 202, 0.4),
@@ -99,16 +95,16 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-@keyframes float3D {
+@keyframes floatWelcome {
   0%, 100% {
-    transform: rotateX(2deg) rotateY(-1deg) translateY(0px);
+    transform: translateY(0px) translateZ(0);
   }
   50% {
-    transform: rotateX(2deg) rotateY(-1deg) translateY(-4px);
+    transform: translateY(-4px) translateZ(0);
   }
 }
 
 .welcome-3d-block.floating {
-  animation: float3D 4s ease-in-out infinite;
+  animation: floatWelcome 4s ease-in-out infinite;
 }
 /* Welcome section 3D effect - End */
