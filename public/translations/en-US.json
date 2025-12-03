@@ -159,5 +159,10 @@
                 "7": "<p><strong>7. Contact:</strong> If you have any questions about our Privacy Policy, or any other issues, please contact us by email at: <Link>contato@maxyni.com.br</Link>.</p>"
             }
         }
+    },
+    "notFound": {
+        "title": "Page not found",
+        "description": "Oops! The page you are looking for doesn't exist or has been moved.",
+        "button_text": "Back to home"
     }
 }

@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server"
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
     const { searchParams } = request.nextUrl
     const locale = searchParams.get("loc")
 
@@ -17,7 +17,6 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next()
 }
 
-// Configure the middleware to run on all paths except certain ones
 export const config = {
     matcher: [
         /*

@@ -159,5 +159,10 @@
                 "7": "<p><strong>7. Kontakt:</strong> Wenn Sie Fragen zu unserer Datenschutzrichtlinie oder zu anderen Angelegenheiten haben, kontaktieren Sie uns bitte per E-Mail unter: <Link>contato@maxyni.com.br</Link>.</p>"
             }
         }
+    },
+    "notFound": {
+        "title": "Seite nicht gefunden",
+        "description": "Hoppla! Die Seite, die Sie suchen, existiert nicht oder wurde verschoben.",
+        "button_text": "Zurück zur Startseite"
     }
 }

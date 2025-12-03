@@ -159,5 +159,10 @@
                 "7": "<p><strong>7. Contato:</strong> Caso tenha alguma dúvida sobre nossa Política de Privacidade, ou qualquer outra questão, entre em contato conosco pelo e-mail: <Link>contato@maxyni.com.br</Link>.</p>"
             }
         }
+    },
+    "notFound": {
+        "title": "Página não encontrada",
+        "description": "Ops! A página que você está procurando não existe ou foi movida.",
+        "button_text": "Voltar ao início"
     }
 }
