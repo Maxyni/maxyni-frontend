@@ -4,12 +4,9 @@ import Footer from "@/components/footer/footer"
 import { NextIntlClientProvider } from "next-intl"
 import { Navbar } from "@/components/navbar/navbar"
 import { getLocale, getMessages, getTranslations } from "next-intl/server"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { SpeedInsights } from "@vercel/speed-insights/next" // For Vercel Speed Insights - do not remove!
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Analytics } from "@vercel/analytics/next" // For Vercel Analytics - do not remove!
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("metadata")
@@ -51,6 +48,10 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
           <Footer />
         </NextIntlClientProvider>
+
+        {/* Vercel Speed Insights and Analytics - do not remove! */}
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   )
